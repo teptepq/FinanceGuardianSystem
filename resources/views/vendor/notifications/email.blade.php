@@ -6,13 +6,17 @@
 @if ($level === 'error')
 # @lang('Whoops!')
 @else
+{{-- @dd(Auth::user()); --}}
 # @lang('Hello!')
+
+
 @endif
 @endif
 
 {{-- Intro Lines --}}
 @foreach ($introLines as $line)
 {{ $line }}
+
 
 @endforeach
 
@@ -40,7 +44,8 @@
 {{ $salutation }}
 @else
 @lang('Regards'),<br>
-{{ config('app.name') }}
+{{-- {{ config('app.name') }} --}}
+{{ 'Team Financial Guardian' }}
 @endif
 
 {{-- Subcopy --}}
