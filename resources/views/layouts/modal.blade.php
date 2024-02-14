@@ -24,3 +24,25 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
+
+
+
+  <div class="modal fade" id="verticalycentered" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Log out of Financial Guardian?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p style>Are you sure you want to log out of Financial Guardian before you confirm your email? Confirming the email on your account ensures you will be able to log in again.&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" style="width: 225px;" class="btn btn-secondary" data-bs-dismiss="modal">Confirm account</button>
+          <a type="button" style="width: 225px;" class="btn btn-primary" href="{{ route('logout') }}"
+          onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();">Log out</a>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Vertically centered Modal-->
