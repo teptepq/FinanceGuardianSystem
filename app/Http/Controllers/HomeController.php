@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return view('invoice');
     }
+
+    public function admin()
+    {
+        return view('admintest');
+    }
 }

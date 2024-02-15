@@ -57,7 +57,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 @if (Route::has('login'))
                                 @auth
-                                <li><a class="dropdown-item" href="{{ url('/home') }}">Home</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/admin') }}">Home</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 @else
                                 <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
