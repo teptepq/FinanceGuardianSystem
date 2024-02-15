@@ -31,8 +31,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(func
     // view blade 
     Route::get('/admintest',            [App\Http\Controllers\HomeController::class, 'admin'])             ->name('admintest'); 
     Route::get('/',                     [App\Http\Controllers\SuperadminController::class, 'index'])       ->name('home');
-    // Route::get('/configuration',         [App\Http\Controllers\SuperadminController::class, 'configuration'])       ->name('configuration');
-    Route::get('admin/configuration',        [App\Http\Controllers\ConfigurationController::class, 'index'])        ->name('configuration');
+    Route::get('/configuration',         [App\Http\Controllers\SuperadminController::class, 'configuration'])       ->name('configuration');
+    // Route::get('admin/configuration',        [App\Http\Controllers\ConfigurationController::class, 'index'])        ->name('configuration');
 
 
 });
