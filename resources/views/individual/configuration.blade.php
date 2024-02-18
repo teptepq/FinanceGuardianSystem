@@ -241,7 +241,7 @@
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-      <a class="nav-link " href="index.html">
+      {{-- <a class="nav-link " href="{{ Route('admin') }}"> --}}
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>

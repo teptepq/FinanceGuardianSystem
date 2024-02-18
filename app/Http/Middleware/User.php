@@ -7,13 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-// namespace App\Http\Controllers\Auth;
-
-// use App\Http\Controllers\Controller;
-// use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
-
-class Admin
+class User
 {
     /**
      * Handle an incoming request.
@@ -22,11 +16,11 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        if(Auth::user()->usertype == '1')
+        if(Auth::user()->usertype == '2')
         {
-            return $next($request); 
-         } 
+            // dd(Auth::user());
+            return $next($request);
+         }
 
         abort(401);
 
