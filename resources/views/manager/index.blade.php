@@ -24,13 +24,170 @@
     
   </div><!-- End Page Title -->
   @endif --}}
+  @if(Auth::user()->usertype == '3')
+  <div class="modal fade" id="ExtralargeModalPayment" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="bi bi-credit-card-2-back"></i>
+          {{-- <h5 class="modal-title">Extra Large Modal</h5> --}}
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+            <h1>404</h1>
+            <h2>The page you are looking for doesn't exist.</h2>
+            <img src="/assets/img/not-found.svg" class="img-fluid py-5" alt="Page Not Found">
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+        </div>
+      </div>
+    </div>
+  </div><!-- End Extra Large Modal-->
 
+  <div class="modal fade" id="ExtralargeModalTransact" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content" data-bs-toggle="modal" data-bs-target="#ExtralargeModalPayment">
+        <div class="modal-header">
+          <i class="bi bi-clock-history"></i>
+          {{-- <h5 class="modal-title">Extra Large Modal</h5> --}}
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <?php date_default_timezone_set('Asia/Manila');
+          $currentDate = date("M d, Y, h:i A"); ?>
+          <div class="alert alert-primary alert-dismissible fade show" role="alert" >
+            <div class="row" >
+              <div class="col-lg-6">
+                <h4 class="alert-heading" style="font-size: 13.5px;">Online Payment - Web Pay</h4>
+              </div>
+              <div class="col-lg-6" >
+                <h5 class="alert-heading" style="float: right; font-size: 13.5px;">-1624.0</h5>
+              </div>
+            </div>
+            
+            {{-- <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p> --}}
+            <hr>
+            <p class="mb-0" style="font-size: 13.5px;">{{ $currentDate }}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {{-- <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+            <h1>404</h1>
+            <h2>The page you are looking for doesn't exist.</h2>
+            <img src="/assets/img/not-found.svg" class="img-fluid py-5" alt="Page Not Found">
+          </section> --}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+        </div>
+      </div>
+    </div>
+  </div><!-- End Extra Large Modal-->
+@endif
   <section class="section dashboard">
     <div class="row">
 
       <!-- Left side columns -->
       <div class="col-lg-9">
         <div class="row">
+          @if(Auth::user()->usertype == '3')
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"></h5>
+                {{-- <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p> --}}
+                <table class="table table-bordered" style="font-size: 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+                  <thead>
+                <tr>
+                  {{-- <th scope="col"></th> --}}
+                  <th colspan="5" style="text-align: center; "><strong><h5>Account Details</h5></th></strong>
+                  <th colspan="2" style="text-align: center;"><strong><h5>Your Information</h5></th></strong>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {{-- <th scope="row">1</th> --}}
+                  <td colspan="5">
+                    <span>
+                      App Key<br>3021939120390921830989
+                    </span>
+                  </td>
+                  <td colspan="2">
+                    <span>
+                    Account No.<br>240128200075
+                    </span>
+                  </td>
+                  {{-- <td>@mdo</td> --}}
+                </tr>
+                <tr>
+                  <td colspan="1">
+                    <span>
+                      Credits<br>0.00
+                      </span>
+                    
+                  </td>
+                  <td colspan="1">
+                    <span>
+                      Usaged<br>0.00
+                      </span>
+                  </td>
+                  <td colspan="3">
+                    <span>
+                      Available<br>0.00
+                      </span>
+                  </td>
+                  <td>
+                    <span colspan="2">
+                      Fullname<br>{{Auth::user()->name}}
+                      </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <span>
+                      Live Transaction<br>0.00
+                      </span>
+                    
+                  </td>
+                  {{-- <td colspan="1">
+                    <span>
+                      Usaged<br>0.00
+                      </span>
+                  </td> --}}
+                  <td colspan="3">
+                    <span>
+                      Test Transaction<br>0.00
+                      </span>
+                  </td>
+                  <td>
+                    <span colspan="2">
+                      Mobile<br>+633512413920
+                      </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="5">
+                    <div class="d-grid gap-2 mt-3">
+                      <button class="btn btn-secondary" type="button"><i class="bi bi-credit-card"></i>&nbsp;Buy Credits</button>
+                    </div>
+                  </td>
+                  <td colspan="2">
+                    <div class="d-grid gap-2 mt-3">
+                      <button class="btn btn-danger" type="button"><i class="bi bi-pencil"></i>&nbsp;Edit Profile</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            
+              </table>
+              </div>
+            </div>
+          </div>
+          @endif
           @if(Auth::user()->usertype == '2')
           <div class="col-12">
             <div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -53,112 +210,114 @@
             </div>
           </div>
           @endif
+          @if(Auth::user()->usertype == '1')
            <!-- Sales Card -->
-           <div class="col-xxl-4 col-md-6">
-            <div class="card info-card sales-card">
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
 
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
 
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-              </div>
-
-              <div class="card-body">
-                <h5 class="card-title">Sales <span>| Today</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-cart"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>145</h6>
-                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-                  </div>
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
                 </div>
-              </div>
 
-            </div>
-          </div><!-- End Sales Card -->
+                <div class="card-body">
+                  <h5 class="card-title">Sales <span>| Today</span></h5>
 
-          <!-- Revenue Card -->
-          <div class="col-xxl-4 col-md-6">
-            <div class="card info-card revenue-card">
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>145</h6>
+                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-              </div>
-
-              <div class="card-body">
-                <h5 class="card-title">Revenue <span>| This Month</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>$3,264</h6>
-                    <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div><!-- End Revenue Card -->
-
-          <!-- Customers Card -->
-          <div class="col-xxl-4 col-xl-12">
-
-            <div class="card info-card customers-card">
-
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-              </div>
-
-              <div class="card-body">
-                <h5 class="card-title">Customers <span>| This Year</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-people"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>1244</h6>
-                    <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-
+                    </div>
                   </div>
                 </div>
 
               </div>
-            </div>
+            </div><!-- End Sales Card -->
 
-          </div><!-- End Customers Card -->
+            <!-- Revenue Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Revenue <span>| This Month</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>$3,264</h6>
+                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+
+            <!-- Customers Card -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Customers <span>| This Year</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>1244</h6>
+                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div><!-- End Customers Card -->
+            @endif
         </div>
       </div><!-- End Left side columns -->
 

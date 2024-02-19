@@ -50,4 +50,8 @@ class UniversalController extends Controller
         return view('accessible/profile');
     }
 
+    public function customerservice(Request $request){
+        return view('accessible/help');
+    }
+
 }

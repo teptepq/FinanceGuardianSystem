@@ -3,9 +3,12 @@
     <div class="d-flex align-items-center justify-content-between">
         @if( auth::user()->usertype == '1')
       <a href="{{ route('home')}}" class="logo d-flex align-items-center">
-        @else
+        @elseif( auth::user()->usertype == '2' )
         <a href="{{ route('uhome')}}"class="logo d-flex align-items-center">
+          @else
+          <a href="{{ route('chome')}}"class="logo d-flex align-items-center">
             @endif
+           
         <img src="/assets/img/sublogo.jpg" alt="">
         <span class="d-none d-lg-block" style="font-size: 19.5px; ">Financial Guardian</span>
       </a>
@@ -192,6 +195,8 @@
                         <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
                     @elseif(Auth::user()->usertype == '2')
                         <a class="dropdown-item d-flex align-items-center" href="{{ route('uprofile') }}">
+                          @else 
+                          <a class="dropdown-item d-flex align-items-center" href="{{ route('cprofile') }}">
                     @endif
                 <i class="bi bi-person"></i>
                 <span style="font-size: 11.5px;">My Profile</span>
@@ -212,7 +217,9 @@
             </li>
             
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              @if(Auth::user()->usertype == '3')
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('chelp') }}">
+              @endif  
                 <i class="bi bi-question-circle"></i>
                 <span style="font-size: 11.5px;">Need Help?</span>
               </a>

@@ -31,21 +31,21 @@ Auth::routes();
 Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     
     // view blade 
-    Route::get('/admintest',                    [App\Http\Controllers\HomeController::class, 'admin'])                     ->name('admintest'); 
+    Route::get('/admintest',                    [App\Http\Controllers\HomeController::class,       'admin'])               ->name('admintest'); 
     Route::get('/home',                         [App\Http\Controllers\SuperadminController::class, 'index'])               ->name('home');
     Route::get('/configuration',                [App\Http\Controllers\SuperadminController::class, 'configuration'])       ->name('configuration');
     Route::get('/profile',                      [App\Http\Controllers\UniversalController::class, 'profile'])              ->name('profile');
-    Route::get('/statistic-reports',              [App\Http\Controllers\UniversalController::class, 'statistics'])           ->name('statistics');
+    Route::get('/statistic-reports',            [App\Http\Controllers\UniversalController::class, 'statistics'])           ->name('statistics');
     // Route::get('admin/configuration',        [App\Http\Controllers\ConfigurationController::class, 'index'])        ->name('configuration');
 });
 
 
-// USER SIDE
+// USER SIDE 'Manager'
 Route::middleware(['auth','user'])->prefix('user')->group(function(){
 
 
     // process
-    Route::post('/',                     [App\Http\Controllers\UniversalController::class, ''])                           ->name('');
+    // Route::post('/',                     [App\Http\Controllers\UniversalController::class, ''])                           ->name('');
 
     // view blade
     Route::get('/home',                  [App\Http\Controllers\UniversalController::class, 'index'])                      ->name('uhome');
@@ -54,8 +54,19 @@ Route::middleware(['auth','user'])->prefix('user')->group(function(){
     Route::get('/tax-calculation',       [App\Http\Controllers\UniversalController::class, 'taxcalculation'])             ->name('utaxCal');
     Route::get('/client',                [App\Http\Controllers\UniversalController::class, 'client'])                     ->name('uclient');
     Route::get('/report',                [App\Http\Controllers\UniversalController::class, 'report'])                     ->name('ureport');
-    Route::get('/profile',               [App\Http\Controllers\UniversalController::class, 'profile'])                     ->name('uprofile');
+    Route::get('/profile',               [App\Http\Controllers\UniversalController::class, 'profile'])                    ->name('uprofile');
     
+
+});
+
+
+// Customer
+Route::middleware(['auth','customer'])->prefix('customer')->group(function(){
+
+
+    Route::get('/home',                  [App\Http\Controllers\UniversalController::class, 'index'])                      ->name('chome');
+    Route::get('/profile',               [App\Http\Controllers\UniversalController::class, 'profile'])                    ->name('cprofile');
+    Route::get('/help',                  [App\Http\Controllers\UniversalController::class, 'customerservice'])                    ->name('chelp');
 
 });
 

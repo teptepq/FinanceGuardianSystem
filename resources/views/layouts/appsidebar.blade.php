@@ -9,9 +9,14 @@
           <i class="bi bi-grid"></i>
           <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Dashboard</span>
         </a>
-        @else
+        @elseif( auth::user()->usertype == '2' )
         <a class="nav-link " href="{{route('uhome')}}">
-          <i class="bi bi-grid"></i>
+          <i class="bi bi-house"></i>
+          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Home</span>
+        </a>
+        @else
+        <a class="nav-link " href="{{route('chome')}}">
+          <i class="bi bi-house"></i>
           <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Home</span>
         </a>
         @endif
@@ -127,7 +132,7 @@
       @endif
   
       <li class="nav-heading">Pages</li>
-  
+      
       @if(Auth::user()->usertype == '1')
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('configuration') }}">  
@@ -135,7 +140,7 @@
           <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Configuration</span>
         </a>
       </li><!-- End Profile Page Nav -->
-      @elseif( Auth::user()->usertype == '2')
+      @elseif( Auth::user()->usertype == '2' )
       <li class="nav-item" >
         <a class="nav-link collapsed" href="{{ route('uannouncement') }}">  
           <i class="bi bi-bell-fill"></i>
@@ -164,6 +169,19 @@
         <a class="nav-link collapsed" href="{{ route('ureport') }}">  
           <i class="bi bi-file-earmark-pdf-fill"></i>
           <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Report</span>
+        </a>
+      </li>
+      @elseif ( Auth::user()->usertype == '3' )
+      <li class="nav-item" style="cursor: pointer;">
+        <a class="nav-link collapsed" data-bs-toggle="modal" data-bs-target="#ExtralargeModalPayment">  
+          <i class="bi bi-credit-card-2-back"></i>
+          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Payments</span>
+        </a>
+      </li>
+      <li class="nav-item" style="cursor: pointer;">
+        <a class="nav-link collapsed" data-bs-toggle="modal" data-bs-target="#ExtralargeModalTransact">  
+          <i class="bi bi-clock-history"></i>
+          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Transactions</span>
         </a>
       </li>
       @endif

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class User
+class Customer
 {
     /**
      * Handle an incoming request.
@@ -16,13 +16,10 @@ class User
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->usertype == '2')
+        if(Auth::user()->usertype == '3')
         {
-            // dd(Auth::user());
             return $next($request);
         }
-
         abort(401);
-
     }
 }

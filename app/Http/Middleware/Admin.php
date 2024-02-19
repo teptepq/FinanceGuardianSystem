@@ -26,7 +26,7 @@ class Admin
         if(Auth::user()->usertype == '1')
         {
             return $next($request); 
-         } 
+        } 
 
         abort(401);
 
