@@ -11,12 +11,15 @@ use Form;
 
 class AccessibleFilterClass
 {
-    public function Receipt() {// dd(Auth::user()->usertype)
+    public function Receipt() {
+
+      $user = Auth::user()->usertype;
+
         $data = DB::table('tbluserdesc')
               ->select('cid','descid')
               ->distinct();
               
-              if(Auth::user()->usertype == '2'){
+              if($user == '2'){
                 $data = $data->WHERE('cid', '!=','0');
               }
            
@@ -30,5 +33,8 @@ class AccessibleFilterClass
         }
       return $result;
     }
+
+    // public function 
+    
 }
 ?>

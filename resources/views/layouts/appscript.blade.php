@@ -20,6 +20,26 @@
             //     alert('test');
             // })
 
+            $('#closed').on('click',function(e){
+
+                    var data = {
+                         isclick : true,
+                         _token : $('meta[name="csrf-token"]').attr('content')
+                    }
+
+                    $.ajax({
+
+                         url:  "{{ route('unotice') }}",
+                         type: 'POST',
+                         // dataType : "JSON", incase responce json
+                         data: data,
+                         success: function(data){
+
+                         }
+                    });
+
+            });
+
             
        });
 </script>

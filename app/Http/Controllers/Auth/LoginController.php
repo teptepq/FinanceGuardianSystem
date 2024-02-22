@@ -62,7 +62,7 @@ class LoginController extends Controller
             {
                 return redirect()->route('uhome');
             }
-            else
+            else 
             {
                 return redirect()->route('chome');
             }

@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\ConfigurationController; 
 use App\Http\Controller\UniversalController;
+use App\Http\Controller\UniversalProcess;
 use App\Http\Controller\HomeController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,8 +44,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
 Route::middleware(['auth','user'])->prefix('user')->group(function(){
 
 
-    // process
-    // Route::post('/',                     [App\Http\Controllers\UniversalController::class, ''])                           ->name('');
+    // PORCESS
+    Route::post('/notice',               [App\Http\Controllers\UniversalProcess::class, 'isNotice'])                           ->name('unotice');
 
     // view blade
     Route::get('/home',                  [App\Http\Controllers\UniversalController::class, 'index'])                      ->name('uhome');

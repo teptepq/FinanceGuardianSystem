@@ -30,7 +30,6 @@ class dummyUsersTableSeeder extends Seeder
                 'created_at' => $timestamp,
                 'updated_at' => $timestamp,
             ]);
-            
         }
     }
 }
