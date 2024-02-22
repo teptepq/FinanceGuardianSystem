@@ -17,5 +17,7 @@
 - [php artisan db:seed --class=dummyUsersTableSeeder]
 - [php artisan make:seeder AddColumnSeeder]
 - [php artisan db:seed --class=AddColumnSeeder]
+- [composer require laravelcollective/html]
+
 
 
