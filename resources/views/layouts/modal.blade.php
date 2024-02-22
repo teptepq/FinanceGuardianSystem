@@ -34,7 +34,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <i class="bi bi-box-arrow-right"></i>&nbsp;
-          <h5 class="modal-title">Log out of Financial Guardian?</h5>
+          <h5 class="modal-title" style="font-size: 14.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Log out of Financial Guardian?</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

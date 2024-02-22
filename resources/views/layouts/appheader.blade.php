@@ -217,7 +217,7 @@
             </li>
             
             <li>
-              @if(Auth::user()->usertype == '3')
+              @if(Auth::user()->usertype == '3' || Auth::user()->usertype == '2' )
               <a class="dropdown-item d-flex align-items-center" href="{{ route('chelp') }}">
               @endif  
                 <i class="bi bi-question-circle"></i>
