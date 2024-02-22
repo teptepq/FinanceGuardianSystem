@@ -62,7 +62,7 @@ class LoginController extends Controller
             {
                 return redirect()->route('uhome');
             }
-            else if ( auth::user()->usertype == '3' )
+            else
             {
                 return redirect()->route('chome');
             }

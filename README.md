@@ -13,4 +13,6 @@
 
 - [php artisan migrate]
 - [php artisan db:seed --class=UserDescTableSeeder]
+- [php artisan migrate:refresh --seed]
+- [php artisan db:seed --class=dummyUsersTableSeeder]
 

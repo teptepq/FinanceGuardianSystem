@@ -1,5 +1,13 @@
 @extends('layouts.app')
 @section('content')
+@php
+
+      $accessibleFilter = new App\Classes\AccessibleFilterClass ;
+      $Receipt = $accessibleFilter->Receipt();
+
+      // dd($Receipt);
+
+@endphp
 <div class="modal fade" id="largeModal" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -15,12 +23,15 @@
             <div class="row">
               <div class="col-sm-6">
                 <label for="inputDate" class="col-lg-6 col-form-label" style="font-size: 12.5px;">Recepient</label>
-                <select class="form-select" aria-label="Default select example">
+                {{-- <select class="form-select" aria-label="Default select example">
                   <option value="" selected> - Select Recepient - </option>
                   <option value="1">Admin</option>
                   <option value="2">Manager</option>
                   <option value="3">User</option>
-                </select>
+                </select> --}}
+                @php
+                  echo Form::select('usertype', $Receipt , (isset($YearLevel)?$YearLevel:null), array('class' => 'form-select','id' => 'usertype'));
+                @endphp 
               </div>
               <div class="col-sm-4">
                 <label for="inputDate" class="col-lg-4 col-form-label" style="font-size: 12.5px;">Date Ended</label>
