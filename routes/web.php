@@ -29,7 +29,10 @@ Auth::routes();
 
 // ADMIN SIDE
 Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
-    
+    // PROCESS
+    Route::GET('/generate-report',       [App\Http\Controllers\ReportAccessController::class, 'generateReport'])         ->name('report');
+
+
     // view blade 
     Route::get('/admintest',                    [App\Http\Controllers\HomeController::class,       'admin'])               ->name('admintest'); 
     Route::get('/home',                         [App\Http\Controllers\SuperadminController::class, 'index'])               ->name('home');
@@ -45,6 +48,9 @@ Route::middleware(['auth','user'])->prefix('user')->group(function(){
 
 
     // PORCESS
+    // routes/web.php
+   
+
     Route::post('/notice',               [App\Http\Controllers\UniversalProcess::class, 'isNotice'])                           ->name('unotice');
 
     // view blade
