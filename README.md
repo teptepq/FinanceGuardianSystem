@@ -11,13 +11,20 @@
 
 <!-- Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as: -->
 
+- [php artisan make:migration create_personaldata_table]
+- [php artisan db:seed --class=PersonaldataSeeder]
 - [php artisan migrate]
+
 - [php artisan db:seed --class=UserDescTableSeeder]
 - [php artisan migrate:refresh --seed]
 - [php artisan db:seed --class=dummyUsersTableSeeder]
 - [php artisan make:seeder AddColumnSeeder]
 - [php artisan db:seed --class=AddColumnSeeder]
 - [composer require laravelcollective/html]
+
+## SQL Query Database
+
+- [ALTER TABLE `users` ADD COLUMN `userid` INT(10) NULL AFTER `isNotice`;]
 
 
 

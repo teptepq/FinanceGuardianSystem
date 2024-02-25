@@ -2,7 +2,7 @@
 @section('content')
 @php
 
-      $accessibleFilter = new App\Classes\AccessibleFilterClass ;
+      $accessibleFilter = new App\Classes\AccessibleFilterClass;
       $Receipt = $accessibleFilter->Receipt();
 
       // dd($Receipt);
@@ -30,7 +30,7 @@
                   <option value="3">User</option>
                 </select> --}}
                 @php
-                  echo Form::select('usertype', $Receipt , (isset($YearLevel)?$YearLevel:null), array('class' => 'form-select','id' => 'usertype'));
+                  echo Form::select('usertype', $Receipt , (isset($Receipt)?$Receipt:null), array('class' => 'form-select','id' => 'usertype'));
                 @endphp 
               </div>
               <div class="col-sm-4">

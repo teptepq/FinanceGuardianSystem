@@ -34,7 +34,71 @@
         <div class="row">
           @include('layouts.hasAnnouncement')
           
+          <section class="section">
+            <div class="row">
+              <div class="col-lg-12">
+      
+                <div class="card">
+                  <div class="card-body">
+                    {{-- <h5 class="card-title">Example Card</h5>
+                    <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p> --}}
+                    <h5 class="card-title">Employee Asset & Tax</h5>
+                    <table class="table datatable" style="font-size: 12.5px;">
+                      <thead>
+                        <tr>
+                          <th>Employee Name</th>
+                          <th>Salary</th>
+                          <th>Department</th>
+                          <th>Asset</th>
+                          <th>Tax</th>
+                          <th>Action</th>
 
+                          {{-- <center><th >ITR - Income Tax Report 'GET A FORM'</th> </center> --}}
+                          {{-- <th>Asset</th> --}}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>John Doe</td>
+                            <td>
+                              <?=number_format(20000,2)?>
+                              {{-- <button type="button" class="btn btn-info"><i class="bi bi-form">BIR 901</i></button> --}}
+                            </td>
+                            <td>
+                              Mitsui Department
+                            </td>
+                            <td>Laptop</td>
+                            <td>
+                              -<?=number_format(1437,2)?>
+                            </td>
+                            <td>
+                              <a type="button" class="btn btn-info" href={{route('ugenerateReport')}}><i class="bi bi-printer"></i></i></a>
+                            </td>
+                            {{-- <td>
+                              <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>
+                            </td> --}}
+                          </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+      
+              </div>
+
+              
+      
+              {{-- <div class="col-lg-6">
+      
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Example Card</h5>
+                    <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
+                  </div>
+                </div>
+      
+              </div> --}}
+            </div>
+          </section>
           
 
         </div>

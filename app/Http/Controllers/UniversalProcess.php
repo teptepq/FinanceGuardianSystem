@@ -11,7 +11,7 @@ class UniversalProcess extends Controller
 {
         
     public function isNotice(Request $request){
-        // $var = (object) $request; object array
+        // $var = (object) $request; object into array
         
         $notice = "";
         $username = auth::user()->name;
@@ -29,9 +29,7 @@ class UniversalProcess extends Controller
         // 'column2' => 'new value 2',
         // add more columns as needed
         ]);
-
-        // if($result) 
-            
+        
         return "Record updated successfully!";
 
     }

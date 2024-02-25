@@ -27,10 +27,17 @@ Auth::routes();
 // Route::get('/home',     [App\Http\Controllers\HomeController::class, 'index'])      ->name('home');
 // Route::get('/invoice',  [App\Http\Controllers\HomeController::class, 'invoice'])    ->name('invoice');
 
+
+Route::get('/test-image', function () {
+    return view('test_image');
+});
+
 // ADMIN SIDE
 Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     // PROCESS
-    Route::GET('/generate-report',       [App\Http\Controllers\ReportAccessController::class, 'generateReport'])         ->name('report');
+    Route::GET('/generate-report',              [App\Http\Controllers\ReportAccessController::class, 'generateReport'])    ->name('report');
+    Route::POST('/storedata',                   [App\Http\Controllers\UniversalController::class, 'storedata'])            ->name('storedata');
+    Route::get('/storeinfo',                    [App\Http\Controllers\UniversalController::class, 'store'])               ->name('storeinfos');
 
 
     // view blade 
@@ -40,19 +47,21 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::get('/profile',                      [App\Http\Controllers\UniversalController::class, 'profile'])              ->name('profile');
     Route::get('/statistic-reports',            [App\Http\Controllers\UniversalController::class, 'statistics'])           ->name('statistics');
     // Route::get('admin/configuration',        [App\Http\Controllers\ConfigurationController::class, 'index'])        ->name('configuration');
+
+    Route::post('/notice',                      [App\Http\Controllers\UniversalProcess::class, 'isNotice'])                       ->name('notice');
 });
 
 
 // USER SIDE 'Manager'
-Route::middleware(['auth','user'])->prefix('user')->group(function(){
+Route::middleware(['auth','user'])->prefix('manager')->group(function(){
 
 
     // PORCESS
     // routes/web.php
-   
+    Route::GET('/generate-report',       [App\Http\Controllers\ReportAccessController::class, 'generateReport'])          ->name('ugenerateReport');
+    Route::post('/notice',               [App\Http\Controllers\UniversalProcess::class, 'isNotice'])                      ->name('unotice');
 
-    Route::post('/notice',               [App\Http\Controllers\UniversalProcess::class, 'isNotice'])                           ->name('unotice');
-
+    
     // view blade
     Route::get('/home',                  [App\Http\Controllers\UniversalController::class, 'index'])                      ->name('uhome');
     Route::get('/track-maintenance',     [App\Http\Controllers\UniversalController::class, 'trackMaintenance'])           ->name('utrackmaintenance');
@@ -66,13 +75,13 @@ Route::middleware(['auth','user'])->prefix('user')->group(function(){
 });
 
 
-// Customer
+// Customer 'EMPLOYEE && CASUAL'
 Route::middleware(['auth','customer'])->prefix('customer')->group(function(){
 
 
     Route::get('/home',                  [App\Http\Controllers\UniversalController::class, 'index'])                      ->name('chome');
     Route::get('/profile',               [App\Http\Controllers\UniversalController::class, 'profile'])                    ->name('cprofile');
-    Route::get('/help',                  [App\Http\Controllers\UniversalController::class, 'customerservice'])                    ->name('chelp');
+    Route::get('/help',                  [App\Http\Controllers\UniversalController::class, 'customerservice'])            ->name('chelp');
 
 });
 

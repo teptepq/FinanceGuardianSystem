@@ -9,7 +9,24 @@
 <!-- ======= Sidebar ======= -->
 @include('layouts.appsidebar');
 <!-- End Sidebar-->
+<style>
+  /* Add your other styles here */
+.custom-toast-popup {
+    width: 500px; /* Adjust the width as needed */
+}
 
+.icon-color-black {
+    color: black !important; /* Change the color of the icon */
+}
+.custom-toast-content {
+ /* Adjust the maximum width of the content area */
+  /* Hide overflow to prevent it from expanding beyond the width */
+ 
+    font-size: 12.5px;/* Add padding to the content */
+    max-width: 100%;
+    overflow: hidden;
+}
+</style>
 <main id="main" class="main">
   {{-- @if( auth::user()->usertype == '1')
   <div class="pagetitle">
@@ -31,6 +48,7 @@
       <!-- Left side columns -->
       <div class="col-lg-9">
         <div class="row">
+          @include('layouts.hasAnnouncement')
           @if(Auth::user()->usertype == '3')
           <div class="col-12">
             <div class="card">
@@ -125,7 +143,7 @@
             </div>
           </div>
           @endif
-          @include('layouts.hasAnnouncement')
+         
           @if(Auth::user()->usertype == '1')
            <!-- Sales Card -->
             <div class="col-xxl-4 col-md-6">
@@ -210,8 +228,8 @@
                     </li>
 
                     <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                    <li><a class="dropdown-item" href="#">Casual</a></li>
+                    <li><a class="dropdown-item" href="#">Employee</a></li>
                   </ul>
                 </div>
 

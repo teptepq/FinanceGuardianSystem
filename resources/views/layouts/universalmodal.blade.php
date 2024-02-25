@@ -1,3 +1,20 @@
+<?php
+
+$load = array();
+$c = 1;
+
+// DROPDONW SELECT
+$accessibleFilter = new App\Classes\AccessibleFilterClass ;
+$Receipt = $accessibleFilter->Receipt();
+
+// FETCH DATA
+$load      = $accessibleFilter->loadData();
+// $userDesc  = $accessibleFilter->userdesc();
+
+
+?>
+
+
 @if(Auth::user()->usertype == '3')
 
 
@@ -48,18 +65,23 @@
 
     <div class="modal fade" id="ExtralargeModalTransact" tabindex="-1">
       <div class="modal-dialog modal-xl">
-        <div class="modal-content" data-bs-toggle="modal" data-bs-target="#ExtralargeModalPayment">
-          <div class="modal-header">
-            <i class="bi bi-clock-history"></i>
+        <div class="modal-content" >
+          {{-- <div class="modal-header"> --}}
+            {{-- <i class="bi bi-clock-history"></i> --}}
             {{-- <h5 class="modal-title">Extra Large Modal</h5> --}}
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
+            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+          {{-- </div> --}}
+          <br>
           <div class="modal-body">
             <?php date_default_timezone_set('Asia/Manila');
             $currentDate = date("M d, Y, h:i A"); ?>
-            <div class="alert alert-primary alert-dismissible fade show" role="alert" >
+            
+            <h5 class="alert-heading" style="font-size: 13.5px;">Transactions as of {{ $currentDate }}  <i class="bi bi-clock-history" style="float: right;" data-bs-toggle="modal" data-bs-target="#ExtralargeModalPayment"></i></h5>
+            <hr>
+            
+            <div class="alert alert-primary alert-dismissible fade show" role="alert"  data-bs-toggle="modal" data-bs-target="#ExtralargeModalPayment">
               <div class="row" >
-                <div class="col-lg-6">
+                <div class="col-lg-6" >
                   <h4 class="alert-heading" style="font-size: 13.5px;">Online Payment - Web Pay</h4>
                 </div>
                 <div class="col-lg-6" >
@@ -70,7 +92,27 @@
               {{-- <p>Et suscipit deserunt earum itaque dignissimos recusandae dolorem qui. Molestiae rerum perferendis laborum. Occaecati illo at laboriosam rem molestiae sint.</p> --}}
               <hr>
               <p class="mb-0" style="font-size: 13.5px;">{{ $currentDate }}</p>
+              
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              
+            </div>
+            <div class="row" >
+              
+              <div class="col-lg-4">
+                <h4 class="alert-heading" style="font-size: 13.5px; text-align:center;"></h4>
+
+              </div>
+              <div class="col-lg-4">
+                <h4 class="alert-heading" style="font-size: 13.5px; text-align:center;">Want to see more? Submit a request.<br>We'll send your transaction history to your email.</h4>
+              </div>
+              <div class="col-lg-4">
+                <h4 class="alert-heading" style="font-size: 13.5px; text-align:center;"></h4>
+              </div>
+              <div class="d-grid gap-2 mt-2">
+                <button type="button" class="btn btn-primary" style="font-size: 14.5px;">Request Transaction History</button>
+              </div>
+         
+              
             </div>
             {{-- <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
               <h1>404</h1>
@@ -79,11 +121,238 @@
             </section> --}}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            
             {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
           </div>
         </div>
       </div>
     </div><!-- End Extra Large Modal-->
   @endif
+
+
+
+  
+
+
+
+
+
+  {{-- admin side modal --}}
+@if( Auth::user()->usertype == '1')
+  <div class="modal fade" id="ExtralargeModalUsers" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="bi bi-person"></i>
+          {{-- <h5 class="modal-title">Extra Large Modal</h5> --}}
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="rstClose"></button>
+        </div>
+        <div class="modal-body">
+          <section class="section">
+            <div class="row">
+              <div class="col-lg-12">
+      
+                <div class="card">
+                  <div class="card-body" id="createdata">
+                    <h5 class="card-title"></h5>   
+                    <form id=registrationFormV2>
+                      @csrf
+                    <div class="row">
+                    
+
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Your Name">
+                          <br>
+                          <label for="floatingName">Fullname</label>
+                        </div>
+                      </div>
+                       <div class="col-md-3">
+                        <div class="form-floating">
+                        {{-- <label for="inputDate" class="col-lg-6 col-form-label" style="font-size: 12.5px;">Usertype</label> --}}
+                        {{-- <select class="form-select" aria-label="Default select example">
+                          <option value="" selected> - Select Recepient - </option>
+                          <option value="1">Admin</option>
+                          <option value="2">Manager</option>
+                          <option value="3">User</option>
+                        </select> --}}
+                        @php
+                          echo Form::select('usertype', $Receipt , (isset($Receipt)?$Receipt:null), array('class' => 'form-select','id' => 'usertype'));
+                        @endphp 
+                        <label for="floatingSelect">Usertype</label>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-floating">
+                        {{-- <label for="inputDate" class="col-lg-6 col-form-label" style="font-size: 12.5px;">Usertype</label> --}}
+                        <select class="form-select" aria-label="Default select example" name="branch">
+                          <option value="" selected> - Select Branch - </option>
+                          <option value="1">Caloocan</option>
+                          <option value="2">Valenzuela</option>
+                          {{-- <option value="3">User</option> --}}
+                        </select>
+                        {{-- @php
+                          echo Form::select('usertype', $Receipt , (isset($Receipt)?$Receipt:null), array('class' => 'form-select','id' => 'usertype'));
+                        @endphp  --}}
+                        <label for="floatingSelect">Branch</label>
+                        </div>
+                      </div>
+                      <div class="col-md-5">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" id="username" name="username" placeholder="Your Name">
+                          <br>
+                          <label for="floatingName">Username</label>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-7">
+                        <div class="form-floating">
+                          <input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
+                          <br>
+                          <label for="floatingEmail">Email</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                          <br>
+                          <label for="floatingPassword">Password</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-floating">
+                          <input type="password" class="form-control" id="retypepassword" name="retypepassword" placeholder="Password">
+                          <br>
+                          <label for="floatingPassword">Retype Password</label>
+                        </div>
+                      </div>
+                      <div class="text-center">
+                        <button type="reset" class="btn btn-secondary" style="float: right; margin-left: 7px;" id='clr'>Clear Entries</button>
+                        <button type="submit" class="btn btn-primary" style="float: right;" id="btnsubmit">Submit</button>
+                       
+                      </div>
+                      
+                    </div><!-- End floating Labels Form -->
+                    </form>
+                    {{-- <form method="POST" action="{{ route('register') }}">
+                      @csrf
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Fullname" required autocomplete="name" autofocus>
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                          </div>
+                        </div>
+                        @error('name')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
+                      </div>
+                      <div class="input-group mb-3">
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email">
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                          </div>
+                        </div>
+                        @error('email')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
+                      </div>
+                      <div class="input-group mb-3">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                          </div>
+                        </div>
+                          @error('password')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </div>
+                      <div class="input-group mb-3">
+                        <input type="password" id="password-confirm" class="form-control"  name="password_confirmation" required autocomplete="new-password" placeholder="Retype password">
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-8">
+                          <div class="icheck-primary">
+                            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                            <label for="agreeTerms">
+                             I agree to the <a href="#">terms</a>
+                            </label>
+                          </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                          <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                    </form> --}}
+                    
+                  </div>
+                </div>
+      
+              </div>
+      
+              <div class="col-lg-12">
+      
+                <div class="card">
+                  <div class="card-body">
+                       <!-- Table with stripped rows -->
+                <br><br>
+                <table class="table datatable" id="reload">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    {{-- <th data-type="date" data-format="YYYY/DD/MM">Start Date</th> --}}
+                    <th>UserType</th>
+                    <th>Tools</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($load as $value)
+            {{-- Adjust the following lines based on the actual properties in your $value --}}
+                  <tr>
+                    <td><?= $c++; ?></td>
+                    <td><?= $value['name'] ?></td>
+                    <td><?= $value['email'] ?></td>
+                    <td><?= $value['usertype'] ?></td>
+                    <td><?= $value['percentage'] ?></td>
+                    <td>
+                      <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>
+                  </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+                  </div>
+                </div>
+      
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+        </div>
+      </div>
+    </div>
+  </div>
+@endif
+
 

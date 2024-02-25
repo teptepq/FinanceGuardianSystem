@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -38,7 +39,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-       
         $this->middleware('guest')->except('logout');
     }
 
@@ -46,7 +46,7 @@ class LoginController extends Controller
     {
     
         $input = $request->all();
-
+        
         $this->validate($request,[
             'email'    => 'required|email',
             'password' => 'required',
@@ -54,6 +54,8 @@ class LoginController extends Controller
 
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
+            
+            // dd(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])));
             if(auth::user()->usertype == '1') 
             {
                 return redirect()->route('home');
@@ -62,11 +64,13 @@ class LoginController extends Controller
             {
                 return redirect()->route('uhome');
             }
-            else 
+            else
             {
                 return redirect()->route('chome');
             }
-            
+        }
+        else {
+            return redirect('login');
         }
         
 

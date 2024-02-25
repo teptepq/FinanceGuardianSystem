@@ -1,3 +1,12 @@
+<?php
+    
+    $accessibleFilter = new App\Classes\AccessibleFilterClass;
+    $position = $accessibleFilter->positionDesc(Auth::user()->usertype);
+    
+
+?>
+
+
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -9,7 +18,7 @@
           <a href="{{ route('chome')}}"class="logo d-flex align-items-center">
             @endif
            
-        <img src="/assets/img/sublogo.jpg" alt="">
+        <img src="/assets/img/subhead.png" alt="">
         <span class="d-none d-lg-block" style="font-size: 19.5px; ">Financial Guardian</span>
       </a>
       
@@ -184,7 +193,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>{{ Auth::user()->name }}</h6>
-              <span>Web Designer</span>
+              <span>{{ $position }}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -205,26 +214,65 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-  
+            @if(Auth::user()->usertype == '2' || Auth::user()->usertype == '3')
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span style="font-size: 11.5px;">Account Settings</span>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-credit-card"></i>
+                <span style="font-size: 11.5px;">My Linked Accounts</span>
               </a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
-            
             <li>
-              @if(Auth::user()->usertype == '3' || Auth::user()->usertype == '2' )
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-qr-code-scan"></i>
+                <span style="font-size: 11.5px;">My Qr Codes</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-piggy-bank"></i>
+                <span style="font-size: 11.5px;">Voucher Pocket</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-shop"></i>
+                <span style="font-size: 11.5px;">Partner Merchants</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            @endif
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-gear"></i>
+                <span style="font-size: 11.5px;">Account Settings</span>
+              </a>
+            </li>
+           
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              @if(Auth::user()->usertype == '3' || Auth::user()->usertype == '1')
               <a class="dropdown-item d-flex align-items-center" href="{{ route('chelp') }}">
+              @else 
+                <a class="dropdown-item d-flex align-items-center" href="#">
               @endif  
                 <i class="bi bi-question-circle"></i>
                 <span style="font-size: 11.5px;">Need Help?</span>
               </a>
             </li>
-           
+            
             <li>
               <hr class="dropdown-divider">
             </li>

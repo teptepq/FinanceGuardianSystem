@@ -110,7 +110,7 @@
               <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Statistics Reports</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a href="forms-layouts.html">
               <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Form Layouts</span>
             </a>
@@ -124,22 +124,44 @@
             <a href="forms-validation.html">
               <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Form Validation</span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </li><!-- End Forms Nav -->
   
 
       @endif
-  
+      {{-- <a class="nav-link collapsed"  href="{{ route('configuration') }}">   --}}
       <li class="nav-heading">Pages</li>
-      
+   
       @if(Auth::user()->usertype == '1')
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('configuration') }}">  
-          <i class="bi bi-gear"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Configuration</span>
+        <a class="nav-link collapsed" data-bs-target="#forms-tools" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gear"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Services</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Profile Page Nav -->
+        <ul id="forms-tools" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Configuration</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Announcement</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#ExtralargeModalUsers">
+              <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">User Accounts</span>
+            </a>
+          </li>
+          <li>
+            {{-- <a href="forms-validation.html">
+              <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Form Validation</span>
+            </a> --}}
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+      <!-- End Profile Page Nav -->
       @elseif( Auth::user()->usertype == '2' )
       <li class="nav-item" >
         <a class="nav-link collapsed" href="{{ route('uannouncement') }}">  
@@ -162,7 +184,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('uclient') }}">  
           <i class="bi bi-people-fill"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Clients</span>
+          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Employee</span>
         </a>
       </li>
       <li class="nav-item">

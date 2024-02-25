@@ -1,6 +1,6 @@
-@if(Auth::user()->usertype == '2' && Auth::user()->isNotice == 0)
 
-
+@if(Auth::user()->isNotice == 0)
+          
           <div class="col-12">
             <div class="alert alert-primary alert-dismissible fade show" role="alert">
               <label class="alert-heading" style="text-transform: Uppercase; font-size: 16px;">Announcement</label>
@@ -21,4 +21,4 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" id="closed"></button>
             </div>
           </div>
-          @endif
+        @endif

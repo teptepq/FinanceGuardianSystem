@@ -25,6 +25,9 @@ class SuperadminController extends Controller
         return $path;
     }
 
+
+    
+
     public function configuration(Request $request){
 
         return view('manager/configuration');

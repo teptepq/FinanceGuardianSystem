@@ -9,12 +9,13 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/assets/img/favicon.png" rel="icon">
+  <link href="/assets/img/subhead.png" rel="icon">
   <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  
 
   <!-- Vendor CSS Files -->
   <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,6 +26,8 @@
   <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
+
+
   <!-- Template Main CSS File -->
   <link href="/assets/css/style.css" rel="stylesheet">
 
@@ -32,12 +35,22 @@
    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
    <meta name="csrf-token" content="{{ csrf_token() }}">
 
+   <!-- jQuery -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <!-- DataTables -->
+   <script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
+
+   {{-- <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script> --}}
+
+   
+
 </head>
 <body>
             {{-- @csrf --}}
             @include('layouts.modal')
             @yield('content')
-    
+            
+
 </body>
 </html>
 

@@ -8,12 +8,12 @@
         <div class="row justify-content-center">
           <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-            {{-- <div class="d-flex justify-content-center py-4">
+            <div class="d-flex justify-content-center py-4">
               <a href="index.html" class="logo d-flex align-items-center w-auto">
-                <img src="assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">NiceAdmin</span>
+                <img src="assets/img/subhead.png" alt="">
+                {{-- <span class="d-none d-lg-block">NiceAdmin</span> --}}
               </a>
-            </div><!-- End Logo --> --}}
+            </div><!-- End Logo -->
 
             <div class="card mb-3">
 
@@ -28,7 +28,7 @@
                   <form method="POST" action="{{ route('login') }}" class="row g-3 needs-validation" novalidate>
                     @csrf
                   <div class="col-12">
-                    <label for="yourUsername" class="form-label">Username</label>
+                    <label for="yourUsername" class="form-label">Email</label>
                     <div class="input-group has-validation">
                       <span class="input-group-text" id="inputGroupPrepend">@</span>
                       <input  id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
