@@ -22,6 +22,11 @@
 - [php artisan db:seed --class=AddColumnSeeder]
 - [composer require laravelcollective/html]
 
+php artisan make:migration create_tbl_subcontractors_table
+php artisan make:seeder SubcontractorSeeder
+php artisan make:migration create_requests_table
+php artisan migrate
+
 ## SQL Query Database
 
 - [ALTER TABLE `users` ADD COLUMN `userid` INT(10) NULL AFTER `isNotice`;]
