@@ -356,3 +356,113 @@ $load      = $accessibleFilter->loadData();
 @endif
 
 
+
+@if( Auth::user()->usertype == '2')
+<div class="modal fade" id="ExtralargeModalBarChart" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        {{-- <i class="bi bi-bar-chart"></i> --}}
+        {{-- <h5 class="modal-title">Extra Large Modal</h5> --}}
+        {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="rstClose"></button> --}}
+      </div>
+      <div class="modal-body">
+        <section class="section">
+          <div class="row">
+            <div class="col-lg-12">
+    
+              <div class="card">
+                <div class="card-body" id="createdata">
+                  <h5 class="card-title"></h5>   
+                  
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title"></h5>
+            
+                          <!-- Bar Chart -->
+                          <canvas id="barChart" style="max-height: 400px;"></canvas>
+                          <script>
+                            document.addEventListener("DOMContentLoaded", () => {
+                              new Chart(document.querySelector('#barChart'), {
+                                type: 'bar',
+                                data: {
+                                  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                                  datasets: [{
+                                    label: 'Bar Chart',
+                                    data: [65, 59, 80, 81, 56, 55, 40],
+                                    backgroundColor: [
+                                      'rgba(255, 99, 132, 0.2)',
+                                      'rgba(255, 159, 64, 0.2)',
+                                      'rgba(255, 205, 86, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(54, 162, 235, 0.2)',
+                                      'rgba(153, 102, 255, 0.2)',
+                                      'rgba(201, 203, 207, 0.2)'
+                                    ],
+                                    borderColor: [
+                                      'rgb(255, 99, 132)',
+                                      'rgb(255, 159, 64)',
+                                      'rgb(255, 205, 86)',
+                                      'rgb(75, 192, 192)',
+                                      'rgb(54, 162, 235)',
+                                      'rgb(153, 102, 255)',
+                                      'rgb(201, 203, 207)'
+                                    ],
+                                    borderWidth: 1
+                                  }]
+                                },
+                                options: {
+                                  scales: {
+                                    y: {
+                                      beginAtZero: true
+                                    }
+                                  }
+                                }
+                              });
+                            });
+                          </script>
+                          <!-- End Bar CHart -->
+            
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                   
+                      <p style="margin-top: 10px;  font-family: 'Arial', sans-serif; font-size: 16px; line-height: 1.5; color: #333;">
+                        Hello Manager,
+                    </p>
+                    
+                    <p style="text-indent: 20px; font-family: 'Arial', sans-serif; font-size: 16px; line-height: 1.5; color: #333;">
+                      Welcome to the Sales Summary Chart for this year from your vendor! This concise overview encapsulates key sales metrics, including a breakdown of product contributions and growth trends. Notably, an impressive 80% boost in overall sales has been achieved. Hover over data points for specifics, zoom in for detailed analysis, and utilize filters for targeted insights. This chart empowers you to make informed decisions and capitalize on opportunities for continued success.
+                    </p>
+
+
+                    <p style="float: right; font-family: 'Arial', sans-serif; font-size: 13.5px; line-height: 1.5; color: #333;">
+                      Team Financial Guardian
+                    </p>
+                    
+                    
+                      
+                    </div>
+                  </div>
+                  
+                  
+                </div>
+              </div>
+    
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="modal-footer">
+        {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
+        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+      </div>
+    </div>
+  </div>
+</div>
+@endif
+
+

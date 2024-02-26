@@ -184,7 +184,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('uclient') }}">  
           <i class="bi bi-people-fill"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Employee</span>
+          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Employee Asset</span>
         </a>
       </li>
       <li class="nav-item">

@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -24,7 +23,7 @@
     
   </div><!-- End Page Title -->
   @endif
-
+  @include('layouts.universalmodal')
   <section class="section dashboard">
     <div class="row">
 
@@ -43,33 +42,39 @@
               </ol>
             </nav>
           </div><!-- End Page Title --> --}}
+
+          
           <section class="section">
             <div class="row">
               <div class="col-lg-12">
       
                 <div class="card">
                   <div class="card-body">
-                    {{-- <h5 class="card-title">Example Card</h5>
-                    <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p> --}}
+                    <h5 class="card-title">Employee Asset</h5>
+                    {{-- <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p> --}}
 
                     <table class="table datatable" style="font-size: 12.5px;">
                       <thead>
                         <tr>
                           {{-- <th>Depreciaton</th> --}}
                           <th>Sub-Contractor</th>
-                          <th>Tools</th>
+                          <th>Prize</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach($data as $datas)
                         <tr>
                           {{-- <td>Net 30</td> --}}
-                          <td>ABC COMPANY - Equipment</td>
+                          <td>{{ ucfirst($datas->vendor_name .' - '. $datas->category)  }}</td>
                           <td>
-                            <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>
-                        </td>
-                          
+                       {{ number_format($datas->product_prize,2) }}
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#ExtralargeModalBarChart"><i class="bi bi-eye"></i></button>
+                          </td>
                         </tr>
-                       
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -82,15 +87,15 @@
       
                 <div class="card">
                   <div class="card-body">
-                    {{-- <h5 class="card-title">Example Card</h5>
-                    <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p> --}}
-
+                    <h5 class="card-title">Cash Management</h5>
+                    {{-- <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p> --}}
+                    {{-- <a type="button" href="https://www.bir.gov.ph/images/bir_files/0217%20Nov%202014%20encs%20v2.pdf" >pdf</a> --}}
                     <table class="table datatable" style="font-size: 12.5px;">
                       <thead>
                         <tr>
-                          <th>Depreciaton</th>
+                          <th>Depreciation</th>
                           {{-- <th>Sub-Contractor</th> --}}
-                          <th>Tools</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>

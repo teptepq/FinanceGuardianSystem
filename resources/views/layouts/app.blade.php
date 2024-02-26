@@ -15,6 +15,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-xxlD5vVsmP4jRAujZOlnNGfVpF2n4zmNfqlrHfSYtCGpmV66Z6u90XhUpwz7aK30Mjp9d3EV0yK8gevKc1siZA==" crossorigin="anonymous" />
   
 
   <!-- Vendor CSS Files -->

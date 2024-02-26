@@ -60,7 +60,9 @@
                                 @if ( Auth::user()->usertype == '1')
                                 <li><a class="dropdown-item" href="{{ url('/admin/home') }}">Home</a></li>
                                 @elseif ( Auth::user()->usertype == '2' )
-                                <li><a class="dropdown-item" href="{{ url('/user/home') }}">Home</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/manager/home') }}">Home</a></li>
+                                @elseif ( Auth::user()->usertype == '3' )
+                                <li><a class="dropdown-item" href="{{ url('/customer/home') }}">Home</a></li>
                                 @endif
                                 <li><hr class="dropdown-divider" /></li>
                                 @else

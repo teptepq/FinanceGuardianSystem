@@ -120,8 +120,14 @@ class UniversalController extends Controller
 
 
     // manager ui front-end 'view'
-    public function trackMaintenance(Request $request){
-        return view('accessible/track-maintenance');
+    public function trackMaintenance(Request $request) {
+
+        $data = DB::table('tblsubcontractor')
+            ->leftjoin('vendorinfo','vendorinfo.vendor_id','=','tblsubcontractor.vendor_id')
+            ->get();
+        
+        return view('accessible/track-maintenance', compact('data'));
+        // return view('accessible/track-maintenance');
     }
 
     public function announcement(Request $request){

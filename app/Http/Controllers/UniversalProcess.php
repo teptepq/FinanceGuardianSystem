@@ -33,5 +33,10 @@ class UniversalProcess extends Controller
         return "Record updated successfully!";
 
     }
+
+    public function subcontractorLoadData(Request $request){
+
+
+    }
     
 }
