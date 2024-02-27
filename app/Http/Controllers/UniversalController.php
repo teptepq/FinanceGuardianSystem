@@ -52,6 +52,7 @@ class UniversalController extends Controller
             $taken = User::where('email', $var->email)->exists();
     
             if (!$taken) {
+
                 $year = now()->year;
                 $latestUserId = DB::table('users')->where('userid', 'like', $year . '%')->max('userid');
                 $incrementedNumber = intval(substr($latestUserId, 4)) + 1;
@@ -79,12 +80,17 @@ class UniversalController extends Controller
                 ]);
     
                 $response = 'User created successfully!';
+
             } else {
+
                 $response = 'Email already taken. Please choose a different email.';
+
             }
+            
         } catch (QueryException $e) {
             // Log the error or handle it as needed
             $response = 'An error occurred while creating the user. ' . $e->getMessage();
+
         }
     
         return response()->json(['message' => $response]);

@@ -40,14 +40,16 @@
                 <table class="table datatable">
                   <thead>
                       <tr>
+                          <th>Branch</th>
                           <th>Employee Name</th>
                           <th>Department</th>
                           <th>Status</th>
-                          <th>Tools</th>
+                          <th>Actions</th>
                       </tr>
                   </thead>
                   <tbody>
                       <tr>
+                          <td>Unity Pugh</td>
                           <td>Unity Pugh</td>
                           <td></td>
                           <td>Active</td>

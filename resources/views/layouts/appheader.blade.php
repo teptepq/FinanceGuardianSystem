@@ -265,6 +265,8 @@
             <li>
               @if(Auth::user()->usertype == '3' || Auth::user()->usertype == '1')
               <a class="dropdown-item d-flex align-items-center" href="{{ route('chelp') }}">
+                @elseif(Auth::user()->usertype == '2')
+                <a class="dropdown-item d-flex align-items-center" href="{{ route('uhelp') }}">
               @else 
                 <a class="dropdown-item d-flex align-items-center" href="#">
               @endif  

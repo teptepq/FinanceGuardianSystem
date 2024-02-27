@@ -70,6 +70,8 @@ Route::middleware(['auth','user'])->prefix('manager')->group(function(){
     Route::get('/client',                [App\Http\Controllers\UniversalController::class, 'client'])                     ->name('uclient');
     Route::get('/report',                [App\Http\Controllers\UniversalController::class, 'report'])                     ->name('ureport');
     Route::get('/profile',               [App\Http\Controllers\UniversalController::class, 'profile'])                    ->name('uprofile');
+    Route::get('/help',                  [App\Http\Controllers\UniversalController::class, 'customerservice'])            ->name('uhelp');
+
     
 
 });

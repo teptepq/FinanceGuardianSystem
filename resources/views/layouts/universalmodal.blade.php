@@ -435,7 +435,7 @@ $load      = $accessibleFilter->loadData();
                     </p>
                     
                     <p style="text-indent: 20px; font-family: 'Arial', sans-serif; font-size: 16px; line-height: 1.5; color: #333;">
-                      Welcome to the Sales Summary Chart for this year from your vendor! This concise overview encapsulates key sales metrics, including a breakdown of product contributions and growth trends. Notably, an impressive 80% boost in overall sales has been achieved. Hover over data points for specifics, zoom in for detailed analysis, and utilize filters for targeted insights. This chart empowers you to make informed decisions and capitalize on opportunities for continued success.
+                      Welcome to the Sales Summary Chart for this year from vendor syste! This concise overview encapsulates key sales metrics, including a breakdown of product contributions and growth trends. Notably, an impressive 80% boost in overall sales has been achieved. Hover over data points for specifics, zoom in for detailed analysis, and utilize filters for targeted insights. This chart empowers you to make informed decisions and capitalize on opportunities for continued success.
                     </p>
 
 

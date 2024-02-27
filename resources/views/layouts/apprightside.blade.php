@@ -53,4 +53,32 @@
     </div>
   </div><!-- End News & Updates -->
 
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+
+      <!-- Slides only carousel -->
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/assets/img/motor.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/assets/img/laptop.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/assets/img/product-1.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/assets/img/shoes.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/assets/img/product-2.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+      </div><!-- End Slides only carousel-->
+
+    </div>
+  </div>
+
  

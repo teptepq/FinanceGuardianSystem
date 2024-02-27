@@ -55,9 +55,11 @@
 
                     <table class="table datatable" style="font-size: 12.5px;">
                       <thead>
-                        <tr>
+                        <tr style="text-align: center">
                           {{-- <th>Depreciaton</th> --}}
+                          <th>Name</th>
                           <th>Sub-Contractor</th>
+                          <th>Review</th>
                           <th>Prize</th>
                           <th>Action</th>
                         </tr>
@@ -66,8 +68,10 @@
                         @foreach($data as $datas)
                         <tr>
                           {{-- <td>Net 30</td> --}}
+                          <td>{{$datas->vendor_name }}</td>
                           <td>{{ ucfirst($datas->vendor_name .' - '. $datas->category)  }}</td>
-                          <td>
+                          <td style="text-align: left">{{ "Good"}}</td>
+                          <td style="text-align: left">
                        {{ number_format($datas->product_prize,2) }}
                           </td>
                           <td>

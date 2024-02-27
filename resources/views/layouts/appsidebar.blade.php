@@ -163,12 +163,12 @@
       </li><!-- End Forms Nav -->
       <!-- End Profile Page Nav -->
       @elseif( Auth::user()->usertype == '2' )
-      <li class="nav-item" >
+      {{-- <li class="nav-item" >
         <a class="nav-link collapsed" href="{{ route('uannouncement') }}">  
           <i class="bi bi-bell-fill"></i>
           <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Announcement</span>
         </a>
-      </li>
+      </li> --}}
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('utrackmaintenance') }}">  
           <i class="bi bi-graph-up"></i>
@@ -187,12 +187,63 @@
           <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Employee Asset</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('ureport') }}">  
-          <i class="bi bi-file-earmark-pdf-fill"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Report</span>
-        </a>
-      </li>
+     
+      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gear" ></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Services</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{{ route('uannouncement') }}">
+            <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Announcement</span>
+          </a>
+        </li>
+        <li>
+          <a href="tables-data.html">
+            <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">General Reports</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Tables Nav -->
+    <hr>
+    <br>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+  
+        <!-- Slides only carousel -->
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="/assets/img/loogo.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <a href="https://www.paymongo.com/">
+                <img src="/assets/img/paymongo.jpg" class="d-block w-100" alt="...">
+              </a>
+             
+            </div>
+            <div class="carousel-item">
+              <a href="https://www.sss.gov.ph/">
+                <img src="/assets/img/partner-1.jpg" class="d-block w-100" alt="...">
+              </a>
+            </div>
+            <div class="carousel-item">
+              <a href="https://www.pagibigfundservices.com/virtualpagibig/">
+                <img src="/assets/img/partner-2.jpg" class="d-block w-100" alt="...">
+              </a>
+             
+            </div>
+            <div class="carousel-item">
+              <a href="https://www.gcash.com/">
+                 <img src="/assets/img/partner-3.png" class="d-block w-100" alt="...">
+              </a>
+             
+            </div>
+          </div>
+        </div><!-- End Slides only carousel-->
+  
+      </div>
+    </div>
       @elseif ( Auth::user()->usertype == '3' )
       <li class="nav-item" style="cursor: pointer;">
         <a class="nav-link collapsed" data-bs-toggle="modal" data-bs-target="#ExtralargeModalPayment">  
