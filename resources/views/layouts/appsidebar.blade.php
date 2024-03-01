@@ -198,7 +198,7 @@
           </a>
         </li>
         <li>
-          <a href="tables-data.html">
+          <a href="#">
             <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">General Reports</span>
           </a>
         </li>
@@ -206,10 +206,9 @@
     </li><!-- End Tables Nav -->
     <hr>
     <br>
-    <div class="card">
-      <div class="card-body">
+    {{-- <div class="card">
+      <div class="card-body"> --}}
         <h5 class="card-title"></h5>
-  
         <!-- Slides only carousel -->
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
@@ -242,8 +241,8 @@
           </div>
         </div><!-- End Slides only carousel-->
   
-      </div>
-    </div>
+      {{-- </div>
+    </div> --}}
       @elseif ( Auth::user()->usertype == '3' )
       <li class="nav-item" style="cursor: pointer;">
         <a class="nav-link collapsed" data-bs-toggle="modal" data-bs-target="#ExtralargeModalPayment">  

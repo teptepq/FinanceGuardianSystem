@@ -52,9 +52,9 @@
 
     </div>
   </div><!-- End News & Updates -->
-
+{{-- 
   <div class="card">
-    <div class="card-body">
+    <div class="card-body"> --}}
       <h5 class="card-title"></h5>
 
       <!-- Slides only carousel -->
@@ -78,7 +78,7 @@
         </div>
       </div><!-- End Slides only carousel-->
 
-    </div>
-  </div>
+    {{-- </div>
+  </div> --}}
 
  
