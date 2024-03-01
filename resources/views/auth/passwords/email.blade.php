@@ -1,50 +1,4 @@
-{{-- @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection --}}
 
 @extends('layouts.app')
 @section('content')
@@ -54,7 +8,7 @@
     <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
+          <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
             <div class="d-flex justify-content-center py-4">
               <a href="{{route('password.reset','')}}" class="logo d-flex align-items-center w-auto">
@@ -68,8 +22,8 @@
               <div class="card-body">
                 
                 <div class="pt-3 pb-2">
-                  <h5 class="card-title text-left pb-0 fs-4">{{ __('Reset Password') }}</h5>
-                  <p class="text-left large" style="font-size: 14.2px;">Forgot your password? No problem. Just let us know your email address and we will email you a password link that will allow you to choose a new one.</p>
+                  <h5 class="card-title text-left pb-0 fs-4"></h5>
+                  <p class="text-left large" style="font-size: 13.2px;">Forgot your password? No problem. Just let us know your email address and we will email you a password link that will allow you to choose a new one.</p>
                 </div>
 
                 {{-- <form class="row g-3 needs-validation" novalidate> --}}
@@ -81,7 +35,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <label for="yourUsername" class="form-label">Email</label>
+                    <label for="yourUsername" class="form-label" style="font-size: 14.5px;">Email</label>
                     <div class="input-group has-validation">
                       <span class="input-group-text" id="inputGroupPrepend">@</span>
                       <input  id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -92,7 +46,6 @@
                           <strong>{{ $message }}</strong>
                       </span>
                     @enderror
-                      
                       {{-- <div class="invalid-feedback">Please enter your username.</div> --}}
                     </div>
                   </div>
@@ -112,12 +65,8 @@
 
               </div>
             </div>
-            <div class="credits" style="font-size: 11.5px;">
+            <div class="credits" style="font-size: 10.5px;">
                 &copy; Copyright <strong> &nbsp;<?= date('Y');?>&nbsp; <span>Financial Guardian System</span></strong>. All Rights Reserved
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
               </div>
            
 
@@ -128,22 +77,22 @@
     </section>
 
   </div>
-</main><!-- End #main -->
+</main>
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-<!-- Vendor JS Files -->
-<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/chart.js/chart.umd.js"></script>
-<script src="assets/vendor/echarts/echarts.min.js"></script>
-<script src="assets/vendor/quill/quill.min.js"></script>
-<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
 
-<!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
+<script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/chart.js/chart.umd.js"></script>
+<script src="/assets/vendor/echarts/echarts.min.js"></script>
+<script src="/assets/vendor/quill/quill.min.js"></script>
+<script src="/assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="/assets/vendor/php-email-form/validate.js"></script>
+
+
+<script src="/assets/js/main.js"></script>
 </body>
 @endsection
 
