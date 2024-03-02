@@ -26,11 +26,12 @@ Auth::routes();
 
 // Route::get('/home',     [App\Http\Controllers\HomeController::class, 'index'])      ->name('home');
 // Route::get('/invoice',  [App\Http\Controllers\HomeController::class, 'invoice'])    ->name('invoice');
-
-
 Route::get('/test-image', function () {
     return view('test_image');
 });
+
+
+Route::post('/user-account', [App\Http\Controllers\UniversalController::class, 'registers'])->name('user-account');
 
 // ADMIN SIDE
 Route::middleware(['auth','admin'])->prefix('admin')->group(function(){

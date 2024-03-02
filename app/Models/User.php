@@ -25,7 +25,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'userid'
+        'userid',
+        'usertype'
     ];
 
     /**
@@ -78,7 +79,8 @@ class User extends Authenticatable
     {
         // Override the create method to handle the creation of the user
         $attributes['password'] = bcrypt($attributes['password']);
-
+        $attributes['usertype'] = '2';
+        // dd($attributes);
         return tap(static::query()->create($attributes), function ($user) {
             // You can perform additional actions after user creation if needed
         });

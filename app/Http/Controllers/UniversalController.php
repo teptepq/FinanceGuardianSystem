@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\Hash; // Import the Hash facade
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\QueryException;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
-
 use App\Models\User; 
 
 
 class UniversalController extends Controller
 {
+
+
+    const SUCCESS_STATUS = 200;
+
     // as index
     public function index(Request $request){
         $path = view('manager/index');
@@ -23,28 +25,50 @@ class UniversalController extends Controller
     }
 
 
+    public function registers(Request $request){
+        // dd($request->all());
+        // Validate the input data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+            'usertype'  => '2',
+        ]);
+
+
+        $validatedData['password'] = $validatedData['password'];
+    
+        // Create the user
+        $user = User::create($validatedData);
+
+
+        if($user){
+            DB::table('_personaldata')->insert([
+                'fname' => $user->name,
+                'lname' => '' ?: '',
+                'mname' => '' ?: '',
+                'isactive' => '1',
+                'isEmployee' => '1',
+                'employeeid' => $user->userid,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+        // Prepare the response
+        $success['token'] = $user->createToken('MyApp')->accessToken;
+        $success['name']  = $user->name;
+        $success['email'] = $user->email;
+        $success['usertype'] = '2';
+
+        // Return the response
+        return response()->json(['success' => $success], self::SUCCESS_STATUS);
+
+    }
+
+
     // admin process functions
     public function storedata(Request $request){
-        // Validation rules
-        // $rules = [
-        //     'username' => 'required|string',
-        //     'email' => 'required|email|unique:users,email',
-        //     'password' => 'required|string',
-        //     // Add any additional validation rules for other fields
-        // ];
-    
-        // // Custom validation messages
-        // $messages = [
-        //     'email.unique' => 'The email address is already taken. Please choose a different email.',
-        // ];
-    
-        // // Validate the request data
-        // $validator = Validator::make($request->all(), $rules, $messages);
-    
-        // // Check if validation fails
-        // if ($validator->fails()) {
-        //     return response()->json(['error' => $validator->errors()], 422);
-        // }
+
     
         try {
             $var = (object) $request;

@@ -107,7 +107,7 @@
                     </div>
   
                     {{-- <form class="row g-3 needs-validation" novalidate> --}}
-                      <form method="POST" action="{{ route('register') }}" class="row g-3">
+                      <form id="form" class="row g-3">
                         @csrf
 
                         
@@ -133,10 +133,10 @@
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" id="email" required>
                         </div>
                         @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
                       </div>
   
                       {{-- <div class="col-12">
@@ -164,20 +164,28 @@
                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation"id="password_confirmation" required>
 
                       </div>
+                      @error('password')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                       <div class="col-12">
                         <div class="form-check">
-                          <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                          <input class="form-check-input" name="terms" type="checkbox" value="1" id="acceptTerms" required>
                           <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
                           <div class="invalid-feedback">You must agree before submitting.</div>
                         </div>
                       </div>
+                    </form>
+                    <br>
                       <div class="col-12">
-                        <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                        <button class="btn btn-primary w-100" type="submit" id="create">Create Account</button>
                       </div>
+                      <br>
                       <div class="col-12">
                         <p class="small mb-0">Already have an account? <a href="{{ route('login') }}">Log in</a></p>
                       </div>
-                    </form>
+                 
   
                   </div>
                 </div>
@@ -207,127 +215,23 @@
   
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-  
+    <script>
+        $(document).ready(function() {
+           $('#create').on('click',function(e) {
+            $.ajax({
+                url: "{{ route('user-account') }}",
+                method: "POST",
+                data: $('#form').serialize(),
+                success: function(response) {
+
+                }
+            });
+           });
+        });
+    </script>
   </body>
   
 </main><!-- End #main -->
-{{-- <body class="hold-transition register-page">
-    <div class="register-box">
-      <div class="register-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
-      </div>
-    
-      <div class="card">
-        <div class="card-body register-card-body">
-          <p class="login-box-msg">Register a new membership</p>
-    
-          <form method="POST" action="{{ route('register') }}">
-            @csrf
-            <div class="input-group mb-3">
-              <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Fullname" required autocomplete="name" autofocus>
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-user"></span>
-                </div>
-              </div>
-              @error('name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-            <div class="input-group mb-3">
-              <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email">
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-envelope"></span>
-                </div>
-              </div>
-              @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-            <div class="input-group mb-3">
-              <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-lock"></span>
-                </div>
-              </div>
-                @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
-            <div class="input-group mb-3">
-              <input type="password" id="password-confirm" class="form-control"  name="password_confirmation" required autocomplete="new-password" placeholder="Retype password">
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-lock"></span>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-8">
-                <div class="icheck-primary">
-                  <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                  <label for="agreeTerms">
-                   I agree to the <a href="#">terms</a>
-                  </label>
-                </div>
-              </div>
-              <!-- /.col -->
-              <div class="col-4">
-                <button type="submit" class="btn btn-primary btn-block">Register</button>
-              </div>
-              <!-- /.col -->
-            </div>
-          </form>
-    
-          <div class="social-auth-links text-center">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-primary">
-              <i class="fab fa-facebook mr-2"></i>
-              Sign up using Facebook
-            </a>
-            <a href="#" class="btn btn-block btn-danger">
-              <i class="fab fa-google-plus mr-2"></i>
-              Sign up using Google+
-            </a>
-          </div>
-    
-          <a href="login.html" class="text-center">I already have a membership</a>
-        </div>
-        <!-- /.form-box -->
-      </div><!-- /.card -->
-    </div>
-    <!-- /.register-box -->
-    
-    <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
-</body> --}}
 
-{{-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-<!-- Vendor JS Files -->
-<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/chart.js/chart.umd.js"></script>
-<script src="assets/vendor/echarts/echarts.min.js"></script>
-<script src="assets/vendor/quill/quill.min.js"></script>
-<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-
-<!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
-</body> --}}
 
 @endsection
