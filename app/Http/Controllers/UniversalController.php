@@ -25,44 +25,45 @@ class UniversalController extends Controller
     }
 
 
-    public function registers(Request $request){
-        // dd($request->all());
+    public function registers(Request $request)
+    {
         // Validate the input data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
-            'usertype'  => '2',
+            'usertype'  => '2', // Assuming 'usertype' is required
         ]);
 
-
-        $validatedData['password'] = $validatedData['password'];
-    
         // Create the user
-        $user = User::create($validatedData);
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => $validatedData['password'], // Hash the password
+        ]);
 
-
-        if($user){
+        if ($user) {
             DB::table('_personaldata')->insert([
                 'fname' => $user->name,
-                'lname' => '' ?: '',
-                'mname' => '' ?: '',
+                'lname' => '', // Assuming these fields can be empty
+                'mname' => '', // Assuming these fields can be empty
                 'isactive' => '1',
                 'isEmployee' => '1',
-                'employeeid' => $user->userid,
+                'employeeid' => $user->id, // Using user's id as employee id
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
         }
+
         // Prepare the response
         $success['token'] = $user->createToken('MyApp')->accessToken;
-        $success['name']  = $user->name;
+        $success['name'] = $user->name;
         $success['email'] = $user->email;
         $success['usertype'] = '2';
 
-        // Return the response
-        return response()->json(['success' => $success], self::SUCCESS_STATUS);
-
+        // Return the response with a success message
+        $message = 'User registered successfully!';
+        return response()->json(['success' => $success, 'message' => $message], self::SUCCESS_STATUS);
     }
 
 
