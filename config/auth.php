@@ -63,6 +63,7 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+            'table' => 'fms_g9_users',
         ],
 
         // 'users' => [
@@ -70,6 +71,7 @@ return [
         //     'table' => 'users',
         // ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------

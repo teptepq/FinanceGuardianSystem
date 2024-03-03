@@ -28,7 +28,7 @@ class UniversalController extends Controller
     public function registers(Request $request)
     {
         // Validate the input data
-        $validatedData = $request->validate([xnzjkncjxzjcnxzjcjkxnzkjcnjxzcjknxzkjcnkxz
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
@@ -161,8 +161,8 @@ class UniversalController extends Controller
     // manager ui front-end 'view'
     public function trackMaintenance(Request $request) {
 
-        $data = DB::table('tblsubcontractor')
-            ->leftjoin('vendorinfo','vendorinfo.vendor_id','=','tblsubcontractor.vendor_id')
+        $data = DB::table('fms_g9_tblSubcontractor')
+            ->leftjoin('fms_g9_vendorinfo','fms_g9_vendorinfo.vendor_id','=','fms_g9_tblSubcontractor.vendor_id')
             ->get();
         
         return view('accessible/track-maintenance', compact('data'));

@@ -15,8 +15,8 @@ class ReportAccessController extends Controller
     //
     public function generateReport()
     {
-      $users = DB::table('users')
-      ->leftjoin('_personaldata','_personaldata.employeeid','users.userid')
+      $users = DB::table('fms_g9_users')
+      ->leftjoin('fms_g9_tblPersonaldata','fms_g9_tblPersonaldata.employeeid','fms_g9_users.userid')
       ->get(); 
 
       // Setup the Dompdf class

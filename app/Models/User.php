@@ -21,6 +21,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'fms_g9_users';
     protected $fillable = [
         'name',
         'email',
