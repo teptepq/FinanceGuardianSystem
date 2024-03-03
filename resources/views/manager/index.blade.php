@@ -1,4 +1,10 @@
+<?php
 
+    $accessibleFilter = new App\Classes\AccessibleFilterClass ;
+    $collect = $accessibleFilter->employeedata();
+
+
+?>
 @extends('layouts.app')
 
 @section('content')
@@ -352,8 +358,8 @@
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
-                    <div class="ps-3">
-                      <h6 style="font-size: 14.5px;">1244</h6>
+                    <div>
+                      <h6 style="font-size: 14.5px;">{{$collect}}</h6>
                       <span class="text-danger small pt-1 fw-bold" style="font-size: 14.5px;" >12%</span> <span class="text-muted small pt-2 ps-1" style="font-size: 14.5px;">decrease</span>
 
                     </div>

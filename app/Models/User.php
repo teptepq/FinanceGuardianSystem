@@ -22,6 +22,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $table = 'fms_g9_users';
+
+
+    
     protected $fillable = [
         'name',
         'email',
@@ -71,7 +74,7 @@ class User extends Authenticatable
                 $model->userid = $year . $fakeNumber;
 
                 // Check if the generated userid already exists
-                $exists = DB::table('users')->where('userid', $model->userid)->exists();
+                $exists = DB::table('fms_g9_users')->where('userid', $model->userid)->exists();
             } while ($exists);
         });
     }

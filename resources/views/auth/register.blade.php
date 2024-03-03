@@ -140,7 +140,7 @@
               <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
               <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-              <script type="text/javascript">
+              {{-- <script type="text/javascript">
                   $(document).ready(function() {
                     $('#create').on('click', function(e) {
                             e.preventDefault();
@@ -203,7 +203,7 @@
                             });
                         });
                     });
-              </script>
+              </script> --}}
             </body>
             
           </main><!-- End #main -->

@@ -1,3 +1,10 @@
+<?php
+
+  $load = array();$c = 1;
+  $accessibleFilter = new App\Classes\AccessibleFilterClass;
+  $collection = $accessibleFilter->AssetData();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +57,7 @@
     <div style="display: flex; align-items: center;">
         {{-- <h2>Crystal Report</h2> --}}
         <h2>Tax Report</h2>
-        <img src="{{ url('assets/img/subhead.png') }}" alt="Crystal Report" style="width: 100px; height: auto; margin-right: 80px;" >
+        {{-- <img src="{{ url('assets/img/subhead.png') }}" alt="Crystal Report" style="width: 100px; height: auto; margin-right: 80px;" > --}}
     </div>  
     <table>
         <thead>
@@ -73,24 +80,17 @@
             {{--  --}}
         </thead>
         <tbody>
-            {{-- @foreach($users as $user)
+                          @foreach($collection as $key =>$data)
             <tr>
-                <td>{{ $user->employeeid }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->present_address }}</td>
-                <td>{{ number_format(0,2) }}</td>
-                <td>{{'Laptop'}}</td>
-            </tr>
-            @endforeach --}}
-            <tr>
-                <td style="text-align: center">{{ '20240002' }}</td>
-                <td>{{ 'John Doe' }}</td>
-                <td style="text-align: center">{{ number_format(20000,2) }}</td>
-                <td style="text-align: center">{{ 'Mitsui Department' }}</td>
+                <td style="text-align: center">{{ $data->employeeid }}</td>
+                <td>{{ $data->fullname }}</td>
+                <td style="text-align: center"> {{ ($data->salary) ? number_format($data->salary,2) : number_format('0',2)  }}</td>
+                <td style="text-align: center"> {{ ($data->deptid) ?: 'N/A' }}</td>
                 <td style="text-align: center">{{ 'Laptop' }}</td>
-                <td style="text-align: center">-{{ number_format(1437,2) }}</td>
+                <td style="text-align: center">  -{{ ($data->salary) ? number_format(($data->salary-1437),2) : number_format((1437),2) }}</td>
                 {{-- <td>{{ }}</td> --}}
             </tr>
+            @endforeach
         </tbody>
     </table>
 </body>

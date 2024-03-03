@@ -1,6 +1,10 @@
-<!-- ======= Sidebar ======= -->
+<?php
+  $load = array();$c = 1;
+  $accessibleFilter = new App\Classes\AccessibleFilterClass;
+  $collection = $accessibleFilter->sched();
 
-
+  // dd($collection);
+?>
 <div class="modal fade" id="ExtralargeModalInventory" tabindex="-1">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
@@ -63,7 +67,7 @@
               <thead>
                   <tr>
                       {{-- <th>Branch</th> --}}
-                      <th>id</th>
+                      <th>no</th>
                       <th>Asset</th>
                       <th>Status</th>
                       <th>Actions</th>
@@ -325,7 +329,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('uclient') }}">  
           <i class="bi bi-people-fill"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Employee Asset</span>
+        <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Employee Asset</span>
         </a>
       </li>
       <li class="nav-item">
@@ -339,11 +343,11 @@
         <i class="bi bi-gear" ></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Services</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
+        {{-- <li>
           <a href="{{ route('uannouncement') }}">
             <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Announcement</span>
           </a>
-        </li>
+        </li> --}}
         <li>
           <a href="#">
             <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Reports</span>

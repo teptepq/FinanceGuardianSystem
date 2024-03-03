@@ -60,7 +60,7 @@
                           <th>Name</th>
                           <th>Sub-Contractor</th>
                           <th>Review</th>
-                          <th>Prize</th>
+                          <th>Price</th>
                           <th>Action</th>
                         </tr>
                       </thead>

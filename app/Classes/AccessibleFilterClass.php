@@ -12,7 +12,61 @@ use Form;
 
 class AccessibleFilterClass
 {
-  
+
+
+
+  public function sched()
+  {
+    try {
+      $data = array();
+
+      $data = DB::table('lgu_g68_shopinfo')
+        ->get();
+
+      return $data;
+
+    } catch (\Exception $e) {
+      return $e;
+    }
+  }
+  public function AssetData() {
+    try {
+        
+
+      $data = array();
+
+      $data = DB::table('fms_g9_tblPersonaldata as p')
+        ->select(DB::raw("CONCAT(p.lname, ', ', p.fname, ' ', p.mname) as fullname"), 'p.employeeid','salary', 'deptid')
+        ->leftJoin('fms_g9_tblPaymentTrail as t', 't.employee_id', '=', 'p.employeeid')
+        ->leftJoin('fms_g9_tblEmployeeSalary as s', 's.employee_id', '=', 'p.employeeid')
+        ->where('p.isEmployee', '1')
+        ->distinct()
+        ->get();
+     
+    
+      
+      return $data;
+
+    } catch (\Exception $e) {
+      return $e;
+    }
+  } 
+  public function employeedata(){
+    try {
+
+      $data = DB::table('fms_g9_tblPersonaldata')
+          ->where('isEmployee','1')
+          ->count();
+          // dd($data);
+      return $data;
+      
+    } catch (\Exception $e) {
+      return $e;
+    }
+
+  }
+
+
   public function Receipt() {
     try {
         $user = Auth::user()->usertype;
