@@ -28,7 +28,7 @@ class UniversalController extends Controller
     public function registers(Request $request)
     {
         // Validate the input data
-        $validatedData = $request->validate([
+        $validatedData = $request->validate([xnzjkncjxzjcnxzjcjkxnzkjcnjxzcjknxzkjcnkxz
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
