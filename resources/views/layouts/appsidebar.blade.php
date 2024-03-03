@@ -1,4 +1,134 @@
 <!-- ======= Sidebar ======= -->
+
+
+<div class="modal fade" id="ExtralargeModalInventory" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Inventory Asset</h5>
+            <table class="table datatable">
+              <thead>
+                  <tr>
+                      {{-- <th>Branch</th> --}}
+                      <th>id</th>
+                      <th>Stock</th>
+                      <th>Quantities</th>
+                      <th>Location</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {{-- <tr>
+                      <td>Unity Pugh</td>
+                      <td>Unity Pugh</td>
+                      <td></td>
+                      <td>Active</td>
+                      <td colspan="2">
+                          <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>
+                          <button type="button" class="btn btn-primary"><i class="bi bi-pencil"></i></button>
+                          <!-- Add more buttons if needed -->
+                      </td>
+                  </tr> --}}
+                  <!-- Add more rows if needed -->
+              </tbody>
+          </table>
+
+          </div>
+        </div>
+
+
+
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ExtralargeModalAsset" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Tracks maintenance schedules</h5>
+            <table class="table datatable">
+              <thead>
+                  <tr>
+                      {{-- <th>Branch</th> --}}
+                      <th>id</th>
+                      <th>Asset</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {{-- <tr>
+                      <td>Unity Pugh</td>
+                      <td>Unity Pugh</td>
+                      <td></td>
+                      <td>Active</td>
+                      <td colspan="2">
+                          <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>
+                          <button type="button" class="btn btn-primary"><i class="bi bi-pencil"></i></button>
+                          <!-- Add more buttons if needed -->
+                      </td>
+                  </tr> --}}
+                  <!-- Add more rows if needed -->
+              </tbody>
+          </table>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Asset Disposal</h5>
+            <table class="table datatable">
+              <thead>
+                  <tr>
+                      {{-- <th>Branch</th> --}}
+                      <th>Sell</th>
+                      <th>Donate</th>
+                      <th>Disposing</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {{-- <tr>
+                      <td>Unity Pugh</td>
+                      <td>Unity Pugh</td>
+                      <td></td>
+                      <td>Active</td>
+                      <td colspan="2">
+                          <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>
+                          <button type="button" class="btn btn-primary"><i class="bi bi-pencil"></i></button>
+                          <!-- Add more buttons if needed -->
+                      </td>
+                  </tr> --}}
+                  <!-- Add more rows if needed -->
+              </tbody>
+          </table>
+
+          </div>
+        </div>
+
+
+
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+
 <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -175,6 +305,12 @@
         </a>
       </li> --}}
       <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-toggle="modal" data-bs-target="#ExtralargeModalAsset" >  
+          <i class="bi bi-tv"></i>
+          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Asset Maintenance</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('utrackmaintenance') }}">  
           <i class="bi bi-graph-up"></i>
           <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Tracking and Maintenance</span>
@@ -192,6 +328,12 @@
           <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Employee Asset</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#"  data-bs-toggle="modal" data-bs-target="#ExtralargeModalInventory"  >  
+          <i class="bi bi-database"></i>
+          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Inventory Management</span>
+        </a>
+      </li>
      
       <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-gear" ></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Services</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -204,7 +346,7 @@
         </li>
         <li>
           <a href="#">
-            <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">General Reports</span>
+            <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Reports</span>
           </a>
         </li>
       </ul>

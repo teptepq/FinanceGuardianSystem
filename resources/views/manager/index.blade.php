@@ -380,7 +380,7 @@
                   </ul>
                 </div>
 
-                <div class="card-body pb-0"style="font-size: 14.5px;">
+                {{-- <div class="card-body pb-0"style="font-size: 14.5px;">
                   <h5 class="card-title" style="font-size: 14.5px;">Top Selling <span>| Today</span></h5>
 
                   <table class="table table-borderless">
@@ -432,7 +432,7 @@
                     </tbody>
                   </table>
 
-                </div>
+                </div> --}}
 
               </div>
             </div>
