@@ -53,12 +53,22 @@ class AccessibleFilterClass
   public function loadData() {
     $users = array();
     // $users = User::all(); 
-    $users = User::get();
+    $users = DB::table('users')
+    ->select('NAME','email','descid')
+    ->leftjoin('tbluserdesc','tbluserdesc.cid','=','users.usertype')
+    ->distinct()
+    ->get();
+    // ->distinct();
+    // $users = User::SELECT(NAME,email,descid)
+    //       ->LEFT JOIN(tbluserdesc);
 
-    
-
+//     SELECT DISTINCT NAME,email,descid FROM users  
+// LEFT JOIN tbluserdesc ON
+// 	tbluserdesc.cid = users.usertype
+// dd($users);
     foreach ($users as $user) {
       $users[] = $user;
+      // dd($users[]);
     }
      
     return $users;

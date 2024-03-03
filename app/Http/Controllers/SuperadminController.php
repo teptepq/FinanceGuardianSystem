@@ -14,12 +14,12 @@ class SuperadminController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('admin');
+        $this->middleware('superadmin');
     }
 
     public function index(Request $request){
-        // dd(Auth::user(),$request);
+        // dd(Auth::user(),$request->all());         
         $path = "";
-            
         $path = view('manager/index');
         
         return $path;
@@ -32,5 +32,11 @@ class SuperadminController extends Controller
 
         return view('manager/configuration');
 
-    }
+    }   
+
+    // public function INDEX(Request $request){
+
+    //     return view('manager/index');      
+
+    // }
 }

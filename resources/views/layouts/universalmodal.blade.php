@@ -9,9 +9,8 @@ $Receipt = $accessibleFilter->Receipt();
 
 // FETCH DATA
 $load      = $accessibleFilter->loadData();
+// dd($load);
 // $userDesc  = $accessibleFilter->userdesc();
-
-
 ?>
 
 
@@ -138,7 +137,7 @@ $load      = $accessibleFilter->loadData();
 
 
   {{-- admin side modal --}}
-@if( Auth::user()->usertype == '1')
+@if( Auth::user()->usertype == '1' || Auth::user()->usertype == '0')
   <div class="modal fade" id="ExtralargeModalUsers" tabindex="-1">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
@@ -180,6 +179,7 @@ $load      = $accessibleFilter->loadData();
                           echo Form::select('usertype', $Receipt , (isset($Receipt)?$Receipt:null), array('class' => 'form-select','id' => 'usertype'));
                         @endphp 
                         <label for="floatingSelect">Usertype</label>
+                        <br>
                         </div>
                       </div>
                       <div class="col-md-3">
@@ -195,8 +195,10 @@ $load      = $accessibleFilter->loadData();
                           echo Form::select('usertype', $Receipt , (isset($Receipt)?$Receipt:null), array('class' => 'form-select','id' => 'usertype'));
                         @endphp  --}}
                         <label for="floatingSelect">Branch</label>
+                        <br> 
                         </div>
-                      </div>
+                      </div> 
+                    
                       <div class="col-md-5">
                         <div class="form-floating">
                           <input type="text" class="form-control" id="username" name="username" placeholder="Your Name">
@@ -234,71 +236,6 @@ $load      = $accessibleFilter->loadData();
                       
                     </div><!-- End floating Labels Form -->
                     </form>
-                    {{-- <form method="POST" action="{{ route('register') }}">
-                      @csrf
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Fullname" required autocomplete="name" autofocus>
-                        <div class="input-group-append">
-                          <div class="input-group-text">
-                            <span class="fas fa-user"></span>
-                          </div>
-                        </div>
-                        @error('name')
-                              <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                              </span>
-                          @enderror
-                      </div>
-                      <div class="input-group mb-3">
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email">
-                        <div class="input-group-append">
-                          <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                          </div>
-                        </div>
-                        @error('email')
-                              <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                              </span>
-                          @enderror
-                      </div>
-                      <div class="input-group mb-3">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
-                        <div class="input-group-append">
-                          <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                          </div>
-                        </div>
-                          @error('password')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                      </div>
-                      <div class="input-group mb-3">
-                        <input type="password" id="password-confirm" class="form-control"  name="password_confirmation" required autocomplete="new-password" placeholder="Retype password">
-                        <div class="input-group-append">
-                          <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-8">
-                          <div class="icheck-primary">
-                            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                            <label for="agreeTerms">
-                             I agree to the <a href="#">terms</a>
-                            </label>
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-4">
-                          <button type="submit" class="btn btn-primary btn-block">Register</button>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                    </form> --}}
                     
                   </div>
                 </div>
@@ -324,15 +261,16 @@ $load      = $accessibleFilter->loadData();
                 </thead>
                 <tbody>
                   @foreach ($load as $value)
+                  {{-- @dd($value['']) --}}
             {{-- Adjust the following lines based on the actual properties in your $value --}}
                   <tr>
                     <td><?= $c++; ?></td>
-                    <td><?= $value['name'] ?></td>
-                    <td><?= $value['email'] ?></td>
-                    <td><?= $value['usertype'] ?></td>
-                    <td><?= $value['percentage'] ?></td>
+                    <td><?= $value->NAME ?></td>
+                    <td><?= $value->email ?></td>
+                    <td><?= $value->descid ?></td>
                     <td>
-                      <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>
+                      <button type="button" class="btn btn-info view-btn"  data-bs-toggle="modal" data-bs-target="#basicModal" data-name="{{ $value->NAME }}" data-email="{{ $value->email }}" data-descid="{{ $value->descid }}"><i class="bi bi-eye"></i></button>
+                      {{-- <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button> --}}
                   </td>
                   </tr>
                   @endforeach
@@ -355,7 +293,30 @@ $load      = $accessibleFilter->loadData();
   </div>
 @endif
 
+<!-- Modal -->
 
+
+
+<div class="modal fade" id="basicModal" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      {{-- <div class="modal-header">
+        <h5 class="modal-title">Basic Modal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> --}}
+      <div class="modal-body">
+        <p>Name: <span id="modalName"></span></p>
+        <p>Email: <span id="modalEmail"></span></p>
+        <p>Description ID: <span id="modalDescId"></span></p>
+        {{-- Add more fields as needed --}}
+    </div>
+      {{-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> --}}
+    </div>
+  </div>
+</div><!-- End Basic Modal-->
 
 @if( Auth::user()->usertype == '2')
 <div class="modal fade" id="ExtralargeModalBarChart" tabindex="-1">
@@ -464,5 +425,30 @@ $load      = $accessibleFilter->loadData();
   </div>
 </div>
 @endif
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.view-btn').on('click', function () {
+            var name = $(this).data('name');
+            var email = $(this).data('email');
+            var descid = $(this).data('descid');
+
+            // Set the values in the modal
+            $('#modalName').text(name);
+            $('#modalEmail').text(email);
+            $('#modalDescId').text(descid);
+
+            // Show the modal
+            $('#basicModal').modal('show');
+        });
+
+        // Close modal when the "Close" button inside the modal is clicked
+        $('#basicModal').on('hidden.bs.modal', function () {
+            // Optionally, you can perform additional actions when the modal is closed
+            console.log('Modal closed');
+        });
+    });
+</script>
 
 

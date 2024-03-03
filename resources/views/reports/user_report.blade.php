@@ -47,10 +47,11 @@
 </head>
 <body>
     {{-- @dd(url('assets/img/subhead.png')); --}}
-    <img src="{{ url('assets/img/subhead.png') }}" alt="Crystal Report">
-
-    {{-- <h2>Crystal Report</h2> --}}
-    <h2>Tax Report</h2>
+    <div style="display: flex; align-items: center;">
+        {{-- <h2>Crystal Report</h2> --}}
+        <h2>Tax Report</h2>
+        <img src="{{ url('assets/img/subhead.png') }}" alt="Crystal Report" style="width: 100px; height: auto; margin-right: 80px;" >
+    </div>  
     <table>
         <thead>
             {{-- <tr>

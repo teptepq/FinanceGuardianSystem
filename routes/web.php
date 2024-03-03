@@ -31,8 +31,20 @@ Route::get('/test-image', function () {
 });
 
 
+
+
 Route::post('/user-account', [App\Http\Controllers\UniversalController::class, 'registers'])->name('user-account');
 
+
+
+Route::middleware(['auth','superadmin'])->prefix('access')->group(function(){
+
+
+    // view blade
+    Route::GET('/home',   [App\Http\Controllers\UniversalController::class, 'index'])->name('shome');
+    // Route::GET('/configuration',   [App\Http\Controllers\ConfigurationController::class, 'configuration'])->name('configuration');
+
+});
 // ADMIN SIDE
 Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     // PROCESS
@@ -76,8 +88,6 @@ Route::middleware(['auth','user'])->prefix('manager')->group(function(){
     
 
 });
-
-
 // Customer 'EMPLOYEE && CASUAL'
 Route::middleware(['auth','customer'])->prefix('customer')->group(function(){
 

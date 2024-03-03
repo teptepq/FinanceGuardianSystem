@@ -34,7 +34,15 @@ class UniversalController extends Controller
             'password' => 'required|string|min:8',
             'usertype'  => '2', // Assuming 'usertype' is required
         ]);
+            
+        // dd($request->all());    
 
+        if($request->password != $request->password_confirmation){
+            return response()->json([
+             'status' => 400,
+             'message' => 'Passwords do not match'
+            ], 400);
+        }
         // Create the user
         $user = User::create([
             'name' => $validatedData['name'],

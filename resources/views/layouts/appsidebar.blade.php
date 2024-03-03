@@ -14,8 +14,13 @@
           <i class="bi bi-house"></i>
           <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Home</span>
         </a>
-        @else
+        @elseif( auth::user()->usertype == '3')
         <a class="nav-link " href="{{route('chome')}}">
+          <i class="bi bi-house"></i>
+          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Home</span>
+        </a>
+        @else
+        <a class="nav-link " href="{{route('shome')}}">
           <i class="bi bi-house"></i>
           <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Home</span>
         </a>
@@ -133,7 +138,7 @@
       {{-- <a class="nav-link collapsed"  href="{{ route('configuration') }}">   --}}
       <li class="nav-heading">Pages</li>
    
-      @if(Auth::user()->usertype == '1')
+      @if(Auth::user()->usertype == '1' || Auth::user()->usertype == '0')
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-tools" data-bs-toggle="collapse" href="#">
           <i class="bi bi-gear"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Services</span><i class="bi bi-chevron-down ms-auto"></i>

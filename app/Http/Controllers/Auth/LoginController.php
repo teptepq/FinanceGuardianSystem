@@ -51,28 +51,32 @@ class LoginController extends Controller
             'email'    => 'required|email',
             'password' => 'required',
         ]);
-
+      
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
-            
-            // dd(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])));
+            // dd(auth::user()->usertype);  
             if(auth::user()->usertype == '1') 
             {
-                return redirect()->route('home');
+
+                return response()->json(['redirect' => route('home'), 'message' => 'Login successful']);
             } 
             else if ( auth::user()->usertype == '2' )
             {
-                return redirect()->route('uhome');
+                return response()->json(['redirect' => route('uhome'), 'message' => 'Login successful']);
             }
-            else
-            {
-                return redirect()->route('chome');
+            else if ( auth::user()->usertype == '3' ) {
+                return response()->json(['redirect' => route('chome'), 'message' => 'Login successful']);
+            }
+            else if ( auth::user()->usertype == '0' ) {
+                return response()->json(['redirect' => route('shome'),'message' => 'Login successful']);
+            }
+            else {  
+                return response()->json(['error' => 'Invalid credentials'], 401);       
             }
         }
         else {
-            return redirect('login');
+            return response()->json(['error' => 'Invalid credentials'], 401);    
         }
-        
 
-    }
+    }   
 }
