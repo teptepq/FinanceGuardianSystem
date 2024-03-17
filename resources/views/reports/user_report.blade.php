@@ -1,8 +1,8 @@
 <?php
 
-  $load = array();$c = 1;
+/*   $load = array();$c = 1;
   $accessibleFilter = new App\Classes\AccessibleFilterClass;
-  $collection = $accessibleFilter->AssetData();
+  $collection = $accessibleFilter->AssetData(); */
 
 ?>
 <!DOCTYPE html>
@@ -70,25 +70,27 @@
             </tr> --}}
             {{-- SIDE MANAGE TAX AND CALCULATE  --}}
             <tr>
-                <th class="header">Employee No.</th>
-                <th class="header">Employee Name</th>
-                <th class="header">Salary</th>
-                <th class="header">Department</th>
-                <th class="header">Asset</th>
-                <th class="header">Tax</th>
+                <th class="header">Account No.</th>
+                <th class="header">Invoice No</th>
+                <th class="header">Customer Name</th>
+                <th class="header">Customer Email</th>
+                <th class="header">Payment Method</th>
+                <th class="header">Total Price</th>
+                <th class="header">Status</th>
             </tr>
             {{--  --}}
         </thead>
         <tbody>
-                          @foreach($collection as $key =>$data)
+            @foreach($revenue as $key =>$data)
             <tr>
-                <td style="text-align: center">{{ $data->employeeid }}</td>
-                <td>{{ $data->fullname }}</td>
-                <td style="text-align: center"> {{ ($data->salary) ? number_format($data->salary,2) : number_format('0',2)  }}</td>
-                <td style="text-align: center"> {{ ($data->deptid) ?: 'N/A' }}</td>
-                <td style="text-align: center">{{ 'Laptop' }}</td>
-                <td style="text-align: center">  -{{ ($data->salary) ? number_format(($data->salary-1437),2) : number_format((1437),2) }}</td>
-                {{-- <td>{{ }}</td> --}}
+                <td style="text-align: center">{{ $data->acc_id }}</td>
+                <td>{{ $data->invoice_no }}</td>
+                <td style="text-align: center"> {{ $data->customer_name }}</td>
+                <td style="text-align: center"> {{ $data->customer_email }}</td>
+                <td style="text-align: center">{{ $data->payment_method }}</td>
+                <td style="text-align: center">₱{{ number_format($data->total_price,2)}}</td>
+                <td style="text-align: center">{{ $data->status}}</td>
+          
             </tr>
             @endforeach
         </tbody>
