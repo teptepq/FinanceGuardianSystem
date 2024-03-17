@@ -145,6 +145,16 @@ class AccessibleFilterClass
   }
 
 
+
+
+
+  public function userdesc(){
+
+    
+
+  }
+
+
   // public function userdesc($type){
   //   $result = "";
   //   foreach ($type as $user) {

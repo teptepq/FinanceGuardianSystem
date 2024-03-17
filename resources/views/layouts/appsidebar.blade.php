@@ -161,118 +161,71 @@
         @endif
       </li><!-- End Dashboard Nav -->
   
-      {{-- <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="components-alerts.html">
-              <i class="bi bi-circle"></i><span>Alerts</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-accordion.html">
-              <i class="bi bi-circle"></i><span>Accordion</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-badges.html">
-              <i class="bi bi-circle"></i><span>Badges</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-breadcrumbs.html">
-              <i class="bi bi-circle"></i><span>Breadcrumbs</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-buttons.html">
-              <i class="bi bi-circle"></i><span>Buttons</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-cards.html">
-              <i class="bi bi-circle"></i><span>Cards</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-carousel.html">
-              <i class="bi bi-circle"></i><span>Carousel</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-list-group.html">
-              <i class="bi bi-circle"></i><span>List group</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-modal.html">
-              <i class="bi bi-circle"></i><span>Modal</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-tabs.html">
-              <i class="bi bi-circle"></i><span>Tabs</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-pagination.html">
-              <i class="bi bi-circle"></i><span>Pagination</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-progress.html">
-              <i class="bi bi-circle"></i><span>Progress</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-spinners.html">
-              <i class="bi bi-circle"></i><span>Spinners</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-tooltips.html">
-              <i class="bi bi-circle"></i><span>Tooltips</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Components Nav --> --}}
+     
+     
+  
+      <li class="nav-heading">Pages</li>
+
+
       @if(Auth::user()->usertype == '1')
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" href="{{ route('user-management') }}">
+          <i class="bi bi-people-fill"></i>
+          <span style="font-size: 0.8rem;">User Management</span>
         </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{ route('statistics') }}">
-              <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Statistics Reports</span>
-            </a>
-          </li>
-          {{-- <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Form Layouts</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-editors.html">
-              <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Form Editors</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-validation.html">
-              <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Form Validation</span>
-            </a>
-          </li> --}}
-        </ul>
-      </li><!-- End Forms Nav -->
-  
-
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('user-management') }}">
+          <i class="bi bi-bar-chart-fill"></i>
+          <span style="font-size: 0.8rem;">Tax Rate Management</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('user-management') }}">
+          
+          <i class="bi bi-tag-fill"></i>
+          <span style="font-size: 0.8rem;">Asset Tracking</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('user-management') }}">
+          <i class="bi bi-gear-fill"></i>
+          <span style="font-size: 0.8rem;">Maintenance Scheduling</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('user-management') }}">
+          <i class="bi bi-calendar2-minus-fill"></i>
+          <span style="font-size: 0.8rem;">Depreciation Calculation</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('user-management') }}">
+          <i class="bi bi-diagram-3-fill"></i>
+          <span style="font-size: 0.8rem;">Tax Calculation</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('user-management') }}">
+          <i class="bi bi-book-half"></i>
+          <span style="font-size: 0.8rem;">Reporting and Analytics</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('user-management') }}">
+          <i class="bi bi-arrows"></i>
+          <span style="font-size: 0.8rem;">Integration Module</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('user-management') }}">
+          <i class="bi bi-archive-fill"></i>
+          <span style="font-size: 0.8rem;">Audit Trail</span>
+        </a>
+      </li>
       @endif
-      {{-- <a class="nav-link collapsed"  href="{{ route('configuration') }}">   --}}
-      <li class="nav-heading">Pages</li>
    
-      @if(Auth::user()->usertype == '1' || Auth::user()->usertype == '0')
+      @if(Auth::user()->usertype == '0')
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-tools" data-bs-toggle="collapse" href="#">
           <i class="bi bi-gear"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Services</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -302,12 +255,7 @@
       </li><!-- End Forms Nav -->
       <!-- End Profile Page Nav -->
       @elseif( Auth::user()->usertype == '2' )
-      {{-- <li class="nav-item" >
-        <a class="nav-link collapsed" href="{{ route('uannouncement') }}">  
-          <i class="bi bi-bell-fill"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Announcement</span>
-        </a>
-      </li> --}}
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-toggle="modal" data-bs-target="#ExtralargeModalAsset" >  
           <i class="bi bi-tv"></i>

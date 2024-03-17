@@ -186,7 +186,8 @@
         <li class="nav-item dropdown pe-3">
   
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            {{-- <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> --}}
+            <img src="https://www.kindpng.com/picc/m/80-807524_no-profile-hd-png-download.png"  style="width: 40px; height:40px;"class="rounded-circle" alt="Profile">
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
           </a><!-- End Profile Iamge Icon -->
   
@@ -263,8 +264,8 @@
               <hr class="dropdown-divider">
             </li>
             <li>
-              @if(Auth::user()->usertype == '3' || Auth::user()->usertype == '1')
-              <a class="dropdown-item d-flex align-items-center" href="{{ route('chelp') }}">
+              @if(Auth::user()->usertype == '1')
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('cservice') }}">
                 @elseif(Auth::user()->usertype == '2')
                 <a class="dropdown-item d-flex align-items-center" href="{{ route('uhelp') }}">
               @else 

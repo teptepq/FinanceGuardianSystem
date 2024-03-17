@@ -41,7 +41,8 @@
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-            <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle" >
+            {{-- <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle" > --}}
+            <img src="https://www.kindpng.com/picc/m/80-807524_no-profile-hd-png-download.png"  style="width: 120px; height:120px;"class="rounded-circle" alt="Profile">
             <h2 style="font-size: 16.5px">{{ ucfirst(Auth::user()->name) }}</h2>
             <h3 style="font-size: 16.5px" >{{ $position }}</h3>
             <div class="social-links mt-2">

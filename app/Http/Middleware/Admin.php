@@ -22,9 +22,14 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // dd($request);
 
+        // 
+        
         if(Auth::user()->usertype == '1')
         {
+           
+
             return $next($request); 
         } 
 

@@ -52,7 +52,7 @@
             {{-- @csrf --}}
             @include('layouts.modal')
             @yield('content')
-            @yield('contents')
+            {{-- @yield('contents') --}}
             
 
 </body>
