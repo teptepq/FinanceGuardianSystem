@@ -32,6 +32,11 @@ class SuperadminController extends Controller
     public function cservice(){
         return view('admin/cservice');
     }
+
+    public function tax(){
+        return view('admin/tax');
+    }
+    
     public function home(Request $request){
         return view('admin/home');
     }
@@ -50,10 +55,6 @@ class SuperadminController extends Controller
 
 
     public function addusers(Request $request){
-
-        // $var = (object) $request;
-
-        // dd($var);
 
         try {
             $var = (object) $request;
@@ -105,7 +106,7 @@ class SuperadminController extends Controller
             }
             
         } catch (QueryException $e) {
-            // Log the error or handle it as needed
+          
             $response = 'An error occurred while creating the user. ' . $e->getMessage();
 
         }
@@ -127,9 +128,7 @@ class SuperadminController extends Controller
             }
 
             $usersQuery = $usersQuery->get();
-
-            // dd($usersQuery);
-            // Format the data as needed
+         
             $formattedPromotions = [];
             foreach ($usersQuery as $data) {
                
@@ -154,13 +153,13 @@ class SuperadminController extends Controller
     }
 
     public function getusersdesc(Request $request){
+
         try {
 
-            $requestData = (object) $request;
+            $requestData = (object) $request; 
 
             $usersQuery = DB::table('fms_g9_tbluserdescrip')->get();
-
-            // dd($usersQuery);
+         
             $formattedPromotions = [];
             foreach ($usersQuery as $data) {
                
@@ -178,6 +177,27 @@ class SuperadminController extends Controller
             return response()->json(['error' => 'An error occurred while processing the request.'], 500);
 
         }
+
+    }
+
+    public function getTaxes(Request $request){
+
+        $taxQuery = DB::table('fms_g9_taxrates')->get();
+         
+            $tax = [];
+            foreach ($taxQuery as $data) {
+               
+                $tax[] = [
+                    'taxid'   => $data->tax_rate_id,
+                    'taxname' => $data->tax_rate_name,
+                    'description' => $data->description,
+                    'percent' => $data->rate_percentage.'%',
+                ];
+                
+            }
+
+            return response()->json($tax);
+
     }
 
     public function addroledatas(Request $request){

@@ -400,6 +400,7 @@
                 // { data: "usertype",className: "text-left custom-font-size" },
                 {
                     data: null,
+                    className: "text-center custom-font-size"
                     
                     
                 }
@@ -501,6 +502,7 @@
                 { data: "userdesc", className: "text-left   custom-font-size" },
                 {
                     data: null,
+                    className: "text-center custom-font-size"
                 }
             ],
             // Other DataTables configurations...

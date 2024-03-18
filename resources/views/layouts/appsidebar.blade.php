@@ -175,7 +175,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('user-management') }}">
+        <a class="nav-link collapsed" href="{{ route('taxrate') }}">
           <i class="bi bi-bar-chart-fill"></i>
           <span style="font-size: 0.8rem;">Tax Rate Management</span>
         </a>
