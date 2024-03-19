@@ -26,7 +26,7 @@ class Admin
 
         // 
         
-        if(Auth::user()->usertype == '1')
+        if(Auth::user()->usertype == '1' || Auth::user()->isSuper == '1')
         {
            
 

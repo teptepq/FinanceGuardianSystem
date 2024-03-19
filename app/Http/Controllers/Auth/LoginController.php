@@ -55,7 +55,7 @@ class LoginController extends Controller
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             // dd(auth::user());  
-            if(auth::user()->usertype == '1') 
+            if(auth::user()->usertype == '1' || auth::user()->usertype == '0') 
             {
                 return response()->json(['redirect' => route('home'), 'message' => 'Login successful']);
             } 
