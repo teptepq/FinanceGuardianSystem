@@ -181,7 +181,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('user-management') }}">
+        <a class="nav-link collapsed" href="{{ route('tracking') }}">
           
           <i class="bi bi-tag-fill"></i>
           <span style="font-size: 0.8rem;">Asset Tracking</span>

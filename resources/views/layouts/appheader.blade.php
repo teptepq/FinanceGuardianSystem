@@ -5,8 +5,20 @@
     
 
 ?>
+<style>
 
+  .appheader-title {
 
+      color : blue !important;
+      font-size: 0.9rem;
+
+  }
+  .appheader {
+    font-size: 0.3rem;
+    text-transform: uppercase;
+  }
+  
+</style>
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -196,8 +208,9 @@
   
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>{{ Auth::user()->name }}</h6>
-              <span>{{ $position }}</span>
+              <img src="https://www.kindpng.com/picc/m/80-807524_no-profile-hd-png-download.png"  style="width: 100px; height:100px;"class="rounded-circle" alt="Profile">
+              <h5 class="card-title">{{ Auth::user()->name }}</h5>
+              <span class="appheader">{{ $position }}</span>
             </li>
             <li>
               <hr class="dropdown-divider">

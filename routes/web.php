@@ -52,6 +52,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::get('/user-management',                 [App\Http\Controllers\SuperadminController::class, 'usermanagement'])     ->name('user-management'); 
     Route::get('/customer-service',                [App\Http\Controllers\SuperadminController::class, 'cservice'])           ->name('cservice');
     Route::get('/tax-rate',                        [App\Http\Controllers\SuperadminController::class, 'tax'])                ->name('taxrate');
+    Route::get('/tracking',                        [App\Http\Controllers\SuperadminController::class, 'tracking'])           ->name('tracking');
 
 
 
@@ -62,7 +63,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::POST('/addroledatas',                   [App\Http\Controllers\SuperadminController::class, 'addroledatas'])       ->name('addroledatas');                                                   
     Route::GET('/getusers',                        [App\Http\Controllers\SuperadminController::class, 'getusers'])           ->name('getusers'); 
     Route::GET('/getusersdesc',                    [App\Http\Controllers\SuperadminController::class, 'getusersdesc'])       ->name('getusersdesc');
-    Route::GET('/getTaxes',                        [App\Http\Controllers\SuperadminController::class, 'getTaxes'])           ->name('getTaxes');                
+    Route::GET('/getTaxes',                        [App\Http\Controllers\SuperadminController::class, 'getTaxes'])           ->name('getTaxes');    
+    Route::GET('/getAssetInventory',               [App\Http\Controllers\SuperadminController::class, 'getAssetInventory'])  ->name('getAssetInventory');                                    
 
 
 

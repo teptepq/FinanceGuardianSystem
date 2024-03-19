@@ -130,43 +130,22 @@ class AccessibleFilterClass
   }
 
   public function positionDesc($type){
-    // dd($type);
-    $result = '';
-    if($type == '1') {
-      $result = 'Admin';
-    } else if ($type == '2') {
-      $result = 'Manager';
-    } else {
-      $result = 'Customer';
-    }
+  
+    $result = "";
+    $sql = DB::table('fms_g9_tbluserdescrip')
+        ->select('userdesc')
+        ->where('usertype',$type)
+        ->first();
 
+    if($sql){
+      $result = $sql->userdesc;
+    }    
     return $result;
 
   }
 
 
 
-
-
-  public function userdesc(){
-
-    
-
-  }
-
-
-  // public function userdesc($type){
-  //   $result = "";
-  //   foreach ($type as $user) {
-  //       // dd($user->usertype);
-
-  //       if($user->usertype == '1'){
-  //         $result = "admin";
-  //       }
-  //   }
-
-  //   return $result;
-  // }
 
 
     

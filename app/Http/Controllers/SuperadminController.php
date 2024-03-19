@@ -7,7 +7,8 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
-use App\Models\User; 
+use App\Models\User;
+use Termwind\Components\Raw;
 
 class SuperadminController extends Controller
 {
@@ -27,6 +28,10 @@ class SuperadminController extends Controller
         $path = view('manager/index');
         
         return $path;
+    }
+
+    public function tracking(){
+        return view('admin/tracking');
     }
 
     public function cservice(){
@@ -115,6 +120,7 @@ class SuperadminController extends Controller
     }
 
     public function getusers(Request $request){
+
         try {
       
             $requestData = (object) $request;
@@ -133,7 +139,7 @@ class SuperadminController extends Controller
             foreach ($usersQuery as $data) {
                
                 $formattedPromotions[] = [
-                    'Username' => $data->userid ?: 'N/A',
+                    'id' => $data->userid ?: 'N/A',
                     'Name' => $data->name,
                     'MicrosoftEmail' => $data->email,
                     'PersonalEmail' => $data->email,
@@ -230,6 +236,48 @@ class SuperadminController extends Controller
 
         return response()->json(['message' => $response]);
 
+
+    }
+    
+    public function getAssetInventory(Request $request){
+        
+        try {
+      
+            $requestData = (object) $request;
+
+            $inventoryQuery = DB::table('fms_g9_asset_inventory');
+           
+            // if ($requestData->roleSelector != "") {
+            //     $usersQuery = $usersQuery->where('usertype', '=', $requestData->roleSelector);
+            // }
+
+            $inventoryQuery = $inventoryQuery->get();
+         
+            // dd($usersQuery);
+            $formattedPromotions = [];
+            foreach ($inventoryQuery as $data) {
+               
+                $formattedPromotions[] = [
+                    'asset_name' => $data->asset_name ?: 'N/A',
+                    'description' => $data->description,
+                    'category' => $data->category,
+                    'purchase_cost' => '₱ '.$data->purchase_cost,
+                    'current_value' =>  '₱ '.$data->current_value,
+                    'status' => $data->status,
+                    'depreciation_method' => $data->depreciation_method,
+                    'depreciation_rate' => $data->depreciation_rate.' %'
+                ];
+            }
+            // dd($formattedPromotions);
+            return response()->json($formattedPromotions);
+
+            
+
+        } catch (\Exception $e) {
+     
+            return response()->json(['error' => 'An error occurred while processing the request.'], 500);
+
+        }
 
     }
 

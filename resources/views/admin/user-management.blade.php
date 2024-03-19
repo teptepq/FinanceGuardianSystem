@@ -168,7 +168,7 @@
                                     <div class="col-lg-3">
                                         <div class="col-lg-12">
                                             <div class="d-grid gap-2 mt-2">
-                                                <button type="button" class="btn btn-primary rounded-pill" id="addrole">Add Role</button>
+                                                <button type="button" class="btn btn-primary rounded-pill" id="addrole">Save</button>
                                             </div>
                                         </div>
                                     </div>
@@ -260,7 +260,7 @@
                     <table id="dynamic_Datable"  cellspacing="0" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Username</th>
+                            <th>UserID</th>
                             <th>Name</th>
                             <th>Microsoft Email</th>
                             <th>Personal Email</th>
@@ -392,7 +392,7 @@
                 }
             },
             columns: [
-                { data: "Username",className: "text-center custom-font-size" },
+                { data: "id",className: "text-center custom-font-size" },
                 { data: "Name", className: "text-left custom-font-size" },
                 { data: "MicrosoftEmail",className: "text-left custom-font-size" },
                 { data: "PersonalEmail",className: "text-left custom-font-size" },

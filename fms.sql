@@ -17,11 +17,11 @@
 -- Dumping structure for table 4thyeardb.admin_g59_failed_jobs
 CREATE TABLE IF NOT EXISTS `admin_g59_failed_jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS `admin_g59_failed_jobs` (
 
 -- Dumping structure for table 4thyeardb.admin_g59_password_resets
 CREATE TABLE IF NOT EXISTS `admin_g59_password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -41,11 +41,11 @@ CREATE TABLE IF NOT EXISTS `admin_g59_password_resets` (
 -- Dumping structure for table 4thyeardb.admin_g59_personal_access_tokens
 CREATE TABLE IF NOT EXISTS `admin_g59_personal_access_tokens` (
   `id` bigint unsigned NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -57,12 +57,12 @@ CREATE TABLE IF NOT EXISTS `admin_g59_personal_access_tokens` (
 -- Dumping structure for table 4thyeardb.admin_g59_tickets
 CREATE TABLE IF NOT EXISTS `admin_g59_tickets` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `department` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `concern` text COLLATE utf8mb4_unicode_ci,
-  `priority` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `concern` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `priority` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -80,7 +80,7 @@ INSERT INTO `admin_g59_tickets` (`id`, `name`, `email`, `company`, `department`,
 CREATE TABLE IF NOT EXISTS `admin_g59_ticket_attachments` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `ticket_id` bigint unsigned NOT NULL,
-  `attachments` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attachments` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -97,11 +97,11 @@ INSERT INTO `admin_g59_ticket_attachments` (`id`, `ticket_id`, `attachments`, `c
 -- Dumping structure for table 4thyeardb.admin_g59_users
 CREATE TABLE IF NOT EXISTS `admin_g59_users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -134,8 +134,8 @@ CREATE TABLE IF NOT EXISTS `fgms_g2_allocations` (
 CREATE TABLE IF NOT EXISTS `fgms_g2_budget_items` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `proposal_id` bigint unsigned NOT NULL,
-  `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -149,11 +149,11 @@ CREATE TABLE IF NOT EXISTS `fgms_g2_budget_items` (
 -- Dumping structure for table 4thyeardb.fgms_g2_budget_proposals
 CREATE TABLE IF NOT EXISTS `fgms_g2_budget_proposals` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `submitted_by` bigint unsigned NOT NULL,
   `submitted_at` timestamp NOT NULL DEFAULT '2024-02-29 15:32:28',
-  `status` enum('pending','approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `status` enum('pending','approved','rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -173,8 +173,8 @@ INSERT INTO `fgms_g2_budget_proposals` (`id`, `title`, `description`, `submitted
 -- Dumping structure for table 4thyeardb.fgms_g2_cost_centers
 CREATE TABLE IF NOT EXISTS `fgms_g2_cost_centers` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -186,10 +186,10 @@ CREATE TABLE IF NOT EXISTS `fgms_g2_cost_centers` (
 CREATE TABLE IF NOT EXISTS `fgms_g2_expenses` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL,
-  `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `date` date NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -204,8 +204,8 @@ INSERT INTO `fgms_g2_expenses` (`id`, `user_id`, `category`, `amount`, `date`, `
 -- Dumping structure for table 4thyeardb.fgms_g2_financial_metrics
 CREATE TABLE IF NOT EXISTS `fgms_g2_financial_metrics` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `fgms_g2_forecast_data` (
 -- Dumping structure for table 4thyeardb.fgms_g2_roles
 CREATE TABLE IF NOT EXISTS `fgms_g2_roles` (
   `id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -241,13 +241,13 @@ CREATE TABLE IF NOT EXISTS `fgms_g2_roles` (
 -- Dumping structure for table 4thyeardb.fgms_g2_users
 CREATE TABLE IF NOT EXISTS `fgms_g2_users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int NOT NULL DEFAULT '0',
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -263,11 +263,11 @@ INSERT INTO `fgms_g2_users` (`id`, `name`, `username`, `email`, `role`, `email_v
 -- Dumping structure for table 4thyeardb.fgms_g3_failed_jobs
 CREATE TABLE IF NOT EXISTS `fgms_g3_failed_jobs` (
   `id` bigint unsigned NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -275,8 +275,8 @@ CREATE TABLE IF NOT EXISTS `fgms_g3_failed_jobs` (
 
 -- Dumping structure for table 4thyeardb.fgms_g3_password_reset_tokens
 CREATE TABLE IF NOT EXISTS `fgms_g3_password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -286,10 +286,10 @@ CREATE TABLE IF NOT EXISTS `fgms_g3_password_reset_tokens` (
 CREATE TABLE IF NOT EXISTS `fgms_g3_pendingdocus` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `fgms_g3_user_id` bigint unsigned DEFAULT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `about` text COLLATE utf8mb4_unicode_ci,
-  `charges` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `about` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `charges` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -307,11 +307,11 @@ INSERT INTO `fgms_g3_pendingdocus` (`id`, `fgms_g3_user_id`, `type`, `about`, `c
 -- Dumping structure for table 4thyeardb.fgms_g3_personal_access_tokens
 CREATE TABLE IF NOT EXISTS `fgms_g3_personal_access_tokens` (
   `id` bigint unsigned NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -324,14 +324,14 @@ CREATE TABLE IF NOT EXISTS `fgms_g3_personal_access_tokens` (
 CREATE TABLE IF NOT EXISTS `fgms_g3_profiles` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `fgms_g3_user_id` bigint unsigned DEFAULT NULL,
-  `full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `about` text COLLATE utf8mb4_unicode_ci,
-  `company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `job` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `full_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `about` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `job` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -344,12 +344,12 @@ CREATE TABLE IF NOT EXISTS `fgms_g3_profiles` (
 -- Dumping structure for table 4thyeardb.fgms_g3_users
 CREATE TABLE IF NOT EXISTS `fgms_g3_users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -363,20 +363,20 @@ INSERT INTO `fgms_g3_users` (`id`, `name`, `email`, `email_verified_at`, `userna
 -- Dumping structure for table 4thyeardb.fgms_g7_users
 CREATE TABLE IF NOT EXISTS `fgms_g7_users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_birth` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `join_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `role_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `position` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `department` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_of_birth` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `join_date` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -389,7 +389,7 @@ INSERT INTO `fgms_g7_users` (`id`, `user_id`, `name`, `email`, `date_of_birth`, 
 
 -- Dumping structure for table 4thyeardb.fgms_g9_category
 CREATE TABLE IF NOT EXISTS `fgms_g9_category` (
-  `category` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`category`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -402,16 +402,16 @@ INSERT INTO `fgms_g9_category` (`category`) VALUES
 -- Dumping structure for table 4thyeardb.fgms_g9_vm_dt
 CREATE TABLE IF NOT EXISTS `fgms_g9_vm_dt` (
   `vendor_id` int NOT NULL AUTO_INCREMENT,
-  `vendor_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `company_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `vendor_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `company_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `contact` int NOT NULL,
-  `category` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `cost` float NOT NULL,
   `spend` float NOT NULL,
   `starting_date` date NOT NULL,
   `end_date` date NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`vendor_id`),
   KEY `category` (`category`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -485,12 +485,12 @@ INSERT INTO `fms_4g_accounts_access` (`a_id`, `a_u_id`, `a_admin_board`, `a_driv
 -- Dumping structure for table 4thyeardb.fms_4g_files
 CREATE TABLE IF NOT EXISTS `fms_4g_files` (
   `id` int NOT NULL,
-  `name` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` text COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `user_id` int NOT NULL,
   `folder_id` int NOT NULL,
-  `file_type` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `file_path` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `file_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `file_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `is_public` tinyint(1) DEFAULT '0',
   `date_updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -502,7 +502,7 @@ CREATE TABLE IF NOT EXISTS `fms_4g_files` (
 CREATE TABLE IF NOT EXISTS `fms_4g_folder` (
   `id` int NOT NULL,
   `user_id` int NOT NULL,
-  `file_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `file_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `parent_id` int NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -541,8 +541,8 @@ INSERT INTO `fms_4g_fuel` (`v_fuel_id`, `v_id`, `v_fuel_quantity`, `v_odometerre
 CREATE TABLE IF NOT EXISTS `fms_4g_inbound` (
   `id` int NOT NULL,
   `files_id` int NOT NULL,
-  `reason` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_inbound_files_id` (`files_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -552,14 +552,14 @@ CREATE TABLE IF NOT EXISTS `fms_4g_inbound` (
 -- Dumping structure for table 4thyeardb.fms_4g_maintenance
 CREATE TABLE IF NOT EXISTS `fms_4g_maintenance` (
   `m_id` int NOT NULL,
-  `m_v_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `m_v_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `m_start_date` date NOT NULL,
   `m_end_date` date NOT NULL,
-  `m_details` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `m_details` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `m_cost` int NOT NULL,
-  `m_vendor_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `m_service` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `m_status` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `m_vendor_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `m_service` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `m_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `v_created_date` date NOT NULL,
   `v_modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`m_id`)
@@ -576,11 +576,11 @@ INSERT INTO `fms_4g_maintenance` (`m_id`, `m_v_id`, `m_start_date`, `m_end_date`
 -- Dumping structure for table 4thyeardb.fms_4g_message
 CREATE TABLE IF NOT EXISTS `fms_4g_message` (
   `msg_id` int NOT NULL,
-  `username` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `role` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `message` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `message` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `timesent` bigint DEFAULT NULL,
-  `prof_pic` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `prof_pic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table 4thyeardb.fms_4g_message: ~50 rows (approximately)
@@ -639,7 +639,7 @@ INSERT INTO `fms_4g_message` (`msg_id`, `username`, `role`, `message`, `timesent
 -- Dumping structure for table 4thyeardb.fms_4g_migrations
 CREATE TABLE IF NOT EXISTS `fms_4g_migrations` (
   `id` int unsigned NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -663,9 +663,9 @@ INSERT INTO `fms_4g_migrations` (`id`, `migration`, `batch`) VALUES
 -- Dumping structure for table 4thyeardb.fms_4g_notifications
 CREATE TABLE IF NOT EXISTS `fms_4g_notifications` (
   `id` int NOT NULL,
-  `message` text COLLATE utf8mb4_general_ci,
-  `type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -676,8 +676,8 @@ CREATE TABLE IF NOT EXISTS `fms_4g_outbound` (
   `id` int NOT NULL,
   `user_id` int NOT NULL,
   `files_id` int NOT NULL,
-  `reason` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `view` int NOT NULL,
   `download` int NOT NULL
@@ -688,11 +688,11 @@ CREATE TABLE IF NOT EXISTS `fms_4g_outbound` (
 -- Dumping structure for table 4thyeardb.fms_4g_personal_access_tokens
 CREATE TABLE IF NOT EXISTS `fms_4g_personal_access_tokens` (
   `id` bigint unsigned NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -731,8 +731,8 @@ INSERT INTO `fms_4g_positions` (`id`, `trip_id`, `latitude`, `longitude`, `altit
 CREATE TABLE IF NOT EXISTS `fms_4g_reports` (
   `id` int NOT NULL,
   `folder_id` int NOT NULL,
-  `report_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `report_description` text COLLATE utf8mb4_general_ci,
+  `report_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `report_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `access` int NOT NULL,
   `user` int NOT NULL,
   `download` int NOT NULL,
@@ -867,14 +867,14 @@ INSERT INTO `fms_4g_sustainability_data` (`sd_id`, `sd_trip_id`, `sd_fuelcost`, 
 -- Dumping structure for table 4thyeardb.fms_4g_tb_useracc
 CREATE TABLE IF NOT EXISTS `fms_4g_tb_useracc` (
   `id` bigint unsigned NOT NULL,
-  `firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `contact` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `firstname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -921,17 +921,17 @@ INSERT INTO `fms_4g_trips` (`t_id`, `t_start_date`, `t_end_date`, `t_trip_fromlo
 -- Dumping structure for table 4thyeardb.fms_4g_userformdetails
 CREATE TABLE IF NOT EXISTS `fms_4g_userformdetails` (
   `id` bigint unsigned NOT NULL,
-  `order_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order_id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint unsigned NOT NULL,
-  `item` enum('ElectronicAndGadget','FoodAndBeverages','MedicalSupply','AutomobileAndMachinery','ChemicalsAndDrugs','FurnitureAndKitchenware','Others') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dimensions` enum('KB Mini (9 X 5 X 3) Inch','KB Small (12 X 10 X 5) Inch','KB Slim (16 X 10 X 3) Inch','KB Medium (14 X 10.5 X 7) Inch','KB Large (18 X 12 X 9) Inch','KB XL (20 X 16 X 12) Inch') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `LocationFrom` enum('Andres Soriano Avenue Barangay 655, Manila, Philippines') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `LocationTo` enum('MetroManila','Luzon','Visayas','Mindanao') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `DropOffWarehouse` enum('150 D. Aquino St, Grace Park West, Caloocan, 1406 Metro Manila','BLK 15 LOT 1, BRIÑAS CORNER BANZON ST, BF Resort Dr, Las Piñas, 1747 Metro Manila','Silangan Warehousing, Calamba, 4027 Laguna','5 Daisy Panacal Vill. P.C. 3500, Tuguegarao City, Cagayan','14 Lavilles Street, Mj Cuenco Avenue. P.C. 6000, Cebu City, Cebu','347115 Rizal St, Lapuz, Iloilo City, Iloilo','Door No. 2, Luzviminda Building, Km. 9 Old Arpt Rd, Sasa, Davao City, 8000 Davao del Sur','Kasanyangan Rd, Zamboanga, 7000 Zamboanga del Sur') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `consigneeName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `receiverContact` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `receiveraddress` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `modeSelection` enum('Land','Air','Sea') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `item` enum('ElectronicAndGadget','FoodAndBeverages','MedicalSupply','AutomobileAndMachinery','ChemicalsAndDrugs','FurnitureAndKitchenware','Others') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dimensions` enum('KB Mini (9 X 5 X 3) Inch','KB Small (12 X 10 X 5) Inch','KB Slim (16 X 10 X 3) Inch','KB Medium (14 X 10.5 X 7) Inch','KB Large (18 X 12 X 9) Inch','KB XL (20 X 16 X 12) Inch') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `LocationFrom` enum('Andres Soriano Avenue Barangay 655, Manila, Philippines') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `LocationTo` enum('MetroManila','Luzon','Visayas','Mindanao') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `DropOffWarehouse` enum('150 D. Aquino St, Grace Park West, Caloocan, 1406 Metro Manila','BLK 15 LOT 1, BRIÑAS CORNER BANZON ST, BF Resort Dr, Las Piñas, 1747 Metro Manila','Silangan Warehousing, Calamba, 4027 Laguna','5 Daisy Panacal Vill. P.C. 3500, Tuguegarao City, Cagayan','14 Lavilles Street, Mj Cuenco Avenue. P.C. 6000, Cebu City, Cebu','347115 Rizal St, Lapuz, Iloilo City, Iloilo','Door No. 2, Luzviminda Building, Km. 9 Old Arpt Rd, Sasa, Davao City, 8000 Davao del Sur','Kasanyangan Rd, Zamboanga, 7000 Zamboanga del Sur') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `consigneeName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `receiverContact` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `receiveraddress` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `modeSelection` enum('Land','Air','Sea') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `deliveryDate` date NOT NULL,
   `price` int NOT NULL,
   `fee` int NOT NULL,
@@ -945,14 +945,14 @@ CREATE TABLE IF NOT EXISTS `fms_4g_userformdetails` (
 -- Dumping structure for table 4thyeardb.fms_4g_users
 CREATE TABLE IF NOT EXISTS `fms_4g_users` (
   `id` int NOT NULL,
-  `username` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `verify_token` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `verify_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `activate` int NOT NULL,
   `role` int NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table 4thyeardb.fms_4g_users: ~8 rows (approximately)
@@ -966,12 +966,195 @@ INSERT INTO `fms_4g_users` (`id`, `username`, `email`, `password`, `verify_token
 	(20, 'cris', 'cris@gmail.com', '$2y$10$Mk6.rwE8ZM1RAA10FOGMQOpvOK7tbT3Z8.SUR53X.nh6xfDb9oIPi', NULL, '2024-02-20 07:58:43', 1, 0, '../assets/uploads/jose.jpg'),
 	(34, 'ryan', 'ryan@gmail.com', '$2y$10$s.1L1nK.iHX/Gi7QfcxtmuRCBKQtqBS4FXVWEFKhE4K1s45CNtlV6', NULL, '2024-02-23 15:47:35', 1, 0, '../img/default-img.jpg');
 
+-- Dumping structure for table 4thyeardb.fms_g9_asset_depreciation
+CREATE TABLE IF NOT EXISTS `fms_g9_asset_depreciation` (
+  `depreciation_id` int NOT NULL AUTO_INCREMENT,
+  `asset_id` int DEFAULT NULL,
+  `depreciation_date` date DEFAULT NULL,
+  `depreciation_amount` decimal(10,2) DEFAULT NULL,
+  `accumulated_depreciation` decimal(10,2) DEFAULT NULL,
+  `book_value` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`depreciation_id`),
+  KEY `asset_id` (`asset_id`),
+  CONSTRAINT `fms_g9_asset_depreciation_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `asset_inventory` (`asset_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_asset_depreciation: ~0 rows (approximately)
+
+-- Dumping structure for table 4thyeardb.fms_g9_asset_details
+CREATE TABLE IF NOT EXISTS `fms_g9_asset_details` (
+  `asset_id` int NOT NULL,
+  `warranty_start_date` date DEFAULT NULL,
+  `warranty_end_date` date DEFAULT NULL,
+  `serial_number` varchar(50) DEFAULT NULL,
+  `manufacturer` varchar(100) DEFAULT NULL,
+  `model` varchar(100) DEFAULT NULL,
+  `supplier` varchar(100) DEFAULT NULL,
+  `purchase_order_number` varchar(50) DEFAULT NULL,
+  `invoice_number` varchar(50) DEFAULT NULL,
+  `notes` text,
+  PRIMARY KEY (`asset_id`),
+  CONSTRAINT `fms_g9_asset_details_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `asset_inventory` (`asset_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_asset_details: ~5 rows (approximately)
+INSERT INTO `fms_g9_asset_details` (`asset_id`, `warranty_start_date`, `warranty_end_date`, `serial_number`, `manufacturer`, `model`, `supplier`, `purchase_order_number`, `invoice_number`, `notes`) VALUES
+	(1, '2022-01-15', '2025-01-14', 'DL123456', 'Dell', 'Latitude E7450', 'ABC Electronics', 'PO12345', 'INV67890', 'Includes 3-year warranty'),
+	(2, '2021-08-20', NULL, 'OC987654', 'Office Furnishings Inc.', 'Ergo Mesh 2000', 'Furniture World', 'PO54321', 'INV24680', 'Black color'),
+	(3, '2020-05-10', NULL, 'TC123ABC', 'Toyota', 'Camry', 'Car Dealership Inc.', 'PO45678', 'INV13579', 'Model year 2020'),
+	(4, '2023-02-28', NULL, 'HP456DEF', 'HP', 'ProLiant DL380', 'Tech Solutions', 'PO98765', 'INV65432', 'Includes 5-year warranty'),
+	(5, '2022-09-05', NULL, 'EP789GHI', 'Epson', 'PowerLite 1781W', 'Electronics Superstore', 'PO23456', 'INV78901', 'Portable model');
+
+-- Dumping structure for table 4thyeardb.fms_g9_asset_inventory
+CREATE TABLE IF NOT EXISTS `fms_g9_asset_inventory` (
+  `asset_id` int NOT NULL AUTO_INCREMENT,
+  `asset_name` varchar(100) NOT NULL,
+  `description` text,
+  `category` varchar(50) DEFAULT NULL,
+  `acquisition_date` date DEFAULT NULL,
+  `purchase_cost` decimal(10,2) DEFAULT NULL,
+  `current_value` decimal(10,2) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `depreciation_method` varchar(50) DEFAULT NULL,
+  `depreciation_rate` decimal(5,2) DEFAULT NULL,
+  `last_maintenance_date` date DEFAULT NULL,
+  `next_maintenance_date` date DEFAULT NULL,
+  `assigned_to` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`asset_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_asset_inventory: ~5 rows (approximately)
+INSERT INTO `fms_g9_asset_inventory` (`asset_id`, `asset_name`, `description`, `category`, `acquisition_date`, `purchase_cost`, `current_value`, `location`, `status`, `depreciation_method`, `depreciation_rate`, `last_maintenance_date`, `next_maintenance_date`, `assigned_to`) VALUES
+	(1, 'Laptop', 'Dell Latitude E7450', 'IT Equipment', '2022-01-15', 1200.00, 900.00, 'Office 1', 'In Use', 'Straight-Line', 10.00, '2023-06-10', '2023-12-10', 'John Doe'),
+	(2, 'Office Chair', 'Ergonomic mesh chair', 'Furniture', '2021-08-20', 150.00, 120.00, 'Office 2', 'In Use', 'Straight-Line', 5.00, '2023-02-05', '2023-08-05', 'Jane Smith'),
+	(3, 'Company Car', 'Toyota Camry', 'Vehicle', '2020-05-10', 25000.00, 18000.00, 'Parking Lot', 'In Use', 'Straight-Line', 15.00, '2023-03-20', '2023-09-20', 'Mark Johnson'),
+	(4, 'Server', 'HP ProLiant DL380', 'IT Equipment', '2023-02-28', 5000.00, 4000.00, 'Data Center', 'In Use', 'Straight-Line', 10.00, '2023-08-15', '2024-02-15', 'IT Department'),
+	(5, 'Projector', 'Epson PowerLite 1781W', 'IT Equipment', '2022-09-05', 800.00, 600.00, 'Conference Room', 'In Use', 'Straight-Line', 10.00, '2023-05-01', '2023-11-01', 'Office Manager');
+
+-- Dumping structure for table 4thyeardb.fms_g9_asset_locations
+CREATE TABLE IF NOT EXISTS `fms_g9_asset_locations` (
+  `location_id` int NOT NULL AUTO_INCREMENT,
+  `location_name` varchar(100) NOT NULL,
+  `description` text,
+  `address` varchar(255) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `state` varchar(100) DEFAULT NULL,
+  `country` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`location_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_asset_locations: ~5 rows (approximately)
+INSERT INTO `fms_g9_asset_locations` (`location_id`, `location_name`, `description`, `address`, `city`, `state`, `country`) VALUES
+	(1, 'Office 1', 'Main office building', '123 Main Street', 'Anytown', 'State', 'Country'),
+	(2, 'Office 2', 'Branch office', '456 Oak Avenue', 'Smalltown', 'State', 'Country'),
+	(3, 'Parking Lot', 'Employee parking area', '789 Elm Street', 'Cityville', 'State', 'Country'),
+	(4, 'Data Center', 'Centralized server room', '101 Data Center Drive', 'Tech City', 'State', 'Country'),
+	(5, 'Conference Room', 'Meeting room', '789 Maple Avenue', 'Metropolis', 'State', 'Country');
+
+-- Dumping structure for table 4thyeardb.fms_g9_asset_maintenance
+CREATE TABLE IF NOT EXISTS `fms_g9_asset_maintenance` (
+  `maintenance_id` int NOT NULL AUTO_INCREMENT,
+  `asset_id` int DEFAULT NULL,
+  `maintenance_date` date DEFAULT NULL,
+  `maintenance_type` varchar(50) DEFAULT NULL,
+  `maintenance_description` text,
+  `maintenance_cost` decimal(10,2) DEFAULT NULL,
+  `maintenance_notes` text,
+  PRIMARY KEY (`maintenance_id`),
+  KEY `asset_id` (`asset_id`),
+  CONSTRAINT `fms_g9_asset_maintenance_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `asset_inventory` (`asset_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_asset_maintenance: ~3 rows (approximately)
+INSERT INTO `fms_g9_asset_maintenance` (`maintenance_id`, `asset_id`, `maintenance_date`, `maintenance_type`, `maintenance_description`, `maintenance_cost`, `maintenance_notes`) VALUES
+	(1, 1, '2023-03-15', 'Routine Maintenance', 'Performed routine maintenance', 50.00, 'Cleaned dust and updated software'),
+	(2, 2, '2023-01-10', 'Repair', 'Repaired broken armrest', 30.00, 'Replaced armrest with new part'),
+	(3, 3, '2023-04-20', 'Oil Change', 'Performed oil change', 80.00, 'Changed engine oil');
+
+-- Dumping structure for table 4thyeardb.fms_g9_asset_performance
+CREATE TABLE IF NOT EXISTS `fms_g9_asset_performance` (
+  `asset_id` int NOT NULL,
+  `asset_name` varchar(100) DEFAULT NULL,
+  `performance_metric1` decimal(10,2) DEFAULT NULL,
+  `performance_metric2` decimal(10,2) DEFAULT NULL,
+  `performance_metric3` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`asset_id`),
+  CONSTRAINT `fms_g9_asset_performance_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `asset_inventory` (`asset_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_asset_performance: ~0 rows (approximately)
+
+-- Dumping structure for table 4thyeardb.fms_g9_asset_status
+CREATE TABLE IF NOT EXISTS `fms_g9_asset_status` (
+  `status_id` int NOT NULL AUTO_INCREMENT,
+  `status_name` varchar(50) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`status_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_asset_status: ~4 rows (approximately)
+INSERT INTO `fms_g9_asset_status` (`status_id`, `status_name`, `description`) VALUES
+	(1, 'In Use', 'Currently in use'),
+	(2, 'Under Maintenance', 'Undergoing maintenance'),
+	(3, 'In Storage', 'Stored in inventory'),
+	(4, 'Retired', 'No longer in use');
+
+-- Dumping structure for table 4thyeardb.fms_g9_asset_transactions
+CREATE TABLE IF NOT EXISTS `fms_g9_asset_transactions` (
+  `transaction_id` int NOT NULL AUTO_INCREMENT,
+  `asset_id` int DEFAULT NULL,
+  `transaction_date` date DEFAULT NULL,
+  `transaction_type` varchar(50) DEFAULT NULL,
+  `transaction_description` text,
+  `transaction_amount` decimal(10,2) DEFAULT NULL,
+  `transaction_notes` text,
+  PRIMARY KEY (`transaction_id`),
+  KEY `asset_id` (`asset_id`),
+  CONSTRAINT `fms_g9_asset_transactions_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `asset_inventory` (`asset_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_asset_transactions: ~0 rows (approximately)
+
+-- Dumping structure for table 4thyeardb.fms_g9_asset_utilization
+CREATE TABLE IF NOT EXISTS `fms_g9_asset_utilization` (
+  `asset_id` int NOT NULL,
+  `asset_name` varchar(100) DEFAULT NULL,
+  `utilization_rate` decimal(5,2) DEFAULT NULL,
+  `last_utilization_date` date DEFAULT NULL,
+  PRIMARY KEY (`asset_id`),
+  CONSTRAINT `fms_g9_asset_utilization_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `asset_inventory` (`asset_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_asset_utilization: ~0 rows (approximately)
+
+-- Dumping structure for table 4thyeardb.fms_g9_taxrates
+CREATE TABLE IF NOT EXISTS `fms_g9_taxrates` (
+  `tax_rate_id` int NOT NULL AUTO_INCREMENT,
+  `tax_rate_name` varchar(100) NOT NULL,
+  `rate_percentage` decimal(5,2) NOT NULL,
+  `effective_from` date NOT NULL,
+  `effective_to` date DEFAULT NULL,
+  `description` text,
+  `tax_authority` varchar(100) DEFAULT NULL,
+  `region` varchar(100) DEFAULT NULL,
+  `tax_type` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`tax_rate_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_taxrates: ~4 rows (approximately)
+INSERT INTO `fms_g9_taxrates` (`tax_rate_id`, `tax_rate_name`, `rate_percentage`, `effective_from`, `effective_to`, `description`, `tax_authority`, `region`, `tax_type`) VALUES
+	(1, 'State Sales Tax', 6.50, '2023-01-01', NULL, 'State sales tax rate for retail transactions within the state.', 'State Department of Revenue', 'California', 'Sales Tax'),
+	(2, 'Local Sales Tax', 2.00, '2023-01-01', NULL, 'Local sales tax rate imposed by city ordinance.', 'City Council', 'Los Angeles', 'Sales Tax'),
+	(3, 'Federal Income Tax', 15.00, '2021-01-01', NULL, 'Federal income tax rate for individuals and businesses.', 'Internal Revenue Service (IRS)', NULL, 'Income Tax'),
+	(4, 'State Sales Tax', 7.00, '2024-01-01', NULL, 'Revised state sales tax rate effective from the new fiscal year.', 'State Department of Revenue', 'California', 'Sales Tax');
+
 -- Dumping structure for table 4thyeardb.fms_g9_taxtypes
 CREATE TABLE IF NOT EXISTS `fms_g9_taxtypes` (
   `tax_type_id` int NOT NULL AUTO_INCREMENT,
-  `tax_type_name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `tax_type_code` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` text COLLATE utf8mb4_general_ci,
+  `tax_type_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tax_type_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   PRIMARY KEY (`tax_type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1010,8 +1193,8 @@ CREATE TABLE IF NOT EXISTS `fms_g9_tblpaymenttrail` (
   `employee_id` int NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `payment_date` date NOT NULL,
-  `payment_method` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` text COLLATE utf8mb4_general_ci,
+  `payment_method` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -1257,14 +1440,14 @@ INSERT INTO `fms_g9_vendorinfo` (`vendor_id`, `vendor_name`, `contact_person`, `
 -- Dumping structure for table 4thyeardb.hr5_tblguests
 CREATE TABLE IF NOT EXISTS `hr5_tblguests` (
   `GuestID` int NOT NULL AUTO_INCREMENT,
-  `FirstName` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `LastName` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `Email` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `Phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `Address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `City` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `State` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `PostalCode` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `FirstName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `LastName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `City` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `State` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `PostalCode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`GuestID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1279,10 +1462,10 @@ CREATE TABLE IF NOT EXISTS `hr5_tblreservation` (
   `CheckOutDate` date DEFAULT NULL,
   `NumAdults` int DEFAULT NULL,
   `NumChildren` int DEFAULT NULL,
-  `SpecialRequests` text COLLATE utf8mb4_general_ci,
-  `ReservationStatus` enum('Pending','Confirmed','Cancelled') COLLATE utf8mb4_general_ci DEFAULT 'Pending',
-  `CheckInStatus` enum('Checked-In','Not Checked-In') COLLATE utf8mb4_general_ci DEFAULT 'Not Checked-In',
-  `CheckOutStatus` enum('Checked-Out','Not Checked-Out') COLLATE utf8mb4_general_ci DEFAULT 'Not Checked-Out',
+  `SpecialRequests` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `ReservationStatus` enum('Pending','Confirmed','Cancelled') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'Pending',
+  `CheckInStatus` enum('Checked-In','Not Checked-In') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'Not Checked-In',
+  `CheckOutStatus` enum('Checked-Out','Not Checked-Out') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'Not Checked-Out',
   PRIMARY KEY (`ReservationID`),
   KEY `GuestID` (`GuestID`),
   KEY `RoomNumber` (`RoomNumber`),
@@ -1295,12 +1478,12 @@ CREATE TABLE IF NOT EXISTS `hr5_tblreservation` (
 -- Dumping structure for table 4thyeardb.hr5_tblrooms
 CREATE TABLE IF NOT EXISTS `hr5_tblrooms` (
   `RoomNumber` int NOT NULL,
-  `RoomType` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `BedType` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `RoomType` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `BedType` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `MaxOccupancy` int DEFAULT NULL,
   `RoomRate` decimal(10,2) DEFAULT NULL,
-  `Description` text COLLATE utf8mb4_general_ci,
-  `Status` enum('Available','Occupied','Maintenance') COLLATE utf8mb4_general_ci DEFAULT 'Available',
+  `Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `Status` enum('Available','Occupied','Maintenance') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'Available',
   PRIMARY KEY (`RoomNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1309,8 +1492,8 @@ CREATE TABLE IF NOT EXISTS `hr5_tblrooms` (
 -- Dumping structure for table 4thyeardb.lgu_g63_adds
 CREATE TABLE IF NOT EXISTS `lgu_g63_adds` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `market_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `market_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1323,7 +1506,7 @@ INSERT INTO `lgu_g63_adds` (`id`, `market_name`, `location`, `created_at`, `upda
 -- Dumping structure for table 4thyeardb.lgu_g63_communities
 CREATE TABLE IF NOT EXISTS `lgu_g63_communities` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `knowledge` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `knowledge` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1336,11 +1519,11 @@ INSERT INTO `lgu_g63_communities` (`id`, `knowledge`, `created_at`, `updated_at`
 -- Dumping structure for table 4thyeardb.lgu_g63_failed_jobs
 CREATE TABLE IF NOT EXISTS `lgu_g63_failed_jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
@@ -1351,9 +1534,9 @@ CREATE TABLE IF NOT EXISTS `lgu_g63_failed_jobs` (
 -- Dumping structure for table 4thyeardb.lgu_g63_galleries
 CREATE TABLE IF NOT EXISTS `lgu_g63_galleries` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `market_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photos` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `videos` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `market_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photos` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `videos` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1366,9 +1549,9 @@ INSERT INTO `lgu_g63_galleries` (`id`, `market_name`, `photos`, `videos`, `creat
 -- Dumping structure for table 4thyeardb.lgu_g63_invitations
 CREATE TABLE IF NOT EXISTS `lgu_g63_invitations` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `doc_photo` mediumtext COLLATE utf8mb4_unicode_ci,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `docs` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `doc_photo` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `docs` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1381,8 +1564,8 @@ INSERT INTO `lgu_g63_invitations` (`id`, `doc_photo`, `description`, `docs`, `cr
 -- Dumping structure for table 4thyeardb.lgu_g63_maps
 CREATE TABLE IF NOT EXISTS `lgu_g63_maps` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `market_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `market_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1395,7 +1578,7 @@ INSERT INTO `lgu_g63_maps` (`id`, `market_name`, `location`, `created_at`, `upda
 -- Dumping structure for table 4thyeardb.lgu_g63_migrations
 CREATE TABLE IF NOT EXISTS `lgu_g63_migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1428,8 +1611,8 @@ INSERT INTO `lgu_g63_migrations` (`id`, `migration`, `batch`) VALUES
 
 -- Dumping structure for table 4thyeardb.lgu_g63_password_reset_tokens
 CREATE TABLE IF NOT EXISTS `lgu_g63_password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1441,8 +1624,8 @@ INSERT INTO `lgu_g63_password_reset_tokens` (`email`, `token`, `created_at`) VAL
 -- Dumping structure for table 4thyeardb.lgu_g63_permits
 CREATE TABLE IF NOT EXISTS `lgu_g63_permits` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `process` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `docs` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `process` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `docs` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1455,11 +1638,11 @@ INSERT INTO `lgu_g63_permits` (`id`, `process`, `docs`, `created_at`, `updated_a
 -- Dumping structure for table 4thyeardb.lgu_g63_personal_access_tokens
 CREATE TABLE IF NOT EXISTS `lgu_g63_personal_access_tokens` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1474,9 +1657,9 @@ CREATE TABLE IF NOT EXISTS `lgu_g63_personal_access_tokens` (
 -- Dumping structure for table 4thyeardb.lgu_g63_scheds
 CREATE TABLE IF NOT EXISTS `lgu_g63_scheds` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `clean_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `several` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guide` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `clean_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `several` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guide` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1489,12 +1672,12 @@ INSERT INTO `lgu_g63_scheds` (`id`, `clean_type`, `several`, `guide`, `created_a
 -- Dumping structure for table 4thyeardb.lgu_g63_users
 CREATE TABLE IF NOT EXISTS `lgu_g63_users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `usertype` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usertype` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1613,8 +1796,8 @@ INSERT INTO `lgu_g65_tblemergencyreport` (`id`, `fullName`, `mobileNumber`, `loc
 CREATE TABLE IF NOT EXISTS `lgu_g65_tblemergencyrequesthistory` (
   `id` int NOT NULL AUTO_INCREMENT,
   `requestId` int DEFAULT NULL,
-  `status` varchar(120) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `remark` mediumtext COLLATE utf8mb4_general_ci,
+  `status` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `remark` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `postingDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1634,8 +1817,8 @@ INSERT INTO `lgu_g65_tblemergencyrequesthistory` (`id`, `requestId`, `status`, `
 -- Dumping structure for table 4thyeardb.lgu_g65_tblsite
 CREATE TABLE IF NOT EXISTS `lgu_g65_tblsite` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `siteTitle` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `siteLogo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `siteTitle` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `siteLogo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1646,10 +1829,10 @@ INSERT INTO `lgu_g65_tblsite` (`id`, `siteTitle`, `siteLogo`) VALUES
 -- Dumping structure for table 4thyeardb.lgu_g65_tblteams
 CREATE TABLE IF NOT EXISTS `lgu_g65_tblteams` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `teamName` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `teamLeaderName` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `teamName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `teamLeaderName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `teamLeadMobno` bigint DEFAULT NULL,
-  `teamMembers` mediumtext COLLATE utf8mb4_general_ci,
+  `teamMembers` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `postingDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1662,12 +1845,12 @@ INSERT INTO `lgu_g65_tblteams` (`id`, `teamName`, `teamLeaderName`, `teamLeadMob
 -- Dumping structure for table 4thyeardb.lgu_g66_archived_document
 CREATE TABLE IF NOT EXISTS `lgu_g66_archived_document` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `fname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `lname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `dtitle` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `fileFormat` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `fname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `lname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `dtitle` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `fileFormat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `dates` datetime NOT NULL,
-  `fileInput` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `fileInput` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `size` int NOT NULL,
   `download` int NOT NULL,
   PRIMARY KEY (`id`)
@@ -1681,12 +1864,12 @@ INSERT INTO `lgu_g66_archived_document` (`id`, `fname`, `lname`, `dtitle`, `file
 -- Dumping structure for table 4thyeardb.lgu_g66_file_table
 CREATE TABLE IF NOT EXISTS `lgu_g66_file_table` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `fname` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `lname` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `dtitle` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `fileFormat` set('doc','docx','pdf','txt','ppt','image','video') COLLATE utf8mb4_general_ci NOT NULL,
+  `fname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `lname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `dtitle` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `fileFormat` set('doc','docx','pdf','txt','ppt','image','video') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `dates` datetime NOT NULL,
-  `fileInput` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `fileInput` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `size` int NOT NULL,
   `download` int NOT NULL,
   PRIMARY KEY (`id`)
@@ -1702,9 +1885,9 @@ INSERT INTO `lgu_g66_file_table` (`id`, `fname`, `lname`, `dtitle`, `fileFormat`
 CREATE TABLE IF NOT EXISTS `lgu_g67_discussions` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1715,8 +1898,8 @@ CREATE TABLE IF NOT EXISTS `lgu_g67_discussions` (
 -- Dumping structure for table 4thyeardb.lgu_g68_barangay
 CREATE TABLE IF NOT EXISTS `lgu_g68_barangay` (
   `brgy_id` int NOT NULL AUTO_INCREMENT,
-  `Type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `Name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `barangay_no` int NOT NULL,
   `geom` geometry NOT NULL,
   PRIMARY KEY (`brgy_id`),
@@ -1733,11 +1916,11 @@ INSERT INTO `lgu_g68_barangay` (`brgy_id`, `Type`, `Name`, `barangay_no`, `geom`
 -- Dumping structure for table 4thyeardb.lgu_g68_drawn_features
 CREATE TABLE IF NOT EXISTS `lgu_g68_drawn_features` (
   `id` int NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `feature_type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `feature_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `coordinates` geometry NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `title` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table 4thyeardb.lgu_g68_drawn_features: ~8 rows (approximately)
@@ -1755,7 +1938,7 @@ INSERT INTO `lgu_g68_drawn_features` (`id`, `address`, `feature_type`, `coordina
 CREATE TABLE IF NOT EXISTS `lgu_g68_drivers` (
   `driver_id` int NOT NULL,
   `user_id` int DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table 4thyeardb.lgu_g68_drivers: ~1 rows (approximately)
@@ -1764,8 +1947,8 @@ INSERT INTO `lgu_g68_drivers` (`driver_id`, `user_id`, `name`) VALUES
 
 -- Dumping structure for table 4thyeardb.lgu_g68_featuredrawn
 CREATE TABLE IF NOT EXISTS `lgu_g68_featuredrawn` (
-  `type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `baranggay_no` int NOT NULL,
   `geom` geometry NOT NULL,
   `feature_id` int NOT NULL AUTO_INCREMENT,
@@ -1801,14 +1984,14 @@ INSERT INTO `lgu_g68_featuredrawn` (`type`, `name`, `baranggay_no`, `geom`, `fea
 -- Dumping structure for table 4thyeardb.lgu_g68_residents
 CREATE TABLE IF NOT EXISTS `lgu_g68_residents` (
   `ResidentID` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `age` int NOT NULL,
-  `gender` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `Occupation` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `gender` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Occupation` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `height` int NOT NULL,
   `weight` int NOT NULL,
   `bmi` int NOT NULL,
-  `bmi_category` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `bmi_category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `feature_id` int NOT NULL,
   `brgy_no` int NOT NULL,
   PRIMARY KEY (`ResidentID`),
@@ -1832,8 +2015,8 @@ CREATE TABLE IF NOT EXISTS `lgu_g68_routes` (
   `route_id` int NOT NULL,
   `driver_id` int DEFAULT NULL,
   `end_location` geometry NOT NULL,
-  `constraints` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `status` enum('Pending','Assigned','Completed') COLLATE utf8mb4_general_ci NOT NULL
+  `constraints` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` enum('Pending','Assigned','Completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table 4thyeardb.lgu_g68_routes: ~1 rows (approximately)
@@ -1843,9 +2026,9 @@ INSERT INTO `lgu_g68_routes` (`route_id`, `driver_id`, `end_location`, `constrai
 -- Dumping structure for table 4thyeardb.lgu_g68_shopinfo
 CREATE TABLE IF NOT EXISTS `lgu_g68_shopinfo` (
   `OwnerID` int NOT NULL AUTO_INCREMENT,
-  `O_Name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `O_Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `O_age` int NOT NULL,
-  `O_gender` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `O_gender` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `O_permit` blob NOT NULL,
   `O_featureID` int NOT NULL,
   `O_barangay_no` int NOT NULL,
@@ -1864,12 +2047,12 @@ INSERT INTO `lgu_g68_shopinfo` (`OwnerID`, `O_Name`, `O_age`, `O_gender`, `O_per
 -- Dumping structure for table 4thyeardb.lgu_g68_users
 CREATE TABLE IF NOT EXISTS `lgu_g68_users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `last_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `mobile_no` int NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `role` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `role` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1882,29 +2065,29 @@ INSERT INTO `lgu_g68_users` (`id`, `first_name`, `last_name`, `email`, `mobile_n
 -- Dumping structure for table 4thyeardb.lgu_g70_data
 CREATE TABLE IF NOT EXISTS `lgu_g70_data` (
   `id` int NOT NULL,
-  `firstname` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `middlename` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `surname` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `firstname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `middlename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `surname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `birthdate` int NOT NULL,
-  `birthplace` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `gender` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `citizenship` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `religion` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `birthplace` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `gender` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `citizenship` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `religion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `number` int NOT NULL,
-  `father` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `fatherwork` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `fatherhome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `father` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `fatherwork` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `fatherhome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `fathercontact` int NOT NULL,
-  `mother` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `motherwork` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `motherhome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `mothercontact` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,
+  `mother` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `motherwork` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `motherhome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `mothercontact` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `housenumber` int NOT NULL,
-  `street` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `barangay` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `city` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `province` varchar(100) COLLATE utf8mb4_general_ci NOT NULL
+  `street` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `barangay` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `city` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `province` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table 4thyeardb.lgu_g70_data: ~0 rows (approximately)
@@ -1912,7 +2095,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g70_data` (
 -- Dumping structure for table 4thyeardb.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=223 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1974,11 +2157,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Dumping structure for table 4thyeardb.personal_access_tokens
 CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
