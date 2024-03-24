@@ -17,7 +17,7 @@ use App\Http\Controller\HomeController;
 |
 */
 
-Route::get('/', function () {
+Route::GET('/', function () {
     return view('welcome');
 });
 
@@ -26,20 +26,18 @@ Auth::routes();
 
 // Route::get('/home',     [App\Http\Controllers\HomeController::class, 'index'])      ->name('home');
 // Route::get('/invoice',  [App\Http\Controllers\HomeController::class, 'invoice'])    ->name('invoice');
-Route::get('/test-image', function () {
+Route::GET('/test-image', function () {
     return view('test_image');
 });
 
 
 
 
-Route::post('/user-account', [App\Http\Controllers\UniversalController::class, 'registers'])->name('user-account');
+Route::POST('/user-account', [App\Http\Controllers\UniversalController::class, 'registers'])->name('user-account');
 
 
 
 Route::middleware(['auth','superadmin'])->prefix('access')->group(function(){
-
-
     // view blade
     Route::GET('/home',   [App\Http\Controllers\UniversalController::class, 'index'])->name('shome');
     // Route::GET('/configuration',   [App\Http\Controllers\ConfigurationController::class, 'configuration'])->name('configuration');
@@ -48,23 +46,28 @@ Route::middleware(['auth','superadmin'])->prefix('access')->group(function(){
 // ADMIN SIDE
 Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     // view blade
-    Route::get('/home',                            [App\Http\Controllers\SuperadminController::class, 'home'])               ->name('home');
-    Route::get('/user-management',                 [App\Http\Controllers\SuperadminController::class, 'usermanagement'])     ->name('user-management'); 
-    Route::get('/customer-service',                [App\Http\Controllers\SuperadminController::class, 'cservice'])           ->name('cservice');
-    Route::get('/tax-rate',                        [App\Http\Controllers\SuperadminController::class, 'tax'])                ->name('taxrate');
-    Route::get('/tracking',                        [App\Http\Controllers\SuperadminController::class, 'tracking'])           ->name('tracking');
+    Route::GET('/home',                            [App\Http\Controllers\SuperadminController::class, 'home'])               ->name('home');
+    Route::GET('/user-management',                 [App\Http\Controllers\SuperadminController::class, 'usermanagement'])     ->name('user-management'); 
+    Route::GET('/depreciation-calculation',        [App\Http\Controllers\SuperadminController::class, 'depreciation'])       ->name('user-depreciation'); 
+    Route::GET('/customer-service',                [App\Http\Controllers\SuperadminController::class, 'cservice'])           ->name('cservice');
+    Route::GET('/tax-rate',                        [App\Http\Controllers\SuperadminController::class, 'tax'])                ->name('taxrate');
+    Route::GET('/tracking',                        [App\Http\Controllers\SuperadminController::class, 'tracking'])           ->name('tracking');
 
 
 
 
 
     // PROCESS
-    Route::POST('/addusers',                       [App\Http\Controllers\SuperadminController::class, 'addusers'])           ->name('addusers');
-    Route::POST('/addroledatas',                   [App\Http\Controllers\SuperadminController::class, 'addroledatas'])       ->name('addroledatas');                                                   
-    Route::GET('/getusers',                        [App\Http\Controllers\SuperadminController::class, 'getusers'])           ->name('getusers'); 
-    Route::GET('/getusersdesc',                    [App\Http\Controllers\SuperadminController::class, 'getusersdesc'])       ->name('getusersdesc');
-    Route::GET('/getTaxes',                        [App\Http\Controllers\SuperadminController::class, 'getTaxes'])           ->name('getTaxes');    
-    Route::GET('/getAssetInventory',               [App\Http\Controllers\SuperadminController::class, 'getAssetInventory'])  ->name('getAssetInventory');                                    
+    Route::POST('/addusers',                       [App\Http\Controllers\SuperadminController::class, 'addusers'])                     ->name('addusers');
+    Route::POST('/addroledatas',                   [App\Http\Controllers\SuperadminController::class, 'addroledatas'])                 ->name('addroledatas');                                                   
+    Route::GET('/getusers',                        [App\Http\Controllers\SuperadminController::class, 'getusers'])                     ->name('getusers'); 
+    Route::GET('/getusersdesc',                    [App\Http\Controllers\SuperadminController::class, 'getusersdesc'])                 ->name('getusersdesc');
+    Route::GET('/getTaxes',                        [App\Http\Controllers\SuperadminController::class, 'getTaxes'])                     ->name('getTaxes');    
+    Route::GET('/getAssetInventory',               [App\Http\Controllers\SuperadminController::class, 'getAssetInventory'])            ->name('getAssetInventory');      
+
+    Route::GET('/getdepreciation',                 [App\Http\Controllers\SuperadminController::class, 'getdepreciation'])              ->name('getdepreciation');            
+    Route::POST('/recompute',                      [App\Http\Controllers\RecomputeAssetController::class, 'recdepreciation'])          ->name('recompute');
+                   
 
 
 
@@ -84,12 +87,12 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     // // view blade 
     // Route::get('/admintest',                    [App\Http\Controllers\HomeController::class,       'admin'])               ->name('admintest'); 
     // Route::get('/home',                         [App\Http\Controllers\SuperadminController::class, 'index'])               ->name('home');
-    Route::get('/configuration',                   [App\Http\Controllers\SuperadminController::class, 'configuration'])       ->name('configuration');
-    Route::get('/profile',                      [App\Http\Controllers\UniversalController::class, 'profile'])              ->name('profile');
-    Route::get('/statistic-reports',            [App\Http\Controllers\UniversalController::class, 'statistics'])           ->name('statistics');
+    Route::GET('/configuration',                   [App\Http\Controllers\SuperadminController::class, 'configuration'])       ->name('configuration');
+    Route::GET('/profile',                         [App\Http\Controllers\UniversalController::class, 'profile'])              ->name('profile');
+    Route::GET('/statistic-reports',               [App\Http\Controllers\UniversalController::class, 'statistics'])           ->name('statistics');
     // // Route::get('admin/configuration',        [App\Http\Controllers\ConfigurationController::class, 'index'])        ->name('configuration');
 
-    Route::post('/notice',                      [App\Http\Controllers\UniversalProcess::class, 'isNotice'])                       ->name('notice');
+    Route::POST('/notice',                         [App\Http\Controllers\UniversalProcess::class, 'isNotice'])                ->name('notice');
 });
 
 
@@ -99,19 +102,37 @@ Route::middleware(['auth','user'])->prefix('manager')->group(function(){
 
     // PORCESS
     // routes/web.php
+    Route::GET('/getAssetInventory',               [App\Http\Controllers\SuperadminController::class, 'getAssetInventory'])            ->name('mgetAssetInventory');  
+    Route::GET('/depreciation',                    [App\Http\Controllers\SuperadminController::class, 'depreciation'])        ->name('mdepreciation'); 
+    Route::GET('/tracking',                        [App\Http\Controllers\SuperadminController::class, 'tracking'])           ->name('mtracking');
+    // Route::get('/muser-management',                 [App\Http\Controllers\SuperadminController::class, 'managerusermanagement'])     ->name('muser-management'); 
+
+
+
+
+    // Process
+    Route::GET('/getdepreciation',                 [App\Http\Controllers\SuperadminController::class, 'getdepreciation'])              ->name('mgetdepreciation');    
+    Route::POST('/recompute',                      [App\Http\Controllers\RecomputeAssetController::class, 'recdepreciation'])          ->name('mrecompute');
+
+
+
+
+
+
+
     Route::GET('/generate-report',       [App\Http\Controllers\ReportAccessController::class, 'generateReport'])          ->name('ugenerateReport');
-    Route::post('/notice',               [App\Http\Controllers\UniversalProcess::class, 'isNotice'])                      ->name('unotice');
+    Route::POST('/notice',               [App\Http\Controllers\UniversalProcess::class, 'isNotice'])                      ->name('unotice');
 
     
     // view blade
-    Route::get('/home',                  [App\Http\Controllers\UniversalController::class, 'index'])                      ->name('uhome');
-    Route::get('/track-maintenance',     [App\Http\Controllers\UniversalController::class, 'trackMaintenance'])           ->name('utrackmaintenance');
-    Route::get('/announcement',          [App\Http\Controllers\UniversalController::class, 'announcement'])               ->name('uannouncement');
-    Route::get('/tax-calculation',       [App\Http\Controllers\UniversalController::class, 'taxcalculation'])             ->name('utaxCal');
-    Route::get('/client',                [App\Http\Controllers\UniversalController::class, 'client'])                     ->name('uclient');
-    Route::get('/report',                [App\Http\Controllers\UniversalController::class, 'report'])                     ->name('ureport');
-    Route::get('/profile',               [App\Http\Controllers\UniversalController::class, 'profile'])                    ->name('uprofile');
-    Route::get('/help',                  [App\Http\Controllers\UniversalController::class, 'customerservice'])            ->name('uhelp');
+    Route::GET('/home',                  [App\Http\Controllers\UniversalController::class, 'index'])                      ->name('uhome');
+    Route::GET('/track-maintenance',     [App\Http\Controllers\UniversalController::class, 'trackMaintenance'])           ->name('utrackmaintenance');
+    Route::GET('/announcement',          [App\Http\Controllers\UniversalController::class, 'announcement'])               ->name('uannouncement');
+    Route::GET('/tax-calculation',       [App\Http\Controllers\UniversalController::class, 'taxcalculation'])             ->name('utaxCal');
+    Route::GET('/client',                [App\Http\Controllers\UniversalController::class, 'client'])                     ->name('uclient');
+    Route::GET('/report',                [App\Http\Controllers\UniversalController::class, 'report'])                     ->name('ureport');
+    Route::GET('/profile',               [App\Http\Controllers\UniversalController::class, 'profile'])                    ->name('uprofile');
+    Route::GET('/help',                  [App\Http\Controllers\UniversalController::class, 'customerservice'])            ->name('uhelp');
 
     
 
@@ -120,9 +141,9 @@ Route::middleware(['auth','user'])->prefix('manager')->group(function(){
 Route::middleware(['auth','customer'])->prefix('customer')->group(function(){
 
 
-    Route::get('/home',                  [App\Http\Controllers\UniversalController::class, 'index'])                      ->name('chome');
-    Route::get('/profile',               [App\Http\Controllers\UniversalController::class, 'profile'])                    ->name('cprofile');
-    Route::get('/help',                  [App\Http\Controllers\UniversalController::class, 'customerservice'])            ->name('chelp');
+    Route::GET('/home',                  [App\Http\Controllers\UniversalController::class, 'index'])                      ->name('chome');
+    Route::GET('/profile',               [App\Http\Controllers\UniversalController::class, 'profile'])                    ->name('cprofile');
+    Route::GET('/help',                  [App\Http\Controllers\UniversalController::class, 'customerservice'])            ->name('chelp');
 
 });
 

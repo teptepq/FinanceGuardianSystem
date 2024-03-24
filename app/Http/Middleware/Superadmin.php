@@ -22,14 +22,12 @@ class Superadmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-      
-        if(Auth::user()->usertype == '0')
+
+        if(Auth::user()->usertype == '0' || Auth::user()->usertype == '1' )
         {
   
             return $next($request); 
-        }   else if (Auth::user()->usertype == '1') {
-         
-            return $next($request); 
+        
         }
 
         abort(401);

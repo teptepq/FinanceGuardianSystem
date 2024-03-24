@@ -64,11 +64,12 @@ class LoginController extends Controller
                 return response()->json(['redirect' => route('uhome'), 'message' => 'Login successful']);
             }
             else if ( auth::user()->usertype == '3' ) {
-                return response()->json(['redirect' => route('chome'), 'message' => 'Login successful']);
+                return response()->json(['redirect' => route('uhome'), 'message' => 'Login successful']);
+                // return response()->json(['redirect' => route('chome'), 'message' => 'Login successful']);
             }
-            else if ( auth::user()->usertype == '0' ) {
-                return response()->json(['redirect' => route('shome'),'message' => 'Login successful']);
-            }
+            // else if ( auth::user()->usertype == '0' ) {
+            //     return response()->json(['redirect' => route('shome'),'message' => 'Login successful']);
+            // }
             else {  
                 return response()->json(['error' => 'Invalid credentials'], 401);       
             }

@@ -15,11 +15,15 @@ class SuperadminController extends Controller
     //
     
 
+   
+
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('admin');
-        $this->middleware('superadmin');
+        // $this->middleware('auth');
+        // $this->middleware('user');
+        // $this->middleware('admin');
+        // $this->middleware('manager');
+        // $this->middleware('superadmin');
     }
 
     public function index(Request $request){
@@ -49,13 +53,69 @@ class SuperadminController extends Controller
 
     public function configuration(Request $request){
 
+        
         return view('manager/configuration');
 
     }   
 
     public function usermanagement(Request $request){
-
         return view('admin/user-management');
+    }
+    
+
+    
+    public function depreciation(Request $request){
+        return view('financial/depreciation');
+    }
+
+
+
+    public function getdepreciation(Request $request){
+        
+
+ 
+
+        try {
+
+            $requestData = (object) $request; 
+            // dd($requestData);
+            $usersQuery = DB::table('fms_g9_assets');
+
+            if($requestData->acat)    $usersQuery = $usersQuery->where('CategoryID',$requestData->acat);
+            if($requestData->amethod) $usersQuery = $usersQuery->where('DepreciationMethodID',$requestData->amethod);
+
+            $usersQuery = $usersQuery->get();
+    
+         
+            $formattedPromotions = [];
+            foreach ($usersQuery as $data) {
+          
+
+                $timestamp = strtotime($data->AcquisitionDate);
+                $formattedDate = date("F j, Y", $timestamp);
+           
+
+                $formattedPromotions[] = [
+                    'id'    => $data->AssetID,
+                    'aname' => $data->AssetName,
+                    'adata' => $formattedDate,
+                    'icost' => '₱'.$data->InitialCost,
+                    'uyears' => $data->UsefulLifeInYears,
+                    'svalue' => '₱'.$data->SalvageValue,
+                    'dmethod' => $data->DepreciationMethod ?: '',
+                    'dExpenses' => '₱'.number_format($data->DepreciationExpense ?: '0',2),
+                ];
+                
+            }
+            // dd($formattedPromotions);
+            return response()->json($formattedPromotions);
+
+        } catch (\Exception $e) {
+
+            return response()->json(['error' => 'An error occurred while processing the request.'], 500);
+
+        }
+
     }
 
 
@@ -261,8 +321,8 @@ class SuperadminController extends Controller
                     'asset_name' => $data->asset_name ?: 'N/A',
                     'description' => $data->description,
                     'category' => $data->category,
-                    'purchase_cost' => '₱ '.$data->purchase_cost,
-                    'current_value' =>  '₱ '.$data->current_value,
+                    'purchase_cost' => '₱'.$data->purchase_cost,
+                    'current_value' =>  '₱'.$data->current_value,
                     'status' => $data->status,
                     'depreciation_method' => $data->depreciation_method,
                     'depreciation_rate' => $data->depreciation_rate.' %'

@@ -16,7 +16,7 @@ class User
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->usertype == '2')
+        if(Auth::user()->usertype == '3')
         {
             // dd(Auth::user());
             return $next($request);

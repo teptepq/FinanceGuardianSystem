@@ -17,7 +17,7 @@ class Customer
     public function handle(Request $request, Closure $next): Response
     {
         // dd(Auth::user());
-        if(Auth::user()->usertype == '3')
+        if(Auth::user()->usertype == '4')
         {
             return $next($request);
         }

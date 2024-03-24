@@ -288,7 +288,7 @@
 
         
         $('#addacct').click(function(e){
-            
+            table.ajax.reload();
             var data = $('#crtaccnt').serialize();
          
             $.ajax({
@@ -418,7 +418,7 @@
         $('#addrole').on('click', function(e){
 
             var data = $('#addroledata').serialize();
-            
+            userdesctable.ajax.reload();
             $.ajax({
                 url: "{{ route('addroledatas') }}",
                 type: "POST",
@@ -476,10 +476,11 @@
 
 
         $('#areload').on('click', function(e){
-            $('#rid').val('');
-            $('#rname').val('');
-            userdesctable.ajax.reload();
-        });
+            // $('#rid').val('');
+            // $('#rname').val('');
+            // alert(userdesctable);
+            userdesctable.ajax.reload();                                     
+        });     
 
         const userdesctable = $('#dynamic_Datables').DataTable({
             scrollX: true,

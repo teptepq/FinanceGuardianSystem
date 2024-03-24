@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf-8">
+  
+  <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Financial Management System</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Financial Management System - Secure Financial Guardian Platform</title>
+  <meta content="A comprehensive financial management system designed to safeguard and manage your financial assets securely." name="description">
+  <meta content="financial guardian system, financial management, asset management, finance, security" name="keywords">
 
   <!-- Favicons -->
   <link href="{{ URL::asset('/assets/img/subhead.png')}}" rel="icon">
@@ -49,11 +50,9 @@
 
 </head>
 <body>
-            {{-- @csrf --}}
+
             @include('layouts.modal')
             @yield('content')
-            {{-- @yield('contents') --}}
-            
 
 </body>
 </html>

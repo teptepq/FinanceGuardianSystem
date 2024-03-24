@@ -20,19 +20,6 @@
 <!-- End Sidebar-->
 
 <main id="main" class="main">
-  @if( auth::user()->usertype == '1')
-  <div class="pagetitle">
-   
-    <h1>Dashboard</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
-      </ol>
-    </nav>
-    
-  </div><!-- End Page Title -->
-  @endif
 
   <section class="section profile">
     <div class="row">
@@ -42,7 +29,11 @@
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
             {{-- <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle" > --}}
-            <img src="https://www.kindpng.com/picc/m/80-807524_no-profile-hd-png-download.png"  style="width: 120px; height:120px;"class="rounded-circle" alt="Profile">
+            @if(Auth::user()->usertype == '1'  || Auth::user()->isSuper == '1') 
+              <img src="/assets/img/subhead.png" alt="Profile" class="rounded-circle" style="width: 120px; height:120px;">
+            @else
+              <img src="https://www.kindpng.com/picc/m/80-807524_no-profile-hd-png-download.png"  style="width: 120px; height:120px;"class="rounded-circle" alt="Profile">
+            @endif
             <h2 style="font-size: 16.5px">{{ ucfirst(Auth::user()->name) }}</h2>
             <h3 style="font-size: 16.5px" >{{ $position }}</h3>
             <div class="social-links mt-2">
@@ -90,37 +81,37 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                  <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                  <div class="col-lg-9 col-md-8">{{ Auth::user()->name }}</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Company</div>
-                  <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
+                  <div class="col-lg-9 col-md-8"></div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Job</div>
-                  <div class="col-lg-9 col-md-8">Web Designer</div>
+                  <div class="col-lg-9 col-md-8">{{ $position }}</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Country</div>
-                  <div class="col-lg-9 col-md-8">USA</div>
+                  <div class="col-lg-9 col-md-8"></div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Address</div>
-                  <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
+                  <div class="col-lg-9 col-md-8"></div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Phone</div>
-                  <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                  <div class="col-lg-9 col-md-8"></div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Email</div>
-                  <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                  <div class="col-lg-9 col-md-8">{{Auth::user()->email}}</div>
                 </div>
 
               </div>
@@ -134,7 +125,7 @@
                   <div class="row mb-3">
                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                      <input name="fullName" type="text" class="form-control" id="fullName" value="{{ Auth::user()->name }}">
                     </div>
                   </div>
 
@@ -148,42 +139,42 @@
                   <div class="row mb-3">
                     <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
+                      <input name="company" type="text" class="form-control" id="company" value="">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="job" type="text" class="form-control" id="Job" value="Web Designer">
+                      <input name="job" type="text" class="form-control" id="Job" value="{{$position}}">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="country" type="text" class="form-control" id="Country" value="USA">
+                      <input name="country" type="text" class="form-control" id="Country" value="">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
+                      <input name="address" type="text" class="form-control" id="Address" value="">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
+                      <input name="phone" type="text" class="form-control" id="Phone" value="">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
+                      <input name="email" type="email" class="form-control" id="Email" value="{{ Auth::user()->email }}">
                     </div>
                   </div>
 

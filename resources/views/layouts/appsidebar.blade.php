@@ -3,7 +3,7 @@
   $accessibleFilter = new App\Classes\AccessibleFilterClass;
   $collection = $accessibleFilter->sched();
 
-  // dd($collection);
+  // dd(Auth::user());
 ?>
 <div class="modal fade" id="ExtralargeModalInventory" tabindex="-1">
   <div class="modal-dialog modal-xl">
@@ -135,249 +135,212 @@
 
 <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
-      
-      <li class="nav-item">
-        @if( auth::user()->usertype == '1' || Auth::user()->isSuper == '1')
-        <a class="nav-link " href="{{route('home')}}">
-          <i class="bi bi-grid"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Dashboard</span>
-        </a>
-        @elseif( auth::user()->usertype == '2' )
-        <a class="nav-link " href="{{route('uhome')}}">
-          <i class="bi bi-house"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Home</span>
-        </a>
-        @elseif( auth::user()->usertype == '3')
-        <a class="nav-link " href="{{route('chome')}}">
-          <i class="bi bi-house"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Home</span>
-        </a>
-        @else
-        <a class="nav-link " href="{{route('shome')}}">
-          <i class="bi bi-house"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Home</span>
-        </a>
-        @endif
-      </li><!-- End Dashboard Nav -->
-  
-     
-     
-  
-     
-
-
-      @if(Auth::user()->usertype == '1' || Auth::user()->isSuper == '1')
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('tracking') }}">
-          <i class="bi bi-tag-fill"></i>
-          <span style="font-size: 0.8rem;">Asset Tracking</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('user-management') }}">
-          <i class="bi bi-calendar2-minus-fill"></i>
-          <span style="font-size: 0.8rem;">Depreciation Calculation</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('user-management') }}">
-          <i class="bi bi-gear-fill"></i>
-          <span style="font-size: 0.8rem;">Maintenance Scheduling</span>
-        </a>
-      </li>
-      
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('user-management') }}">
-          <i class="bi bi-book-half"></i>
-          <span style="font-size: 0.8rem;">Reporting and Analytics</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('user-management') }}">
-          <i class="bi bi-arrows"></i>
-          <span style="font-size: 0.8rem;">Integration Module</span>
-        </a>
-      </li>
-      
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-tax" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-bar-chart-fill"></i></i><span style="font-size: 0.8rem;">Tax Management</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-tax" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a  href="{{ route('taxrate') }}">
-              <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Tax Rate</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{ route('user-management') }}"">
-              <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Tax Calculation</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gear-fill"></i><span style="font-size: 0.8rem;">Services</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="components-accordion.html">
-              <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Announcement</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-alerts.html">
-              <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Messaging</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-badges.html">
-              <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Company File</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-badges.html">
-              <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Employee Information</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{ route('user-management') }}">
-              <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">User Accounts</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-badges.html">
-              <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Reset / Create Account</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Components Nav -->
-
-      <li class="nav-heading">Pages</li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('user-management') }}">
-          <i class="bi bi-archive-fill"></i>
-          <span style="font-size: 0.8rem;">Audit Trail</span>
-        </a>
-      </li>
-      @endif
-   
-
-      <!-- End Profile Page Nav -->
-      @if( Auth::user()->usertype == '2' )
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-toggle="modal" data-bs-target="#ExtralargeModalAsset" >  
-          <i class="bi bi-tv"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Asset Maintenance</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('utrackmaintenance') }}">  
-          <i class="bi bi-graph-up"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Tracking and Maintenance</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('utaxCal') }}">  
-          <i class="bi bi-calculator-fill"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Tax Calculation and Fixed Asset</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('uclient') }}">  
-          <i class="bi bi-people-fill"></i>
-        <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Employee Asset</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#"  data-bs-toggle="modal" data-bs-target="#ExtralargeModalInventory"  >  
-          <i class="bi bi-database"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Inventory Management</span>
-        </a>
-      </li>
-     
-      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-gear" ></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Services</span><i class="bi bi-chevron-down ms-auto"></i>
+  <ul class="sidebar-nav" id="sidebar-nav">
+    
+    <li class="nav-item">
+      @if( auth::user()->usertype == '1' || Auth::user()->isSuper == '1')
+      <a class="nav-link " href="{{route('home')}}">
+        <i class="bi bi-grid"></i>
+        <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Dashboard</span>
       </a>
-      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        {{-- <li>
-          <a href="{{ route('uannouncement') }}">
-            <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Announcement</span>
-          </a>
-        </li> --}}
+      @elseif( auth::user()->usertype == '2' )
+      <a class="nav-link " href="{{route('uhome')}}">
+        <i class="bi bi-house"></i>
+        <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Home</span>
+      </a>
+      @elseif( auth::user()->usertype == '3')
+      <a class="nav-link " href="{{route('uhome')}}">
+        <i class="bi bi-house"></i>
+        <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Home</span>
+      </a>
+      @else
+      <a class="nav-link " href="{{route('shome')}}">
+        <i class="bi bi-house"></i>
+        <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Home</span>
+      </a>
+      @endif
+    </li><!-- End Dashboard Nav -->
+
+    
+    
+
+    
+
+
+    @if(Auth::user()->usertype == '1' || Auth::user()->isSuper == '1')
+    <li class="nav-heading"></li>
+    <li class="nav-heading">Access Grant</li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('user-management') }}">
+        <i class="bi bi-people"></i>
+        <span style="font-size: 0.8rem;">User Management</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="">
+        <i class="bi bi-lock"></i>
+        <span style="font-size: 0.8rem;">Security Settings</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="">
+        <i class="bi bi-newspaper"></i>
+        <span style="font-size: 0.8rem;">Budgeting and Forecasting</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="">
+        <i class="bi bi-currency-dollar"></i>
+        <span style="font-size: 0.8rem;">Financial Reporting</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="https://fms7-apar.fguardians-fms.com/" target="_self">
+        <i class="bi bi-currency-exchange"></i>
+        <span style="font-size: 0.8rem;">Account Payable</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="https://fms7-apar.fguardians-fms.com/" target="_self">
+        <i class="bi bi-calendar2-minus"></i>
+        <span style="font-size: 0.8rem;">Account Receivable</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="">
+        <i class="bi bi-bank"></i>
+        <span style="font-size: 0.8rem;">General Ledger</span>
+      </a>
+    </li>
+    
+    
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="">
+        <i class="bi bi-clock"></i>
+        <span style="font-size: 0.8rem;">Maintenance Scheduling</span>
+      </a>
+    </li>
+    @endif
+    <hr>
+    {{-- set condition for finance --}}
+    @if(Auth::user()->usertype == '3'|| Auth::user()->usertype == '1' || Auth::user()->isSuper == '1' )
+    <li class="nav-item">
+      
+
+      {{-- @dd(!Auth::user()->usertype == '3' && Auth::user()->isSuper == '1' ); --}}
+        @if(!Auth::user()->usertype == '3' || !Auth::user()->isSuper == '1' )
+          <a class="nav-link collapsed" href="{{ route('mdepreciation') }}">
+        @else
+          <a class="nav-link collapsed" href="{{ route('user-depreciation') }}">
+        @endif
+        <i class="bi bi-calculator"></i>
+        <span style="font-size: 0.8rem;">Depreciation Calculation</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      @if(!Auth::user()->usertype == '3' || !Auth::user()->isSuper == '1' )
+        <a class="nav-link collapsed" href="{{ route('mtracking') }}">
+      @else
+        <a class="nav-link collapsed" href="{{ route('tracking') }}">
+      @endif
+        <i class="bi bi-tag"></i><span style="font-size: 0.8rem;">Asset Tracking Management</span>
+      </a>
+    </li>
+  
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-tax" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-bar-chart"></i></i><span style="font-size: 0.8rem;">Tax Management</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="components-tax" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="#">
-            <i class="bi bi-circle"></i><span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Reports</span>
+          <a  href="{{ route('taxrate') }}">
+            <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Tax Rate</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Tax Calculation</span>
           </a>
         </li>
       </ul>
-    </li><!-- End Tables Nav -->
-    <hr>
-    <br>
-    {{-- <div class="card">
-      <div class="card-body"> --}}
-        <h5 class="card-title"></h5>
-        <!-- Slides only carousel -->
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="/assets/img/loogo.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-              <a href="https://www.paymongo.com/">
-                <img src="/assets/img/paymongo.jpg" class="d-block w-100" alt="...">
-              </a>
-             
-            </div>
-            <div class="carousel-item">
-              <a href="https://www.sss.gov.ph/">
-                <img src="/assets/img/partner-1.jpg" class="d-block w-100" alt="...">
-              </a>
-            </div>
-            <div class="carousel-item">
-              <a href="https://www.pagibigfundservices.com/virtualpagibig/">
-                <img src="/assets/img/partner-2.jpg" class="d-block w-100" alt="...">
-              </a>
-             
-            </div>
-            <div class="carousel-item">
-              <a href="https://www.gcash.com/">
-                 <img src="/assets/img/partner-3.png" class="d-block w-100" alt="...">
-              </a>
-             
-            </div>
-          </div>
-        </div><!-- End Slides only carousel-->
-  
-      {{-- </div>
-    </div> --}}
-      @elseif ( Auth::user()->usertype == '3' )
-      <li class="nav-item" style="cursor: pointer;">
-        <a class="nav-link collapsed" data-bs-toggle="modal" data-bs-target="#ExtralargeModalPayment">  
-          <i class="bi bi-credit-card-2-back"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Payment</span>
-        </a>
-      </li>
-      <li class="nav-item" style="cursor: pointer;">
-        <a class="nav-link collapsed" data-bs-toggle="modal" data-bs-target="#ExtralargeModalPayment">  
-          <i class="bi bi-paypal"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Purchase</span>
-        </a>
-      </li>
-      <li class="nav-item" style="cursor: pointer;">
-        <a class="nav-link collapsed" data-bs-toggle="modal" data-bs-target="#ExtralargeModalTransact">  
-          <i class="bi bi-clock-history"></i>
-          <span style="font-size : 13.5px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Transactions</span>
-        </a>
-      </li>
-      
+    </li>
+    @endif
+
+    @if(Auth::user()->usertype == '3' || Auth::user()->usertype == '1' || Auth::user()->isSuper == '1')
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gear"></i><span style="font-size: 0.8rem;">Services</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      @if(!Auth::user()->usertype == '3' || !Auth::user()->isSuper == '1' )
+      <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="components-alerts.html">
+            <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Messaging</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-badges.html">
+            <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Company File</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Employee Information</span>
+          </a>
+        </li>
+      </ul>
+      @else
+      <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="components-accordion.html">
+            <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Announcement</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-alerts.html">
+            <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Messaging</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-badges.html">
+            <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Company File</span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="components-badges.html">
+            <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Employee Information</span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="{{ route('user-management') }}">
+            <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">User Accounts</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-badges.html">
+            <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Reset / Create Account</span>
+          </a>
+        </li>
+      </ul>
       @endif
-    </ul>
+    </li><!-- End Components Nav -->
+    @endif
+    @if(Auth::user()->usertype == '1' || Auth::user()->isSuper == '1')
+    <li class="nav-heading">Pages</li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="">
+        <i class="bi bi-archive"></i>
+        <span style="font-size: 0.8rem;">Audit Trail</span>
+      </a>
+    </li>
+    @endif
+    
   
-  </aside><!-- End Sidebar-->
+
+    
+  </ul>
+    
+</aside><!-- End Sidebar-->

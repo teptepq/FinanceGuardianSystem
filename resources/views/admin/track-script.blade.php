@@ -1,6 +1,20 @@
 <script>
     $(document).ready(function(e){
 
+        var userid = "<?=Auth::user()->usertype?>";
+
+        var url = ''
+        var urlsub = ''
+
+        if( userid == '1' ){
+            url =  "{{ route('getAssetInventory') }}";
+            urlsub =   "{{ route('recompute') }}";
+        } else {
+            url =  "{{ route('mgetAssetInventory') }}";
+            urlsub =   "{{ route('mrecompute') }}";
+        }
+
+
         $('#asset-inventory-reload').on('click',function(e){
             inventory.ajax.reload();
         });
@@ -9,7 +23,7 @@
         const inventory = $('#dynamic_Datable').DataTable({
             scrollX: true,
             ajax: {
-                url: "{{ route('getAssetInventory') }}",
+                url: url,
                 dataSrc: "",
                 data: function(d) {
                     // Send additional data if needed
