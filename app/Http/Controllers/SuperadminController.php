@@ -26,6 +26,40 @@ class SuperadminController extends Controller
         // $this->middleware('superadmin');
     }
 
+    public function assetdepreciationIndex(){
+        return view('admin.assetdepreciation');
+    }
+
+    public function taxcalculationIndex(){
+
+        return view('admin.taxcalculation');
+
+    }
+
+    public function employee(Request $request) {
+
+        return view('admin.employee');
+        
+    }
+
+    public function company(Request $request) {
+
+        return view('admin.company');
+        
+    }
+
+    public function messaging(Request $request) {
+
+        return view('admin.messaging');
+        
+    }
+
+    public function announcement(Request $request) {
+
+        return view('admin.announcement');
+
+    }
+
     public function index(Request $request){
         // dd(Auth::user(),$request->all());         
         $path = "";
@@ -70,10 +104,56 @@ class SuperadminController extends Controller
 
 
 
-    public function getdepreciation(Request $request){
-        
+    public function getassetdepreciation(Request $request){
+       
+        try {
 
- 
+            $requestData = (object) $request; 
+        
+            $id ="";
+      
+            $usersQuery = DB::table('fms_g9_asset_empdepreciation');
+    
+            if($requestData->amethod)   
+            
+            $id = DB::table('fms_g9_depreciationmethods')
+                    ->select('MethodName')
+                    ->where('MethodID',$requestData->amethod)->first();
+                 
+            if($id) $usersQuery = $usersQuery->where('depreciation_method',$id->MethodName);
+        
+    
+            $usersQuery = $usersQuery->get();
+    
+      
+            $formattedPromotions = [];
+            foreach ($usersQuery as $data) {
+    
+                $formattedPromotions[] = [
+                    'empid'    => $data->employeeid,
+                    'depreciation_method' => $data->depreciation_method,
+                    'depreciation_result' => $data->depreciation_result,
+                    'depreciation_rate' => $data->depreciation_rate,
+                    'depreciation_start_date' => $data->depreciation_start_date,
+                    'original_cost' => '₱'.number_format($data->original_cost,2)
+                ];
+                
+    
+            }
+
+            return response()->json($formattedPromotions);
+
+        } catch (\Exception $e) {
+
+            return response()->json(['error' => 'An error occurred while processing the request.'], 500);
+
+        }
+
+
+    }
+
+
+    public function getdepreciation(Request $request){
 
         try {
 

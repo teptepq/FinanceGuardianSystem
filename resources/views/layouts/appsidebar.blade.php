@@ -259,7 +259,7 @@
           </a>
         </li>
         <li>
-          <a href="">
+          <a href="{{ route('taxcalculation') }}">
             <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Tax Calculation</span>
           </a>
         </li>
@@ -283,7 +283,7 @@
           <a href="components-badges.html">
             <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Company File</span>
           </a>
-        </li>
+        </li> 
         <li>
           <a href="">
             <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Employee Information</span>
@@ -293,23 +293,23 @@
       @else
       <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="components-accordion.html">
+          <a href="{{ route('announcement') }}">
             <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Announcement</span>
           </a>
         </li>
         <li>
-          <a href="components-alerts.html">
+          <a href="{{ route('messaging') }}">
             <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Messaging</span>
           </a>
         </li>
         <li>
-          <a href="components-badges.html">
+          <a href="{{ route('company') }}">
             <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Company File</span>
           </a>
         </li>
         
         <li>
-          <a href="components-badges.html">
+          <a href="{{ route('employee') }}">
             <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Employee Information</span>
           </a>
         </li>
@@ -320,7 +320,7 @@
           </a>
         </li>
         <li>
-          <a href="components-badges.html">
+          <a href="{{ route('user-management') }}">
             <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Reset / Create Account</span>
           </a>
         </li>

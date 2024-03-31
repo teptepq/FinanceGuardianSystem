@@ -15,6 +15,7 @@ return [
     | any other location as required by the application or its packages.
     |
     */
+    'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
     'name' => env('APP_NAME', 'Laravel'),
 

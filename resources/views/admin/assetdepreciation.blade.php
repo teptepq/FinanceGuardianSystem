@@ -75,8 +75,8 @@
   {{-- @if(Auth::user()->usertype == '3') --}}
    <!-- Brief Description of the Module -->
    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-    <h4 class="alert-heading" style="font-size: 1rem;">Depreciation Calculation Overview</h4>
-    <p style="font-size: 0.8rem; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">This module force-Allow to recompute relevant data such as acquisition date, initial cost, useful life, and salvage value. The module can calculates depreciation expenses based on the chosen method, presenting results clearly. It also provides functionality to efficiently view and manage assets, including editing or deleting entries. This module enhances decision-making processes by offering accurate depreciation insights, contributing to better financial planning and asset optimization strategies.</p>
+    <h4 class="alert-heading" style="font-size: 1rem;">Asset Depreciation Overview</h4>
+    <p style="font-size: 0.8rem; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"> A few key enhancements for Asset Depreciation Module. First, let's ensure a user-friendly interface with dropdowns and filters. Next, offer support for multiple depreciation methods and customizable schedules. Implement automated calculations and forecasting tools for better planning. Ensure seamless integration with other finance modules and robust audit trail features. Lastly, prioritize role-based access control and a notification system for compliance and efficiency. With these improvements, we can streamline asset management and enhance financial reporting accuracy.</p>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
    
   </div>
@@ -156,17 +156,15 @@
             <h5 class="card-title"> </h5>
 
             <!-- Table with stripped rows -->
-            <table id="dynamic_Datable"  cellspacing="0" style="width:100%">
+            <table id="dynamic_asset"  cellspacing="0" style="width:100%">
               <thead >
                 <tr>
-                  {{-- <th>AssetID</th> --}}
-                  <th class="custom-tr-size ">AssetName</th>
-                  <th class="custom-tr-size ">AcquisitionDate</th>
-                  <th class="custom-tr-size ">InitialCost</th>
-                  <th class="custom-tr-size ">UsefulLifeInYears</th>
-                  <th class="custom-tr-size ">SalvageValue</th>
+                  <th class="custom-tr-size ">Employee ID</th>
                   <th class="custom-tr-size ">Depreciation Method</th>
-                  <th class="custom-tr-size ">Depreciation Expense</th>
+                  <th class="custom-tr-size ">Depreciation Result</th>
+                  <th class="custom-tr-size ">Depreciation Rate</th>
+                  <th class="custom-tr-size ">Depreciation Start</th>
+                  <th class="custom-tr-size ">Asset Cost</th>
                   <th class="custom-tr-size center ">Actions</th>
                 </tr>
               </thead>
@@ -198,33 +196,17 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 <script>
-    $(document).ready(function(e){
-
-        var userid = "<?=Auth::user()->usertype?>";
-
-          var url = ''
-          var urlsub = ''
-
-        if( userid == '1' ){
-          url =  "{{ route('getdepreciation') }}";
-          urlsub =   "{{ route('recompute') }}";
-        } else {
-          url =  "{{ route('mgetdepreciation') }}";
-          urlsub =   "{{ route('mrecompute') }}";
-        }
-
-
+    $(document).ready(function() {
+        
         $('#amethod,#acat').on('change', function(e){
             e.preventDefault();
            table.ajax.reload();
         });
 
-
-
-          const table = $('#dynamic_Datable').DataTable({
+        const table = $('#dynamic_asset').DataTable({
                   scrollX: true,
                   ajax: {
-                      url: url,
+                      url: "{{ route('getassetdepreciation') }}",
                       dataSrc: "",
                       data: function(d) {
                           // Send additional data if needed
@@ -239,14 +221,12 @@
                       }
                   },
                   columns: [
-                    
-                      { data: "aname", className: "text-left custom-font-size" },
-                      { data: "adata",className: "text-left custom-font-size" },
-                      { data: "icost",className: "text-left custom-font-size" },
-                      { data: "uyears",className: "text-center custom-font-size" },
-                      { data: "svalue",className: "text-left custom-font-size" },
-                      { data: "dmethod",className: "text-left custom-font-size" },
-                      { data: "dExpenses",className: "text-left custom-font-size" },
+                      { data: "empid", className: "text-center custom-font-size" },
+                      { data: "depreciation_method",className: "text-left custom-font-size" },
+                      { data: "depreciation_result",className: "text-center custom-font-size" },
+                      { data: "depreciation_rate",className: "text-center custom-font-size" },
+                      { data: "depreciation_start_date",className: "text-left custom-font-size" },
+                      { data: "original_cost",className: "text-left custom-font-size" },
                       {
                           data: null,
                           className: "text-left custom-font-size",
@@ -266,105 +246,7 @@
                   ],
                   // Other DataTables configurations...
         });
-
-          // Event delegation for view button
-        $('#dynamic_Datable').on('click', '.view', function() {
-            var id = $(this).data('id');
-            alert('View button clicked for ID: ' + id);
-        });
-
-        $('#dynamic_Datable').on('click', '.recompute', function() {
-            var id = $(this).data('id');  
-
-            // Prompt the user with a confirmation dialog
-            if (confirm('Are you sure you want to recompute the depreciation expense?')) {
-                $.ajax({
-                    url: urlsub,
-                    type: "POST",
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        id: id
-                    },
-                    success: function(data) {
-                        // Handle success response
-                        if(data.success === true) {
-                          const Toast = Swal.mixin({
-                              toast: true,
-                              position: 'top-end',
-                              showConfirmButton: false,
-                              timer: 4000,
-                              background: '#59b259',
-                              color: '#ffff',
-                              timerProgressBar: true,
-                              didOpen: (toast) => {
-                                   toast.addEventListener('mouseenter', Swal.resumeTimer)
-                                   toast.addEventListener('mouseleave', Swal.resumeTimer)
-                              }
-                              })
-                              Toast.fire({
-                                    icon: 'success',
-                                    title: data.message
-                              })
-
-
-                         table.ajax.reload();
-                        } else {
-                          const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 4000,
-                            background: '#f64341',
-                            color: '#ffff',
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.resumeTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                            })
-                            Toast.fire({
-                                icon: 'error',
-                                title: data.message
-                            })
-
-                            return;
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle error response
-
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 4000,
-                            background: '#f64341',
-                            color: '#ffff',
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.resumeTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                            })
-                            Toast.fire({
-                                icon: 'error',
-                                title: error.error
-                            })
-
-                            return;
-                    }
-                });
-            }
-        });
-        
-         
-        
-
-         
-
-
-
-    });
-</script>
+    } );
+</script> 
 @endsection
 
