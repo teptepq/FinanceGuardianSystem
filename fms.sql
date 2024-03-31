@@ -1017,13 +1017,13 @@ CREATE TABLE IF NOT EXISTS `fms_g9_assets` (
 
 -- Dumping data for table 4thyeardb.fms_g9_assets: ~20 rows (approximately)
 INSERT INTO `fms_g9_assets` (`AssetID`, `AssetName`, `AcquisitionDate`, `InitialCost`, `UsefulLifeInYears`, `SalvageValue`, `DepreciationMethod`, `DepreciationMethodID`, `DepreciationExpense`, `CategoryID`) VALUES
-	(1, 'Desktop Computer', '2023-01-01', 1500.00, 5, 100.00, 'Straight-Line', 1, NULL, 1),
+	(1, 'Desktop Computer', '2023-01-01', 1500.00, 5, 100.00, 'Straight-Line', 1, 0.00, 1),
 	(2, 'Office Chair', '2022-06-15', 200.00, 7, 20.00, 'Straight-Line', 1, 0.00, 2),
 	(3, 'Delivery Van', '2023-03-10', 25000.00, 8, 2000.00, 'Straight-Line', 1, 0.00, 3),
 	(4, 'Production Machine', '2021-12-20', 50000.00, 10, 5000.00, 'Straight-Line', 1, NULL, 4),
 	(5, 'Laptop', '2024-02-28', 1200.00, 3, 100.00, 'Straight-Line', 1, NULL, 1),
 	(6, 'Desk', '2022-09-01', 300.00, 10, 50.00, 'Straight-Line', 1, 0.00, 7),
-	(7, 'Building A', '2020-01-01', 500000.00, 50, 50000.00, 'Straight-Line', 1, 9000.00, 8),
+	(7, 'Building A', '2020-01-01', 500000.00, 50, 50000.00, 'Straight-Line', 1, 0.00, 8),
 	(8, 'Land Plot', '2019-06-01', 1000000.00, -1, 0.00, 'N/A', NULL, NULL, 9),
 	(9, 'Forklift', '2023-07-15', 35000.00, 7, 3000.00, 'Straight-Line', 1, NULL, 13),
 	(10, 'Microscope', '2022-04-10', 8000.00, 10, 1000.00, 'Straight-Line', 1, NULL, 11),
@@ -1031,8 +1031,8 @@ INSERT INTO `fms_g9_assets` (`AssetID`, `AssetName`, `AcquisitionDate`, `Initial
 	(12, 'Construction Crane', '2020-05-10', 200000.00, 20, 20000.00, 'Straight-Line', 1, 0.00, 14),
 	(13, 'Grand Piano', '2022-12-01', 25000.00, 30, 5000.00, 'Straight-Line', 1, NULL, 15),
 	(14, 'Oil Painting', '2019-03-05', 5000.00, 50, 500.00, 'Straight-Line', 1, NULL, 16),
-	(15, 'Basketball Hoop', '2023-08-15', 1500.00, 8, 200.00, 'Straight-Line', 1, 162.50, 17),
-	(16, 'Bookshelf', '2022-02-20', 200.00, 15, 20.00, 'Straight-Line', 1, 12.00, 18),
+	(15, 'Basketball Hoop', '2023-08-15', 1500.00, 8, 200.00, 'Straight-Line', 1, 0.00, 17),
+	(16, 'Bookshelf', '2022-02-20', 200.00, 15, 20.00, 'Straight-Line', 1, 0.00, 18),
 	(17, 'Industrial Oven', '2020-10-10', 10000.00, 12, 1000.00, 'Straight-Line', 1, NULL, 13),
 	(18, 'Chef Knife Set', '2023-05-01', 500.00, 5, 50.00, 'Straight-Line', 1, 0.00, 19),
 	(19, 'Surveillance Camera', '2022-11-10', 1000.00, 7, 100.00, 'Straight-Line', 1, NULL, 20),
@@ -1042,6 +1042,7 @@ INSERT INTO `fms_g9_assets` (`AssetID`, `AssetName`, `AcquisitionDate`, `Initial
 CREATE TABLE IF NOT EXISTS `fms_g9_asset_depreciation` (
   `depreciation_id` int NOT NULL AUTO_INCREMENT,
   `asset_id` int DEFAULT NULL,
+  `employeeid` varchar(255) DEFAULT NULL,
   `depreciation_date` date DEFAULT NULL,
   `depreciation_amount` decimal(10,2) DEFAULT NULL,
   `accumulated_depreciation` decimal(10,2) DEFAULT NULL,
@@ -1076,6 +1077,46 @@ INSERT INTO `fms_g9_asset_details` (`asset_id`, `warranty_start_date`, `warranty
 	(3, '2020-05-10', NULL, 'TC123ABC', 'Toyota', 'Camry', 'Car Dealership Inc.', 'PO45678', 'INV13579', 'Model year 2020'),
 	(4, '2023-02-28', NULL, 'HP456DEF', 'HP', 'ProLiant DL380', 'Tech Solutions', 'PO98765', 'INV65432', 'Includes 5-year warranty'),
 	(5, '2022-09-05', NULL, 'EP789GHI', 'Epson', 'PowerLite 1781W', 'Electronics Superstore', 'PO23456', 'INV78901', 'Portable model');
+
+-- Dumping structure for table 4thyeardb.fms_g9_asset_empdepreciation
+CREATE TABLE IF NOT EXISTS `fms_g9_asset_empdepreciation` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `asset_id` int DEFAULT NULL,
+  `employeeid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `depreciation_method` varchar(255) DEFAULT NULL,
+  `depreciation_result` decimal(8,2) DEFAULT NULL,
+  `depreciation_rate` decimal(8,2) DEFAULT NULL,
+  `depreciation_start_date` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `original_cost` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `asset_id` (`asset_id`),
+  CONSTRAINT `fms_g9_asset_empdepreciation_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `fms_g9_assets` (`AssetID`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_asset_empdepreciation: ~20 rows (approximately)
+INSERT INTO `fms_g9_asset_empdepreciation` (`id`, `asset_id`, `employeeid`, `depreciation_method`, `depreciation_result`, `depreciation_rate`, `depreciation_start_date`, `created_at`, `updated_at`, `original_cost`) VALUES
+	(1, 1, '101', 'Straight-line', 0.13, 10.50, '2023-01-01', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
+	(2, 2, '102', 'Double-declining', NULL, 15.00, '2022-12-15', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
+	(3, 3, '103', 'Units of production', NULL, 8.75, '2023-02-20', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
+	(4, 4, '104', 'Straight-line', 0.13, 12.25, '2023-03-10', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
+	(5, 5, '105', 'Straight-line', 0.11, 9.00, '2023-01-05', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
+	(6, 6, '106', 'Double-declining', NULL, 14.00, '2022-11-20', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
+	(7, 7, '107', 'Units of production', NULL, 7.50, '2023-02-28', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
+	(8, 8, '108', 'Straight-line', 0.11, 11.00, '2023-04-15', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
+	(9, 9, '109', 'Straight-line', 0.11, 8.75, '2023-01-15', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
+	(10, 10, '110', 'Double-declining', NULL, 13.50, '2022-10-30', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
+	(11, 11, '111', 'Units of production', NULL, 6.25, '2023-03-05', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
+	(12, 12, '112', 'Straight-line', 0.12, 10.00, '2023-01-20', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
+	(13, 13, '113', 'Straight-line', 0.09, 7.50, '2023-02-10', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
+	(14, 14, '114', 'Double-declining', NULL, 12.00, '2022-12-05', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
+	(15, 15, '115', 'Units of production', NULL, 5.00, '2023-01-25', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
+	(16, 16, '116', 'Straight-line', 0.10, 9.25, '2023-03-20', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
+	(17, 17, '117', 'Straight-line', 0.08, 6.75, '2023-01-30', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
+	(18, 18, '118', 'Double-declining', NULL, 11.50, '2022-11-15', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
+	(19, 19, '119', 'Units of production', NULL, 3.75, '2023-02-15', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
+	(20, 20, '120', 'Straight-line', 0.08, 8.50, '2023-04-05', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL);
 
 -- Dumping structure for table 4thyeardb.fms_g9_asset_inventory
 CREATE TABLE IF NOT EXISTS `fms_g9_asset_inventory` (
@@ -1261,14 +1302,15 @@ CREATE TABLE IF NOT EXISTS `fms_g9_taxrates` (
   `region` varchar(100) DEFAULT NULL,
   `tax_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`tax_rate_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table 4thyeardb.fms_g9_taxrates: ~4 rows (approximately)
+-- Dumping data for table 4thyeardb.fms_g9_taxrates: ~5 rows (approximately)
 INSERT INTO `fms_g9_taxrates` (`tax_rate_id`, `tax_rate_name`, `rate_percentage`, `effective_from`, `effective_to`, `description`, `tax_authority`, `region`, `tax_type`) VALUES
 	(1, 'State Sales Tax', 6.50, '2023-01-01', NULL, 'State sales tax rate for retail transactions within the state.', 'State Department of Revenue', 'California', 'Sales Tax'),
 	(2, 'Local Sales Tax', 2.00, '2023-01-01', NULL, 'Local sales tax rate imposed by city ordinance.', 'City Council', 'Los Angeles', 'Sales Tax'),
 	(3, 'Federal Income Tax', 15.00, '2021-01-01', NULL, 'Federal income tax rate for individuals and businesses.', 'Internal Revenue Service (IRS)', NULL, 'Income Tax'),
-	(4, 'State Sales Tax', 7.00, '2024-01-01', NULL, 'Revised state sales tax rate effective from the new fiscal year.', 'State Department of Revenue', 'California', 'Sales Tax');
+	(4, 'State Sales Tax', 7.00, '2024-01-01', NULL, 'Revised state sales tax rate effective from the new fiscal year.', 'State Department of Revenue', 'California', 'Sales Tax'),
+	(5, 'Philippine Social Security System (SSS)', 255.00, '2024-03-31', NULL, 'Social insurance program in the Philippines to workers in the private, professional and informal sectors. SSS is established by virtue of Republic Act No. 1161, better known as the Social Security Act of 1954.', 'Philippine Social Security System (SSS)', 'Philippines', 'Philippine Social Security System (SSS)');
 
 -- Dumping structure for table 4thyeardb.fms_g9_taxtypes
 CREATE TABLE IF NOT EXISTS `fms_g9_taxtypes` (
@@ -1277,9 +1319,9 @@ CREATE TABLE IF NOT EXISTS `fms_g9_taxtypes` (
   `tax_type_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   PRIMARY KEY (`tax_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table 4thyeardb.fms_g9_taxtypes: ~10 rows (approximately)
+-- Dumping data for table 4thyeardb.fms_g9_taxtypes: ~11 rows (approximately)
 INSERT INTO `fms_g9_taxtypes` (`tax_type_id`, `tax_type_name`, `tax_type_code`, `description`) VALUES
 	(1, 'Sales Tax', 'ST', 'A tax imposed on the sale of goods and services.'),
 	(2, 'Income Tax', 'IT', 'A tax levied on the income earned by individuals or businesses.'),
@@ -1290,23 +1332,45 @@ INSERT INTO `fms_g9_taxtypes` (`tax_type_id`, `tax_type_name`, `tax_type_code`, 
 	(7, 'Payroll Tax', 'PT', 'A tax withheld from employees\' wages by employers for social insurance programs.'),
 	(8, 'Capital Gains Tax', 'CGT', 'A tax imposed on the capital gains arising from the sale of assets.'),
 	(9, 'Customs Duty', 'CD', 'A tax imposed on goods imported into or exported from a country.'),
-	(10, 'Goods and Services Tax (GST)', 'GST', 'A broad-based consumption tax similar to VAT.');
+	(10, 'Goods and Services Tax (GST)', 'GST', 'A broad-based consumption tax similar to VAT.'),
+	(11, 'Philippine Social Security System (SSS)', 'SSS', ' A social insurance program in the Philippines to workers in the private, professional and informal sectors. SSS is established by virtue of Republic Act No. 1161, better known as the Social Security Act of 1954');
 
--- Dumping structure for table 4thyeardb.fms_g9_tblemployeesalary
-CREATE TABLE IF NOT EXISTS `fms_g9_tblemployeesalary` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `employee_id` int NOT NULL,
-  `salary` decimal(10,2) NOT NULL,
-  `effective_date` date NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- Dumping structure for table 4thyeardb.fms_g9_tblempsalary
+CREATE TABLE IF NOT EXISTS `fms_g9_tblempsalary` (
+  `SalaryID` int NOT NULL,
+  `employeeid` varchar(255) DEFAULT NULL,
+  `CutoffStartDate` date DEFAULT NULL,
+  `CutoffEndDate` date DEFAULT NULL,
+  `Salary` decimal(10,2) DEFAULT NULL,
+  `FixedSalary` decimal(10,2) DEFAULT NULL,
+  `PagIbigDeduction` decimal(10,2) DEFAULT NULL,
+  `SssDeduction` decimal(10,2) DEFAULT NULL,
+  `PhilHealthDeduction` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`SalaryID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table 4thyeardb.fms_g9_tblemployeesalary: ~2 rows (approximately)
-INSERT INTO `fms_g9_tblemployeesalary` (`id`, `employee_id`, `salary`, `effective_date`, `created_at`, `updated_at`) VALUES
-	(1, 20242455, 20000.00, '0000-00-00', '2024-03-03 22:44:02', '2024-03-03 22:44:13'),
-	(2, 20249939, 20000.00, '0000-00-00', '2024-03-03 22:44:27', '2024-03-03 22:44:36');
+-- Dumping data for table 4thyeardb.fms_g9_tblempsalary: ~20 rows (approximately)
+INSERT INTO `fms_g9_tblempsalary` (`SalaryID`, `employeeid`, `CutoffStartDate`, `CutoffEndDate`, `Salary`, `FixedSalary`, `PagIbigDeduction`, `SssDeduction`, `PhilHealthDeduction`) VALUES
+	(1, '1', '2024-03-01', '2024-03-15', 5000.00, 20000.00, 200.00, 300.00, 250.00),
+	(2, '2', '2024-03-01', '2024-03-15', 5500.00, 20000.00, 220.00, 320.00, 270.00),
+	(3, '3', '2024-03-01', '2024-03-15', 6000.00, 20000.00, 240.00, 340.00, 290.00),
+	(4, '4', '2024-03-01', '2024-03-15', 6500.00, 20000.00, 260.00, 360.00, 310.00),
+	(5, '5', '2024-03-01', '2024-03-15', 7000.00, 20000.00, 280.00, 380.00, 330.00),
+	(6, '6', '2024-03-01', '2024-03-15', 7500.00, 20000.00, 300.00, 400.00, 350.00),
+	(7, '7', '2024-03-01', '2024-03-15', 8000.00, 20000.00, 320.00, 420.00, 370.00),
+	(8, '8', '2024-03-01', '2024-03-15', 8500.00, 20000.00, 340.00, 440.00, 390.00),
+	(9, '9', '2024-03-01', '2024-03-15', 9000.00, 20000.00, 360.00, 460.00, 410.00),
+	(10, '10', '2024-03-01', '2024-03-15', 9500.00, 20000.00, 380.00, 480.00, 430.00),
+	(11, '1', '2024-03-16', '2024-03-31', 5000.00, 20000.00, 200.00, 300.00, 250.00),
+	(12, '2', '2024-03-16', '2024-03-31', 5500.00, 20000.00, 220.00, 320.00, 270.00),
+	(13, '3', '2024-03-16', '2024-03-31', 6000.00, 20000.00, 240.00, 340.00, 290.00),
+	(14, '4', '2024-03-16', '2024-03-31', 6500.00, 20000.00, 260.00, 360.00, 310.00),
+	(15, '5', '2024-03-16', '2024-03-31', 7000.00, 20000.00, 280.00, 380.00, 330.00),
+	(16, '6', '2024-03-16', '2024-03-31', 7500.00, 20000.00, 300.00, 400.00, 350.00),
+	(17, '7', '2024-03-16', '2024-03-31', 8000.00, 20000.00, 320.00, 420.00, 370.00),
+	(18, '8', '2024-03-16', '2024-03-31', 8500.00, 20000.00, 340.00, 440.00, 390.00),
+	(19, '9', '2024-03-16', '2024-03-31', 9000.00, 20000.00, 360.00, 460.00, 410.00),
+	(20, '10', '2024-03-16', '2024-03-31', 9500.00, 20000.00, 380.00, 480.00, 430.00);
 
 -- Dumping structure for table 4thyeardb.fms_g9_tblpaymenttrail
 CREATE TABLE IF NOT EXISTS `fms_g9_tblpaymenttrail` (
