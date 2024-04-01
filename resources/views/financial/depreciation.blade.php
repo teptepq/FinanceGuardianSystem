@@ -155,6 +155,8 @@
           <div class="card-body">
             <h5 class="card-title"> </h5>
 
+
+            
             <!-- Table with stripped rows -->
             <table id="dynamic_Datable"  cellspacing="0" style="width:100%">
               <thead >

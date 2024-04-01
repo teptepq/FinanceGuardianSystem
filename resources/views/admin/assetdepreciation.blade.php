@@ -54,31 +54,57 @@
 
 </style>
 
+<!-- Basic Modal -->
+<div class="modal fade" id="basicModalForceRecompute" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      {{-- <div class="modal-header">
+        <h5 class="modal-title">Basic Modal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> --}}
+      <div class="modal-body">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          <h4 class="alert-heading" style="font-size: 1rem;">Note:</h4>
+          <p style="font-size: 0.8rem; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">In the absence of a designated "select for" depriciation method, it is understood that all method will undergo processing.</p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <br/>
+        <h5 class="modal-title" style="font-size: 1rem; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" >Target Method</h5>  
+        <form id="dprmethod">
+          @csrf
+          <div class="form-floating mb-3 mt-3">
+            <select class="form-select" id="targetmethod" name="targetmethod" aria-label="Floating label select example">
+                <option value="" selected>- All Depreciation Method -</option>
+                @foreach($optmethod as $MethodID => $MethodName)
+                <option value='{{ $MethodID }}'>{{ $MethodName }}</option>
+                @endforeach
+            </select>
+            <label for="floatingSelect">Depreciation Method</label>
+            <div class="d-grid gap-2 mt-3">
+              <button class="btn btn-primary" type="button" id="prcsmethod">Process</button>
+            </div>
+          </div>
+        </form>
+     
+
+      </div>
+      {{-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> --}}
+    </div>
+  </div>
+</div><!-- End Basic Modal-->
+
 
 <main id="main" class="main">
   
-  {{-- @if( auth::user()->usertype == '1')
-  <div class="pagetitle">
-   
-    <h1>Dashboard</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
-      </ol>
-    </nav>
-    
-  </div><!-- End Page Title -->
-  @endif --}}
-  {{-- @include('layouts.universalmodal') --}}
 
-  {{-- @if(Auth::user()->usertype == '3') --}}
    <!-- Brief Description of the Module -->
    <div class="alert alert-primary alert-dismissible fade show" role="alert">
     <h4 class="alert-heading" style="font-size: 1rem;">Asset Depreciation Overview</h4>
     <p style="font-size: 0.8rem; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"> A few key enhancements for Asset Depreciation Module. First, let's ensure a user-friendly interface with dropdowns and filters. Next, offer support for multiple depreciation methods and customizable schedules. Implement automated calculations and forecasting tools for better planning. Ensure seamless integration with other finance modules and robust audit trail features. Lastly, prioritize role-based access control and a notification system for compliance and efficiency. With these improvements, we can streamline asset management and enhance financial reporting accuracy.</p>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-   
   </div>
   <br/>
   <section class="section">
@@ -153,10 +179,16 @@
         </div>
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"> </h5>
-
+            {{-- <h5 class="card-title"> </h5> --}}
+            <br>
+            <div class="row">
+              <div class="col-lg-12">
+                <button type="button" class="btn btn-primary" style="float: right;"  data-bs-toggle="modal" data-bs-target="#basicModalForceRecompute">Recompute Depreciation</button>
+              </div>
+            </div>
+            <br>
             <!-- Table with stripped rows -->
-            <table id="dynamic_asset"  cellspacing="0" style="width:100%">
+            <table id="dynamic_asset"  cellspacing="0" style="width:100%" >
               <thead >
                 <tr>
                   <th class="custom-tr-size ">Employee ID</th>
@@ -246,6 +278,45 @@
                   ],
                   // Other DataTables configurations...
         });
+
+        $('#prcsmethod').on('click', function(e){
+  
+
+            var data = $('#dprmethod').serialize();
+
+            // alert(data);
+
+            $('#prcsmethod').on('click', function(e) {
+                // Prevent default form submission
+                e.preventDefault();
+
+                // Serialize form data
+                var data = $('#dprmethod').serialize();
+
+                // Perform AJAX request
+                $.ajax({
+                    url: "{{ route('cmpassetdepreciation') }}", // URL to your server-side script
+                    type: 'POST', // HTTP method (POST in this case)
+                    data: data, // Serialized form data
+                    success: function(response) {
+                        // Handle successful response here
+                        console.log(response); // Log response to console
+                        // You can do further processing here based on the response
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle errors here
+                        console.error(xhr, status, error); // Log error details
+                    }
+                });
+            });
+
+            
+          
+        });
+
+
+
+
     } );
 </script> 
 @endsection

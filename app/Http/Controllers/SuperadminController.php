@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 use App\Models\User;
+use Laravel\Ui\Presets\React;
 use Termwind\Components\Raw;
 
 class SuperadminController extends Controller
@@ -102,7 +103,36 @@ class SuperadminController extends Controller
         return view('financial/depreciation');
     }
 
+    public function cmpassetdepreciation(Request $request){
+        // dd($request->all());
+        $requestData = (object) $request; 
 
+        if(!$requestData->target)
+        {
+            $method = DB::table('fms_g9_depreciationmethods')
+                ->select('MethodName')
+                ->where('MethodID', $requestData->targetmethod)
+                ->first();  
+
+                if()
+
+                
+
+                    
+
+                dd($method);
+                
+                
+        } else {
+
+
+
+
+        }
+        
+
+        
+    }
 
     public function getassetdepreciation(Request $request){
        

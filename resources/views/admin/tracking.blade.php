@@ -85,7 +85,7 @@
                                         {{-- <div class="col-lg-6">
                                             <div class="card">
                                               <div class="card-body"> --}}
-                                                <h5 class="card-title">Asset Chart</h5>
+                                                <h5 class="card-title" style="font-size: 1.2rem; font-family:Arial, Helvetica, sans-serif;">Asset Chart</h5>
                                   
                                                 <!-- Line Chart -->
                                                 <div id="lineChart"></div>
@@ -134,7 +134,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                               <div class="card-body">
-                                <h5 class="card-title">Depreciation Chart</h5>
+                                <h5 class="card-title" style="font-size: 1.2rem; font-family:Arial, Helvetica, sans-serif;">Depreciation Chart</h5>
                   
                                 <!-- Area Chart -->
                                 <div id="areaChart"></div>
