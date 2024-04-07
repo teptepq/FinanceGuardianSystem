@@ -77,6 +77,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::GET('/getassetdepreciation',            [App\Http\Controllers\SuperadminController::class, 'getassetdepreciation'])         ->name('getassetdepreciation');             
     Route::POST('/recompute',                      [App\Http\Controllers\RecomputeAssetController::class, 'recdepreciation'])          ->name('recompute');
     Route::POST('/cmpassetdepreciation',           [App\Http\Controllers\SuperadminController::class, 'cmpassetdepreciation'])         ->name('cmpassetdepreciation');
+
+    Route::POST('/report',                         [App\Http\Controllers\SuperadminController::class, 'generateReport'])                       ->name('report');
                    
     
 

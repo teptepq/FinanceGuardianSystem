@@ -5,6 +5,15 @@
     $optmethod = DB::table('fms_g9_depreciationmethods')->pluck('MethodName','MethodID');
     $collect   = $accessibleFilter->employeedata();
     $position  = $accessibleFilter->positionDesc(Auth::user()->usertype);
+
+    $employees = DB::table('_personaldata')
+            ->join('fms_g9_users as g9','g9.userid','_personaldata.employeeid')
+            ->where('isEmployee','1')
+            ->pluck('name','userid');
+
+            // dd($employees);
+            
+
     
     
     
@@ -54,6 +63,40 @@
 
 </style>
 
+<div class="modal fade" id="ModalGenerate" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      {{-- <div class="modal-header">
+        <h5 class="modal-title">Basic Modal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> --}}
+      <div class="modal-body">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          <h4 class="alert-heading" style="font-size: 1rem;">Note:</h4>
+          <p style="font-size: 0.8rem; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">In the absence of a designated "select for" depriciation method, it is understood that all method will undergo processing.</p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{-- <h5 class="modal-title" style="font-size: 1rem; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Target Method</h5>   --}}
+        <form id="reportmethods">
+          @csrf
+          <div class="form-floating mb-3 mt-3">
+            <select class="form-select" id="reportmethod" name="reportmethod" aria-label="Floating label select example">
+                <option value="" selected>- All Depreciation Method -</option>
+                @foreach($optmethod as $MethodID => $MethodName)
+                <option value='{{ $MethodID }}'>{{ $MethodName }}</option>
+                @endforeach
+            </select>
+            <label for="floatingSelect">Depreciation Method</label>
+            <div class="d-grid gap-2 mt-3"id="genmethod">
+              <button class="btn btn-danger" type="button">Generate</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Basic Modal -->
 <div class="modal fade" id="basicModalForceRecompute" tabindex="-1">
   <div class="modal-dialog">
@@ -68,7 +111,6 @@
           <p style="font-size: 0.8rem; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">In the absence of a designated "select for" depriciation method, it is understood that all method will undergo processing.</p>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <br/>
         <h5 class="modal-title" style="font-size: 1rem; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" >Target Method</h5>  
         <form id="dprmethod">
           @csrf
@@ -80,14 +122,14 @@
                 @endforeach
             </select>
             <label for="floatingSelect">Depreciation Method</label>
-            <div class="d-grid gap-2 mt-3">
-              <button class="btn btn-primary" type="button" id="prcsmethod">Process</button>
+            <div class="d-grid gap-2 mt-3"id="prcsmethod">
+              <button class="btn btn-primary" type="button" >Process</button>
             </div>
           </div>
         </form>
-     
-
       </div>
+     
+    <!-- End Basic Modal-->
       {{-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
@@ -95,6 +137,46 @@
     </div>
   </div>
 </div><!-- End Basic Modal-->
+
+<!-- Extra Large Modal -->
+<div class="modal fade" id="Extralargedep" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+  <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Extra Large Modal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-4">
+            <form id="dprmethod">
+              @csrf
+              <div class="form-floating mb-3 mt-3">
+                <select class="form-select" id="targetmethodd" name="targetmethodd" aria-label="Floating label select example">
+                    <option value="" selected>- All Employees -</option>
+                    @foreach($employees as $employeeID => $employeeName)
+                    <option value='{{ $employeeID }}'>{{ $employeeName }}</option>
+                    @endforeach
+                </select>
+                <label for="floatingSelect">Employee</label>
+              </div>
+
+              <div class="">
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div><!-- End Extra Large Modal-->
+
+
 
 
 <main id="main" class="main">
@@ -145,12 +227,7 @@
                                 @endforeach
                             </select>
                             <label for="floatingSelect">Asset Categories</label>
-                        </div>
-                       
-    
-                        
-    
-                        
+                        </div>   
                     </div>
                 
                     
@@ -182,10 +259,13 @@
             {{-- <h5 class="card-title"> </h5> --}}
             <br>
             <div class="row">
-              <div class="col-lg-12">
-                <button type="button" class="btn btn-primary" style="float: right;"  data-bs-toggle="modal" data-bs-target="#basicModalForceRecompute">Recompute Depreciation</button>
+              <div class="col-lg-12" style="text-align: right">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModalForceRecompute">Recompute Asset Depreciation</button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Extralargedep"><i class="bi bi-plus-circle"></i></button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalGenerate"><i class="bi bi-filetype-pdf"></i></button>
               </div>
             </div>
+         
             <br>
             <!-- Table with stripped rows -->
             <table id="dynamic_asset"  cellspacing="0" style="width:100%" >
@@ -228,28 +308,30 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 <script>
+
     $(document).ready(function() {
-        
+      
         $('#amethod,#acat').on('change', function(e){
-            e.preventDefault();
-           table.ajax.reload();
+          e.preventDefault();
+          table.ajax.reload();
         });
 
+        
+
+
+
+        
         const table = $('#dynamic_asset').DataTable({
                   scrollX: true,
                   ajax: {
                       url: "{{ route('getassetdepreciation') }}",
                       dataSrc: "",
                       data: function(d) {
-                          // Send additional data if needed
                           d.amethod = $('#amethod').val();
-                          d.acat = $('#acat').val(); // Get the roleSelector value from an input field
+                          d.acat = $('#acat').val(); 
                       },
                       error: function(xhr, errorType, exception) {
-                          console.error(xhr);
-                          console.error(errorType);
-                          console.error(exception);
-                          alert('An error occurred while fetching data from the server. Please reload the page and try again.');
+                          // alert('An error occurred while fetching data from the server. Please reload the page and try again.');
                       }
                   },
                   columns: [
@@ -268,7 +350,7 @@
                                     //  '<a class="btn btn-danger btn-sm delete">Delete</a>';
                                     return  '<div class="d-flex flex-wrap">' +
                                                 '<button type="button" class="btn btn-warning recompute btn-sm mb-1 mr-1" data-id="'+data.id+'"><i class="bi bi-calculator"></i></button>&nbsp;' +
-                                                '<button type="button" class="btn btn-info view btn-sm mb-1 mr-1" data-id="'+data.id+'" disabled><i class="bi bi-eye"></i></button>&nbsp;' +
+                                                '<button type="button" class="btn btn-info view btn-sm mb-1 mr-1" data-id="'+data.id+'"><i class="bi bi-pencil"></i></button>&nbsp;' +
                                                 // '<button type="button" class="btn btn-primary edit btn-sm mb-1 mr-1"><i class="bi bi-pencil"></i></button>' +
                                             '</div>';
                           }
@@ -279,45 +361,117 @@
                   // Other DataTables configurations...
         });
 
-        $('#prcsmethod').on('click', function(e){
+      
+
+
+   
   
 
-            var data = $('#dprmethod').serialize();
 
-            // alert(data);
+      $('#prcsmethod').on('click', function(e) {
+          // Prevent default form submission
+          e.preventDefault();
+          table.ajax.reload();
+          // Serialize form data
+          var data = $('#dprmethod').serialize();
 
-            $('#prcsmethod').on('click', function(e) {
-                // Prevent default form submission
-                e.preventDefault();
+          // Perform AJAX request
+          $.ajax({
+              url: "{{ route('cmpassetdepreciation') }}", // URL to your server-side script
+              type: 'POST', // HTTP method (POST in this case)
+              data: data, // Serialized form data
+              success: function(response) {
+                  // Handle successful response here
+                  // Log response to console
+                  // You can do further processing here based on the response
 
-                // Serialize form data
-                var data = $('#dprmethod').serialize();
+                  // Handle success response
+                  if(response.success === true) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 4000,
+                        background: '#59b259',
+                        color: '#ffff',
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.resumeTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                        })
+                        Toast.fire({
+                              icon: 'success',
+                              title: response.message
+                        })
 
-                // Perform AJAX request
-                $.ajax({
-                    url: "{{ route('cmpassetdepreciation') }}", // URL to your server-side script
-                    type: 'POST', // HTTP method (POST in this case)
-                    data: data, // Serialized form data
-                    success: function(response) {
-                        // Handle successful response here
-                        console.log(response); // Log response to console
-                        // You can do further processing here based on the response
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle errors here
-                        console.error(xhr, status, error); // Log error details
-                    }
-                });
-            });
 
-            
+                  table.ajax.reload();
+                  } else {
+                    const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      showConfirmButton: false,
+                      timer: 4000,
+                      background: '#f64341',
+                      color: '#ffff',
+                      timerProgressBar: true,
+                      didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.resumeTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                      }
+                      })
+                      Toast.fire({
+                          icon: 'error',
+                          title: response.message
+                      })
+
+                      return;
+                  }
+                  
+              },
+              error: function(xhr, status, error) {
+                  // Handle errors here
+                  console.error(xhr, status, error); // Log error details
+              }
+          });
+      });
+
+      $('#genmethod').on('click', function(e){
+
+
+          e.preventDefault();
+
+          var datas = $('#reportmethods').serialize();
           
-        });
+          $.ajax({
+
+              method : 'POST',
+              url    : "{{ route('report') }}",
+              data   : datas,
+              success : function(response){
+                
+              }
+
+
+
+          });
+          
+      });
+
+
+
+  
 
 
 
 
-    } );
+
+    });
+
+ 
+
+    
 </script> 
 @endsection
 

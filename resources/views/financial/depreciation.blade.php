@@ -258,7 +258,7 @@
                                     //  '<a class="btn btn-danger btn-sm delete">Delete</a>';
                                     return  '<div class="d-flex flex-wrap">' +
                                                 '<button type="button" class="btn btn-warning recompute btn-sm mb-1 mr-1" data-id="'+data.id+'"><i class="bi bi-calculator"></i></button>&nbsp;' +
-                                                '<button type="button" class="btn btn-info view btn-sm mb-1 mr-1" data-id="'+data.id+'" disabled><i class="bi bi-eye"></i></button>&nbsp;' +
+                                                '<button type="button" class="btn btn-info view btn-sm mb-1 mr-1" data-id="'+data.id+'" ><i class="bi bi-eye"></i></button>&nbsp;' +
                                                 // '<button type="button" class="btn btn-primary edit btn-sm mb-1 mr-1"><i class="bi bi-pencil"></i></button>' +
                                             '</div>';
                           }

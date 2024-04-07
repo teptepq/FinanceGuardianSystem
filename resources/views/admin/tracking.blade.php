@@ -42,6 +42,10 @@
                                     @else
                                     <a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Asset Depreciation"href="{{ route('user-depreciation') }}">
                                     @endif --}}
+
+                                    <a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Reports And Analytics">
+                                      Asset Tagging
+                                  </a>
                                     <a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Asset Depreciation" href="{{ route('assetdepreciation') }}">
                                         Asset Depreciation
                                     </a>
@@ -51,6 +55,7 @@
                                     <a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Reports And Analytics">
                                         Reports And Analytics
                                     </a>
+                                   
                                     {{-- <a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title=" Re-Calculate Depreciation Asset">
                                        Re-Calculate
                                     </a> --}}

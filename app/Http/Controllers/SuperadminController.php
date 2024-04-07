@@ -103,6 +103,10 @@ class SuperadminController extends Controller
         return view('financial/depreciation');
     }
 
+    public function generateReport(Request $request){
+        // dd($request);
+    }
+
     public function cmpassetdepreciation(Request $request){
         // dd($request->all());
         $requestData = (object) $request; 
@@ -115,61 +119,104 @@ class SuperadminController extends Controller
                 ->first();  
 
                 // if()
+                // dd($method);
 
-                
+                if($method){
+
+                    DB::table('fms_g9_asset_empdepreciation')
+                    ->where('depreciation_method', $method->MethodName)
+                    ->update([
+                        'depreciation_result' => DB::raw('(depreciation_rate / 100) * (DATEDIFF(NOW(), depreciation_start_date) / 365)')
+                    ]);    
+
+
+              
 
                     
+                          // Return success response if update is successful
+                    return response()->json(['success' => true, 'message' => $method->MethodName.' data has been successfully updated !']);
 
-                // dd($method);
+                } else {
+                    
+                    DB::table('fms_g9_asset_empdepreciation')
+                    ->update([
+                        'depreciation_result' => DB::raw('(depreciation_rate / 100) * (DATEDIFF(NOW(), depreciation_start_date) / 365)')
+                    ]);    
+        
+        
+                    return response()->json(['success' => true, 'message' => 'All data has been successfully updated !']);
+                }
+
                 
                 
         } else {
+          
 
-
-
+            
 
         }
         
+
+
+
+
+
+   
+    //     } else {
+    //         return response()->json(['success' => false, 'message' => 'Depreciation expense calculation failed']);
+    //     }
+    // } else {
+     
+    //     return response()->json(['success' => false, 'message' => 'Asset not found'], 404);
+    // }
 
         
     }
 
     public function getassetdepreciation(Request $request){
        
+        $requestData = (object) $request; 
+
+
+            
+        $id ="";
+  
+        $usersQuery = DB::table('fms_g9_asset_empdepreciation')
+                ->leftjoin('_personaldata','_personaldata.employeeid','fms_g9_asset_empdepreciation.employeeid');
+
+
+        // if($requestData->acat) $db 
+        if($requestData->amethod)   
+        
+        $id = DB::table('fms_g9_depreciationmethods')
+                ->select('MethodName')
+                ->where('MethodID',$requestData->amethod)->first();
+             
+        if($id) $usersQuery = $usersQuery->where('depreciation_method',$id->MethodName);
+       
+        // dd($requestData); 
+        $usersQuery = $usersQuery->get();
+
+  
+        $formattedPromotions = [];
+        foreach ($usersQuery as $data) {
+
+            $formattedPromotions[] = [
+                'empid'    => $data->employeeid,
+                'depreciation_method' => $data->depreciation_method,
+                'depreciation_result' => $data->depreciation_result,
+                'depreciation_rate' => $data->depreciation_rate,
+                'depreciation_start_date' => $data->depreciation_start_date,
+                'original_cost' => '₱'.number_format($data->original_cost,2)
+            ];
+            
+
+        }
+
+
         try {
 
-            $requestData = (object) $request; 
-        
-            $id ="";
-      
-            $usersQuery = DB::table('fms_g9_asset_empdepreciation');
-    
-            if($requestData->amethod)   
             
-            $id = DB::table('fms_g9_depreciationmethods')
-                    ->select('MethodName')
-                    ->where('MethodID',$requestData->amethod)->first();
-                 
-            if($id) $usersQuery = $usersQuery->where('depreciation_method',$id->MethodName);
-        
-    
-            $usersQuery = $usersQuery->get();
-    
-      
-            $formattedPromotions = [];
-            foreach ($usersQuery as $data) {
-    
-                $formattedPromotions[] = [
-                    'empid'    => $data->employeeid,
-                    'depreciation_method' => $data->depreciation_method,
-                    'depreciation_result' => $data->depreciation_result,
-                    'depreciation_rate' => $data->depreciation_rate,
-                    'depreciation_start_date' => $data->depreciation_start_date,
-                    'original_cost' => '₱'.number_format($data->original_cost,2)
-                ];
-                
-    
-            }
 
             return response()->json($formattedPromotions);
 
