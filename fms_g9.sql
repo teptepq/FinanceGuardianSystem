@@ -1017,11 +1017,11 @@ CREATE TABLE IF NOT EXISTS `fms_g9_assets` (
 
 -- Dumping data for table 4thyeardb.fms_g9_assets: ~20 rows (approximately)
 INSERT INTO `fms_g9_assets` (`AssetID`, `AssetName`, `AcquisitionDate`, `InitialCost`, `UsefulLifeInYears`, `SalvageValue`, `DepreciationMethod`, `DepreciationMethodID`, `DepreciationExpense`, `CategoryID`) VALUES
-	(1, 'Desktop Computer', '2023-01-01', 1500.00, 5, 100.00, 'Straight-Line', 1, 0.00, 1),
+	(1, 'Desktop Computer', '2023-01-01', 1500.00, 5, 100.00, 'Straight-Line', 1, 280.00, 1),
 	(2, 'Office Chair', '2022-06-15', 200.00, 7, 20.00, 'Straight-Line', 1, 0.00, 2),
 	(3, 'Delivery Van', '2023-03-10', 25000.00, 8, 2000.00, 'Straight-Line', 1, 0.00, 3),
 	(4, 'Production Machine', '2021-12-20', 50000.00, 10, 5000.00, 'Straight-Line', 1, NULL, 4),
-	(5, 'Laptop', '2024-02-28', 1200.00, 3, 100.00, 'Straight-Line', 1, NULL, 1),
+	(5, 'Laptop', '2024-02-28', 1200.00, 3, 100.00, 'Straight-Line', 1, 366.67, 1),
 	(6, 'Desk', '2022-09-01', 300.00, 10, 50.00, 'Straight-Line', 1, 0.00, 7),
 	(7, 'Building A', '2020-01-01', 500000.00, 50, 50000.00, 'Straight-Line', 1, 0.00, 8),
 	(8, 'Land Plot', '2019-06-01', 1000000.00, -1, 0.00, 'N/A', NULL, NULL, 9),
@@ -1031,7 +1031,7 @@ INSERT INTO `fms_g9_assets` (`AssetID`, `AssetName`, `AcquisitionDate`, `Initial
 	(12, 'Construction Crane', '2020-05-10', 200000.00, 20, 20000.00, 'Straight-Line', 1, 0.00, 14),
 	(13, 'Grand Piano', '2022-12-01', 25000.00, 30, 5000.00, 'Straight-Line', 1, NULL, 15),
 	(14, 'Oil Painting', '2019-03-05', 5000.00, 50, 500.00, 'Straight-Line', 1, NULL, 16),
-	(15, 'Basketball Hoop', '2023-08-15', 1500.00, 8, 200.00, 'Straight-Line', 1, 0.00, 17),
+	(15, 'Basketball Hoop', '2023-08-15', 1500.00, 8, 200.00, 'Straight-Line', 1, 162.50, 17),
 	(16, 'Bookshelf', '2022-02-20', 200.00, 15, 20.00, 'Straight-Line', 1, 0.00, 18),
 	(17, 'Industrial Oven', '2020-10-10', 10000.00, 12, 1000.00, 'Straight-Line', 1, NULL, 13),
 	(18, 'Chef Knife Set', '2023-05-01', 500.00, 5, 50.00, 'Straight-Line', 1, 0.00, 19),
@@ -1082,8 +1082,8 @@ INSERT INTO `fms_g9_asset_details` (`asset_id`, `warranty_start_date`, `warranty
 CREATE TABLE IF NOT EXISTS `fms_g9_asset_empdepreciation` (
   `id` int NOT NULL AUTO_INCREMENT,
   `asset_id` int DEFAULT NULL,
-  `employeeid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `depreciation_method` varchar(255) DEFAULT NULL,
+  `employeeid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `depreciation_method` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `depreciation_result` decimal(8,2) DEFAULT NULL,
   `depreciation_rate` decimal(8,2) DEFAULT NULL,
   `depreciation_start_date` date DEFAULT NULL,
@@ -1093,30 +1093,31 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_empdepreciation` (
   PRIMARY KEY (`id`),
   KEY `asset_id` (`asset_id`),
   CONSTRAINT `fms_g9_asset_empdepreciation_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `fms_g9_assets` (`AssetID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_empdepreciation: ~20 rows (approximately)
 INSERT INTO `fms_g9_asset_empdepreciation` (`id`, `asset_id`, `employeeid`, `depreciation_method`, `depreciation_result`, `depreciation_rate`, `depreciation_start_date`, `created_at`, `updated_at`, `original_cost`) VALUES
-	(1, 1, '101', 'Straight-line', 0.13, 10.50, '2023-01-01', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
-	(2, 2, '102', 'Double-declining', NULL, 15.00, '2022-12-15', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
-	(3, 3, '103', 'Units of production', NULL, 8.75, '2023-02-20', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
-	(4, 4, '104', 'Straight-line', 0.13, 12.25, '2023-03-10', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
-	(5, 5, '105', 'Straight-line', 0.11, 9.00, '2023-01-05', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
-	(6, 6, '106', 'Double-declining', NULL, 14.00, '2022-11-20', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
-	(7, 7, '107', 'Units of production', NULL, 7.50, '2023-02-28', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
-	(8, 8, '108', 'Straight-line', 0.11, 11.00, '2023-04-15', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
-	(9, 9, '109', 'Straight-line', 0.11, 8.75, '2023-01-15', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
-	(10, 10, '110', 'Double-declining', NULL, 13.50, '2022-10-30', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
-	(11, 11, '111', 'Units of production', NULL, 6.25, '2023-03-05', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
-	(12, 12, '112', 'Straight-line', 0.12, 10.00, '2023-01-20', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
-	(13, 13, '113', 'Straight-line', 0.09, 7.50, '2023-02-10', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
-	(14, 14, '114', 'Double-declining', NULL, 12.00, '2022-12-05', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
-	(15, 15, '115', 'Units of production', NULL, 5.00, '2023-01-25', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
-	(16, 16, '116', 'Straight-line', 0.10, 9.25, '2023-03-20', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
-	(17, 17, '117', 'Straight-line', 0.08, 6.75, '2023-01-30', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL),
-	(18, 18, '118', 'Double-declining', NULL, 11.50, '2022-11-15', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
-	(19, 19, '119', 'Units of production', NULL, 3.75, '2023-02-15', '2024-03-31 12:16:03', '2024-03-31 12:16:03', NULL),
-	(20, 20, '120', 'Straight-line', 0.08, 8.50, '2023-04-05', '2024-03-31 12:16:03', '2024-03-31 12:17:02', NULL);
+	(1, 1, '101', 'Straight-line', 0.13, 10.50, '2023-01-01', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
+	(2, 2, '102', 'Double-declining', 0.00, 15.00, '2022-12-15', '2024-03-31 12:16:03', '2024-04-07 13:14:39', NULL),
+	(3, 3, '103', 'Units of production', 0.00, 8.75, '2023-02-20', '2024-03-31 12:16:03', '2024-04-07 13:14:40', NULL),
+	(4, 4, '104', 'Straight-line', 0.13, 12.25, '2023-03-10', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
+	(5, 5, '105', 'Straight-line', 0.11, 9.00, '2023-01-05', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
+	(6, 6, '106', 'Double-declining', 0.00, 14.00, '2022-11-20', '2024-03-31 12:16:03', '2024-04-07 13:14:41', NULL),
+	(7, 7, '107', 'Units of production', 0.00, 7.50, '2023-02-28', '2024-03-31 12:16:03', '2024-04-07 13:14:42', NULL),
+	(8, 8, '108', 'Straight-line', 0.11, 11.00, '2023-04-15', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
+	(9, 9, '109', 'Straight-line', 0.11, 8.75, '2023-01-15', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
+	(10, 10, '110', 'Double-declining', 0.00, 13.50, '2022-10-30', '2024-03-31 12:16:03', '2024-04-07 13:14:45', NULL),
+	(11, 11, '111', 'Units of production', 0.00, 6.25, '2023-03-05', '2024-03-31 12:16:03', '2024-04-07 13:14:46', NULL),
+	(12, 12, '112', 'Straight-line', 0.12, 10.00, '2023-01-20', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
+	(13, 13, '113', 'Straight-line', 0.09, 7.50, '2023-02-10', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
+	(14, 14, '114', 'Double-declining', 0.00, 12.00, '2022-12-05', '2024-03-31 12:16:03', '2024-04-07 13:14:47', NULL),
+	(15, 15, '115', 'Units of production', 0.00, 5.00, '2023-01-25', '2024-03-31 12:16:03', '2024-04-07 13:14:52', NULL),
+	(16, 16, '116', 'Straight-line', 0.10, 9.25, '2023-03-20', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
+	(17, 17, '117', 'Straight-line', 0.08, 6.75, '2023-01-30', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
+	(18, 18, '118', 'Double-declining', 0.00, 11.50, '2022-11-15', '2024-03-31 12:16:03', '2024-04-07 13:14:54', NULL),
+	(19, 19, '119', 'Units of production', 0.00, 3.75, '2023-02-15', '2024-03-31 12:16:03', '2024-04-07 13:14:54', NULL),
+	(20, 20, '120', 'Straight-line', 0.09, 8.50, '2023-04-05', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
+	(21, 15, '20249942', 'Straight-line', 0.12, 11.50, '2023-04-05', '2024-04-07 09:36:50', '2024-04-07 16:11:37', NULL);
 
 -- Dumping structure for table 4thyeardb.fms_g9_asset_inventory
 CREATE TABLE IF NOT EXISTS `fms_g9_asset_inventory` (
@@ -1251,7 +1252,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_depreciationmethods` (
 -- Dumping data for table 4thyeardb.fms_g9_depreciationmethods: ~3 rows (approximately)
 INSERT INTO `fms_g9_depreciationmethods` (`MethodID`, `MethodName`) VALUES
 	(1, 'Straight-Line'),
-	(2, 'Double-Declining Balance'),
+	(2, 'Double-declining'),
 	(3, 'Units of Production');
 
 -- Dumping structure for table 4thyeardb.fms_g9_financial_transactions
@@ -2440,18 +2441,40 @@ CREATE TABLE IF NOT EXISTS `_personaldata` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `present_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `isEmployee` int DEFAULT NULL,
+  `Column 45` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table 4thyeardb._personaldata: ~5 rows (approximately)
-INSERT INTO `_personaldata` (`id`, `employeeid`, `plantillaid`, `employeecode`, `lname`, `fname`, `mname`, `nname`, `rank`, `dateposition`, `emp_tin`, `emp_pagibig`, `emp_sss`, `emp_philhealth`, `emp_hmo`, `emp_peraa`, `prc`, `prc_expiration`, `passport`, `emp_bank`, `teachingtype`, `positionid`, `employmentstat`, `office`, `deptid`, `gender`, `bplace`, `bdate`, `resigned_reason`, `nationalityid`, `religionid`, `civil_status`, `citizenid`, `personal_email`, `mobile`, `landline`, `email`, `isactive`, `teaching`, `branch`, `created_at`, `updated_at`, `present_address`, `isEmployee`) VALUES
-	(1, '20249941', NULL, NULL, 'test', 'test', 'test', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-17 02:17:16', '2024-03-17 02:17:16', NULL, NULL),
-	(2, '20249942', NULL, NULL, 'employee', 'employee', 'employee', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-17 04:40:51', '2024-03-17 04:40:51', NULL, NULL),
-	(3, '20249943', NULL, NULL, 'test', 'test', 'test', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-17 04:50:06', '2024-03-17 04:50:06', NULL, NULL),
-	(4, '20249944', NULL, NULL, 'GUARDIAN', 'FINANCE', 'ADMIN', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-17 07:32:55', '2024-03-17 07:32:55', NULL, NULL),
-	(5, '20249945', NULL, NULL, 'employee', 'employee', 'employee', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-18 14:37:32', '2024-03-18 14:37:32', NULL, NULL),
-	(6, '20249946', NULL, NULL, 'super', 'super', 'super', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-19 06:41:05', '2024-03-19 06:41:05', NULL, NULL),
-	(7, '20249947', NULL, NULL, 'Ipsum', 'Lorem', 'Manager', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-23 02:11:33', '2024-03-23 02:11:33', NULL, NULL);
+-- Dumping data for table 4thyeardb._personaldata: ~28 rows (approximately)
+INSERT INTO `_personaldata` (`id`, `employeeid`, `plantillaid`, `employeecode`, `lname`, `fname`, `mname`, `nname`, `rank`, `dateposition`, `emp_tin`, `emp_pagibig`, `emp_sss`, `emp_philhealth`, `emp_hmo`, `emp_peraa`, `prc`, `prc_expiration`, `passport`, `emp_bank`, `teachingtype`, `positionid`, `employmentstat`, `office`, `deptid`, `gender`, `bplace`, `bdate`, `resigned_reason`, `nationalityid`, `religionid`, `civil_status`, `citizenid`, `personal_email`, `mobile`, `landline`, `email`, `isactive`, `teaching`, `branch`, `created_at`, `updated_at`, `present_address`, `isEmployee`, `Column 45`) VALUES
+	(1, '20249941', NULL, NULL, 'test', 'test', 'test', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-17 02:17:16', '2024-03-17 02:17:16', NULL, NULL, NULL),
+	(2, '20249942', NULL, NULL, 'employee', 'employee', 'employee', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-17 04:40:51', '2024-03-17 04:40:51', NULL, 1, NULL),
+	(3, '20249943', NULL, NULL, 'test', 'test', 'test', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-17 04:50:06', '2024-03-17 04:50:06', NULL, NULL, NULL),
+	(4, '20249944', NULL, NULL, 'GUARDIAN', 'FINANCE', 'ADMIN', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-17 07:32:55', '2024-03-17 07:32:55', NULL, NULL, NULL),
+	(5, '20249945', NULL, NULL, 'employee', 'employee', 'employee', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-18 14:37:32', '2024-03-18 14:37:32', NULL, 1, NULL),
+	(6, '20249946', NULL, NULL, 'super', 'super', 'super', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-19 06:41:05', '2024-03-19 06:41:05', NULL, NULL, NULL),
+	(7, '20249947', NULL, NULL, 'Ipsum', 'Lorem', 'Manager', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '', 1, '2024-03-23 02:11:33', '2024-03-23 02:11:33', NULL, NULL, NULL),
+	(8, '101', NULL, NULL, '\'', '\'', '\'\'', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(9, '101', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(10, '102', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(11, '103', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(12, '104', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(13, '105', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(14, '106', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(15, '107', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(16, '108', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(17, '109', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(18, '110', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(19, '111', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(20, '112', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(21, '113', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(22, '114', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(23, '115', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(24, '116', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(25, '117', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(26, '118', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(27, '119', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL),
+	(28, '120', NULL, NULL, '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 1, NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
