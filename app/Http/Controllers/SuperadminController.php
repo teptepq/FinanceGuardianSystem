@@ -114,13 +114,13 @@ class SuperadminController extends Controller
                 ->where('MethodID', $requestData->targetmethod)
                 ->first();  
 
-                if()
+                // if()
 
                 
 
                     
 
-                dd($method);
+                // dd($method);
                 
                 
         } else {
