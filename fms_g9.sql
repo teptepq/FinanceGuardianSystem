@@ -197,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `fgms_g2_expenses` (
   CONSTRAINT `fgms_g2_expenses_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `fgms_g2_users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table 4thyeardb.fgms_g2_expenses: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.fgms_g2_expenses: ~1 rows (approximately)
 INSERT INTO `fgms_g2_expenses` (`id`, `user_id`, `category`, `amount`, `date`, `description`, `created_at`, `updated_at`) VALUES
 	(1, 3, 'test', 1000.00, '2024-02-22', 'hirap na si roldan', '2024-02-29 15:36:19', '2024-02-29 15:36:19');
 
@@ -356,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `fgms_g3_users` (
   UNIQUE KEY `fgms_g3_users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table 4thyeardb.fgms_g3_users: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.fgms_g3_users: ~1 rows (approximately)
 INSERT INTO `fgms_g3_users` (`id`, `name`, `email`, `email_verified_at`, `username`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 	(1, 'Admin T', 'admin@gmail.com', NULL, 'admin', '$2y$12$ppOfRWXNsInSrCw/cdGO8eO8RdEd/pXNej5218/U7Wv5ZV.Ocg8LS', NULL, '2024-02-29 10:27:10', '2024-02-29 10:27:10');
 
@@ -1054,6 +1054,47 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_depreciation` (
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_depreciation: ~0 rows (approximately)
 
+-- Dumping structure for table 4thyeardb.fms_g9_asset_detail
+CREATE TABLE IF NOT EXISTS `fms_g9_asset_detail` (
+  `Asset_ID` int NOT NULL,
+  `Asset_Name` varchar(100) DEFAULT NULL,
+  `Description` text,
+  `Purchase_Date` date DEFAULT NULL,
+  `Purchase_Price` decimal(10,2) DEFAULT NULL,
+  `Current_Value` decimal(10,2) DEFAULT NULL,
+  `Depreciation_Rate` decimal(5,2) DEFAULT NULL,
+  `Depreciation_Expense` decimal(10,2) DEFAULT NULL,
+  `Salvage_Value` decimal(10,2) DEFAULT NULL,
+  `Location` varchar(100) DEFAULT NULL,
+  `assetcondition` varchar(50) DEFAULT NULL,
+  `Maintenance_Schedule` varchar(100) DEFAULT NULL,
+  `Warranty_Expiry_Date` date DEFAULT NULL,
+  `Depreciation_Method` varchar(50) DEFAULT NULL,
+  `Asset_Category` varchar(50) DEFAULT NULL,
+  `Asset_Type` varchar(50) DEFAULT NULL,
+  `Responsible_Person` varchar(100) DEFAULT NULL,
+  `Last_Maintenance_Date` date DEFAULT NULL,
+  `Next_Maintenance_Date` date DEFAULT NULL,
+  PRIMARY KEY (`Asset_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_asset_detail: ~14 rows (approximately)
+INSERT INTO `fms_g9_asset_detail` (`Asset_ID`, `Asset_Name`, `Description`, `Purchase_Date`, `Purchase_Price`, `Current_Value`, `Depreciation_Rate`, `Depreciation_Expense`, `Salvage_Value`, `Location`, `assetcondition`, `Maintenance_Schedule`, `Warranty_Expiry_Date`, `Depreciation_Method`, `Asset_Category`, `Asset_Type`, `Responsible_Person`, `Last_Maintenance_Date`, `Next_Maintenance_Date`) VALUES
+	(1, 'Laptop', 'MacBook Pro 2020', '2023-05-15', 1500.00, 1200.00, 15.00, 180.00, 200.00, 'Office Room 1', 'Good', 'Every 6 months', '2025-05-15', 'Straight-Line', 'IT Equipment', 'Computer', 'John Doe', '2024-10-10', '2025-04-10'),
+	(2, 'Vehicle', 'Toyota Camry', '2022-12-10', 25000.00, 18000.00, 10.00, 700.00, 2000.00, 'Parking Lot A', 'Fair', 'Every 3 months', '2024-12-10', 'Straight-Line', 'Vehicle', 'Car', 'Sarah Smith', '2024-09-20', '2024-12-20'),
+	(3, 'Printer', 'HP LaserJet', '2024-02-28', 500.00, 400.00, 20.00, 100.00, 50.00, 'Office Room 2', 'Excellent', 'As needed', '2025-02-28', 'Double Declining', 'Office Supplies', 'Printer', 'Emily Johnson', '2024-07-15', '2024-10-15'),
+	(4, 'Furniture', 'Executive Desk', '2023-08-20', 800.00, 600.00, 5.00, 40.00, 100.00, 'CEO Office', 'Good', 'Annually', NULL, 'Straight-Line', 'Office Furniture', 'Desk', 'Michael Brown', '2024-03-30', '2025-03-30'),
+	(5, 'Server', 'Dell PowerEdge', '2024-01-10', 4000.00, 3500.00, 10.00, 400.00, 500.00, 'Server Room', 'Good', 'Every 4 months', '2025-01-10', 'Straight-Line', 'IT Equipment', 'Server', 'Robert Anderson', '2024-08-05', '2024-12-05'),
+	(6, 'Software', 'Microsoft Office', '2023-04-05', 300.00, 100.00, 33.33, 33.33, 50.00, 'N/A', 'Good', NULL, NULL, 'Straight-Line', 'IT Equipment', 'Software', 'IT Department', '2024-04-05', '2025-04-05'),
+	(7, 'Building', 'Headquarters Building', '2020-06-01', 5000000.00, 4800000.00, 2.00, 96000.00, 200000.00, 'Corporate Campus', 'Excellent', 'Annually', NULL, 'Straight-Line', 'Real Estate', 'Office Building', 'Facilities Manager', '2024-01-15', '2025-01-15'),
+	(8, 'Photocopier', 'Canon imageRUNNER', '2023-10-15', 2000.00, 1500.00, 15.00, 300.00, 200.00, 'Copy Room', 'Fair', 'Every 6 months', '2025-10-15', 'Straight-Line', 'Office Equipment', 'Photocopier', 'Anna White', '2024-03-20', '2024-09-20'),
+	(9, 'Land', 'Commercial Plot', '2021-03-20', 1000000.00, 1000000.00, 0.00, 0.00, NULL, 'Industrial Zone', 'Good', NULL, NULL, NULL, 'Real Estate', 'Land', 'Legal Department', NULL, NULL),
+	(10, 'Security System', 'CCTV Surveillance', '2023-07-30', 3000.00, 2500.00, 10.00, 300.00, 500.00, 'Main Entrance', 'Excellent', 'Every 6 months', '2025-07-30', 'Straight-Line', 'Security Equipment', 'Surveillance', 'Security Team', '2024-02-10', '2024-08-10'),
+	(11, 'Forklift', 'Toyota Forklift', '2023-11-25', 15000.00, 12000.00, 8.33, 1000.00, 1000.00, 'Warehouse', 'Good', 'Every 3 months', '2025-11-25', 'Straight-Line', 'Equipment', 'Forklift', 'Operations Manager', '2024-04-20', '2024-07-20'),
+	(12, 'Air Conditioner', 'HVAC System', '2024-05-20', 6000.00, 5000.00, 10.00, 600.00, 1000.00, 'Office Room 3', 'Good', 'Every 6 months', '2026-05-20', 'Straight-Line', 'HVAC', 'Air Conditioner', 'Maintenance Team', '2024-09-10', '2025-03-10'),
+	(13, 'Telephone System', 'VoIP System', '2023-09-10', 4000.00, 3200.00, 12.50, 500.00, 400.00, 'Reception Area', 'Good', 'Every 6 months', '2025-09-10', 'Straight-Line', 'Communication Equipment', 'VoIP System', 'IT Department', '2024-01-20', '2024-07-20'),
+	(14, 'Warehouse', 'Storage Facility', '2022-06-15', 200000.00, 180000.00, 2.00, 4000.00, 20000.00, 'Warehouse Area', 'Excellent', 'Annually', NULL, 'Straight-Line', 'Real Estate', 'Warehouse', 'Facilities Manager', '2024-02-28', '2025-02-28');
+
 -- Dumping structure for table 4thyeardb.fms_g9_asset_details
 CREATE TABLE IF NOT EXISTS `fms_g9_asset_details` (
   `asset_id` int NOT NULL,
@@ -1073,7 +1114,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_details` (
 -- Dumping data for table 4thyeardb.fms_g9_asset_details: ~5 rows (approximately)
 INSERT INTO `fms_g9_asset_details` (`asset_id`, `warranty_start_date`, `warranty_end_date`, `serial_number`, `manufacturer`, `model`, `supplier`, `purchase_order_number`, `invoice_number`, `notes`) VALUES
 	(1, '2022-01-15', '2025-01-14', 'DL123456', 'Dell', 'Latitude E7450', 'ABC Electronics', 'PO12345', 'INV67890', 'Includes 3-year warranty'),
-	(2, '2021-08-20', NULL, 'OC987654', 'Office Furnishings Inc.', 'Ergo Mesh 2000', 'Furniture World', 'PO54321', 'INV24680', 'Black color'),
+	(2, '2021-08-20', '2024-04-10', 'OC987654', 'Office Furnishings Inc.', 'Ergo Mesh 2000', 'Furniture World', 'PO54321', 'INV24680', 'Black color'),
 	(3, '2020-05-10', NULL, 'TC123ABC', 'Toyota', 'Camry', 'Car Dealership Inc.', 'PO45678', 'INV13579', 'Model year 2020'),
 	(4, '2023-02-28', NULL, 'HP456DEF', 'HP', 'ProLiant DL380', 'Tech Solutions', 'PO98765', 'INV65432', 'Includes 5-year warranty'),
 	(5, '2022-09-05', NULL, 'EP789GHI', 'Epson', 'PowerLite 1781W', 'Electronics Superstore', 'PO23456', 'INV78901', 'Portable model');
@@ -1095,29 +1136,29 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_empdepreciation` (
   CONSTRAINT `fms_g9_asset_empdepreciation_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `fms_g9_assets` (`AssetID`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table 4thyeardb.fms_g9_asset_empdepreciation: ~20 rows (approximately)
+-- Dumping data for table 4thyeardb.fms_g9_asset_empdepreciation: ~21 rows (approximately)
 INSERT INTO `fms_g9_asset_empdepreciation` (`id`, `asset_id`, `employeeid`, `depreciation_method`, `depreciation_result`, `depreciation_rate`, `depreciation_start_date`, `created_at`, `updated_at`, `original_cost`) VALUES
-	(1, 1, '101', 'Straight-line', 0.13, 10.50, '2023-01-01', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
-	(2, 2, '102', 'Double-declining', 0.00, 15.00, '2022-12-15', '2024-03-31 12:16:03', '2024-04-07 13:14:39', NULL),
+	(1, 1, '101', 'Straight-line', 0.13, 10.50, '2023-01-01', '2024-03-31 12:16:03', '2024-04-10 12:08:00', NULL),
+	(2, 2, '102', 'Double-declining', 0.20, 15.00, '2022-12-15', '2024-03-31 12:16:03', '2024-04-10 12:08:14', NULL),
 	(3, 3, '103', 'Units of production', 0.00, 8.75, '2023-02-20', '2024-03-31 12:16:03', '2024-04-07 13:14:40', NULL),
-	(4, 4, '104', 'Straight-line', 0.13, 12.25, '2023-03-10', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
-	(5, 5, '105', 'Straight-line', 0.11, 9.00, '2023-01-05', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
-	(6, 6, '106', 'Double-declining', 0.00, 14.00, '2022-11-20', '2024-03-31 12:16:03', '2024-04-07 13:14:41', NULL),
+	(4, 4, '104', 'Straight-line', 0.13, 12.25, '2023-03-10', '2024-03-31 12:16:03', '2024-04-10 12:08:00', NULL),
+	(5, 5, '105', 'Straight-line', 0.11, 9.00, '2023-01-05', '2024-03-31 12:16:03', '2024-04-10 12:08:00', NULL),
+	(6, 6, '106', 'Double-declining', 0.19, 14.00, '2022-11-20', '2024-03-31 12:16:03', '2024-04-10 12:08:14', NULL),
 	(7, 7, '107', 'Units of production', 0.00, 7.50, '2023-02-28', '2024-03-31 12:16:03', '2024-04-07 13:14:42', NULL),
-	(8, 8, '108', 'Straight-line', 0.11, 11.00, '2023-04-15', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
-	(9, 9, '109', 'Straight-line', 0.11, 8.75, '2023-01-15', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
-	(10, 10, '110', 'Double-declining', 0.00, 13.50, '2022-10-30', '2024-03-31 12:16:03', '2024-04-07 13:14:45', NULL),
+	(8, 8, '108', 'Straight-line', 0.11, 11.00, '2023-04-15', '2024-03-31 12:16:03', '2024-04-10 12:08:00', NULL),
+	(9, 9, '109', 'Straight-line', 0.11, 8.75, '2023-01-15', '2024-03-31 12:16:03', '2024-04-10 12:08:00', NULL),
+	(10, 10, '110', 'Double-declining', 0.20, 13.50, '2022-10-30', '2024-03-31 12:16:03', '2024-04-10 12:08:14', NULL),
 	(11, 11, '111', 'Units of production', 0.00, 6.25, '2023-03-05', '2024-03-31 12:16:03', '2024-04-07 13:14:46', NULL),
-	(12, 12, '112', 'Straight-line', 0.12, 10.00, '2023-01-20', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
-	(13, 13, '113', 'Straight-line', 0.09, 7.50, '2023-02-10', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
-	(14, 14, '114', 'Double-declining', 0.00, 12.00, '2022-12-05', '2024-03-31 12:16:03', '2024-04-07 13:14:47', NULL),
+	(12, 12, '112', 'Straight-line', 0.12, 10.00, '2023-01-20', '2024-03-31 12:16:03', '2024-04-10 12:08:00', NULL),
+	(13, 13, '113', 'Straight-line', 0.09, 7.50, '2023-02-10', '2024-03-31 12:16:03', '2024-04-10 12:08:00', NULL),
+	(14, 14, '114', 'Double-declining', 0.16, 12.00, '2022-12-05', '2024-03-31 12:16:03', '2024-04-10 12:08:14', NULL),
 	(15, 15, '115', 'Units of production', 0.00, 5.00, '2023-01-25', '2024-03-31 12:16:03', '2024-04-07 13:14:52', NULL),
-	(16, 16, '116', 'Straight-line', 0.10, 9.25, '2023-03-20', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
-	(17, 17, '117', 'Straight-line', 0.08, 6.75, '2023-01-30', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
-	(18, 18, '118', 'Double-declining', 0.00, 11.50, '2022-11-15', '2024-03-31 12:16:03', '2024-04-07 13:14:54', NULL),
+	(16, 16, '116', 'Straight-line', 0.10, 9.25, '2023-03-20', '2024-03-31 12:16:03', '2024-04-10 12:08:00', NULL),
+	(17, 17, '117', 'Straight-line', 0.08, 6.75, '2023-01-30', '2024-03-31 12:16:03', '2024-04-10 12:08:00', NULL),
+	(18, 18, '118', 'Double-declining', 0.16, 11.50, '2022-11-15', '2024-03-31 12:16:03', '2024-04-10 12:08:14', NULL),
 	(19, 19, '119', 'Units of production', 0.00, 3.75, '2023-02-15', '2024-03-31 12:16:03', '2024-04-07 13:14:54', NULL),
-	(20, 20, '120', 'Straight-line', 0.09, 8.50, '2023-04-05', '2024-03-31 12:16:03', '2024-04-07 16:11:37', NULL),
-	(21, 15, '20249942', 'Straight-line', 0.12, 11.50, '2023-04-05', '2024-04-07 09:36:50', '2024-04-07 16:11:37', NULL);
+	(20, 20, '120', 'Straight-line', 0.09, 8.50, '2023-04-05', '2024-03-31 12:16:03', '2024-04-10 12:08:00', NULL),
+	(21, 15, '20249942', 'Straight-line', 0.12, 11.50, '2023-04-05', '2024-04-07 09:36:50', '2024-04-10 12:08:00', NULL);
 
 -- Dumping structure for table 4thyeardb.fms_g9_asset_inventory
 CREATE TABLE IF NOT EXISTS `fms_g9_asset_inventory` (
@@ -1145,6 +1186,42 @@ INSERT INTO `fms_g9_asset_inventory` (`asset_id`, `asset_name`, `description`, `
 	(3, 'Company Car', 'Toyota Camry', 'Vehicle', '2020-05-10', 25000.00, 18000.00, 'Parking Lot', 'In Use', 'Straight-Line', 15.00, '2023-03-20', '2023-09-20', 'Mark Johnson'),
 	(4, 'Server', 'HP ProLiant DL380', 'IT Equipment', '2023-02-28', 5000.00, 4000.00, 'Data Center', 'In Use', 'Straight-Line', 10.00, '2023-08-15', '2024-02-15', 'IT Department'),
 	(5, 'Projector', 'Epson PowerLite 1781W', 'IT Equipment', '2022-09-05', 800.00, 600.00, 'Conference Room', 'In Use', 'Straight-Line', 10.00, '2023-05-01', '2023-11-01', 'Office Manager');
+
+-- Dumping structure for table 4thyeardb.fms_g9_asset_location
+CREATE TABLE IF NOT EXISTS `fms_g9_asset_location` (
+  `Location_ID` int NOT NULL,
+  `Location_Name` varchar(100) NOT NULL,
+  `Description` text,
+  `Address` varchar(255) DEFAULT NULL,
+  `City` varchar(100) DEFAULT NULL,
+  `State` varchar(100) DEFAULT NULL,
+  `Country` varchar(100) DEFAULT NULL,
+  `Postal_Code` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`Location_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_asset_location: ~20 rows (approximately)
+INSERT INTO `fms_g9_asset_location` (`Location_ID`, `Location_Name`, `Description`, `Address`, `City`, `State`, `Country`, `Postal_Code`) VALUES
+	(1, 'Head Office', 'Main headquarters', '123 Main Street', 'New York', 'NY', 'USA', '10001'),
+	(2, 'Warehouse A', 'Primary storage facility', '456 Warehouse Avenue', 'Los Angeles', 'CA', 'USA', '90001'),
+	(3, 'Branch Office 1', 'Regional office', '789 Branch Road', 'Chicago', 'IL', 'USA', '60601'),
+	(4, 'Data Center', 'IT infrastructure facility', '321 Data Center Blvd', 'San Francisco', 'CA', 'USA', '94101'),
+	(5, 'Storefront', 'Retail outlet', '987 Retail Street', 'Miami', 'FL', 'USA', '33101'),
+	(6, 'Warehouse B', 'Secondary storage facility', '741 Storage Lane', 'Houston', 'TX', 'USA', '77001'),
+	(7, 'Distribution Center', 'Logistics hub', '852 Distribution Blvd', 'Dallas', 'TX', 'USA', '75201'),
+	(8, 'Plant 1', 'Manufacturing facility', '369 Manufacturing Road', 'Atlanta', 'GA', 'USA', '30301'),
+	(9, 'Office Park', 'Business complex', '159 Office Park Drive', 'Seattle', 'WA', 'USA', '98101'),
+	(10, 'Training Center', 'Employee training facility', '258 Training Avenue', 'Boston', 'MA', 'USA', '02101'),
+	(11, 'Branch Office 2', 'Regional office', '456 Branch Street', 'Philadelphia', 'PA', 'USA', '19101'),
+	(12, 'Lab Facility', 'Research laboratory', '753 Lab Lane', 'Denver', 'CO', 'USA', '80201'),
+	(13, 'Retail Warehouse', 'Warehouse for retail inventory', '852 Retail Lane', 'Orlando', 'FL', 'USA', '32801'),
+	(14, 'Service Center', 'Customer service facility', '963 Service Road', 'Phoenix', 'AZ', 'USA', '85001'),
+	(15, 'Corporate Campus', 'Company headquarters and facilities', '147 Corporate Avenue', 'Austin', 'TX', 'USA', '73301'),
+	(16, 'Remote Office', 'Satellite office', '369 Remote Street', 'San Diego', 'CA', 'USA', '92101'),
+	(17, 'Storage Yard', 'Outdoor storage area', '258 Storage Road', 'Las Vegas', 'NV', 'USA', '89101'),
+	(18, 'Showroom', 'Product display area', '753 Showroom Street', 'Portland', 'OR', 'USA', '97201'),
+	(19, 'Training Facility', 'Training and development center', '456 Training Road', 'Minneapolis', 'MN', 'USA', '55401'),
+	(20, 'Research Center', 'Scientific research facility', '852 Research Lane', 'Detroit', 'MI', 'USA', '48201');
 
 -- Dumping structure for table 4thyeardb.fms_g9_asset_locations
 CREATE TABLE IF NOT EXISTS `fms_g9_asset_locations` (
@@ -1205,14 +1282,34 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_status` (
   `status_name` varchar(50) NOT NULL,
   `description` text,
   PRIMARY KEY (`status_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table 4thyeardb.fms_g9_asset_status: ~4 rows (approximately)
+-- Dumping data for table 4thyeardb.fms_g9_asset_status: ~24 rows (approximately)
 INSERT INTO `fms_g9_asset_status` (`status_id`, `status_name`, `description`) VALUES
 	(1, 'In Use', 'Currently in use'),
 	(2, 'Under Maintenance', 'Undergoing maintenance'),
 	(3, 'In Storage', 'Stored in inventory'),
-	(4, 'Retired', 'No longer in use');
+	(4, 'Retired', 'No longer in use'),
+	(5, 'Active', 'The asset is currently in active use.'),
+	(6, 'Inactive', 'The asset is not in use currently.'),
+	(7, 'Under Maintenance', 'The asset is undergoing maintenance or repairs.'),
+	(8, 'Disposed', 'The asset has been disposed of or is no longer in use.'),
+	(9, 'Lost or Stolen', 'The asset is lost or stolen and its whereabouts are unknown.'),
+	(10, 'In Repair', 'The asset is being repaired.'),
+	(11, 'In Transit', 'The asset is currently in transit to another location.'),
+	(12, 'Awaiting Disposal', 'The asset is waiting to be disposed of.'),
+	(13, 'Reserved', 'The asset is reserved for future use.'),
+	(14, 'Under Evaluation', 'The asset is under evaluation for potential use or disposal.'),
+	(15, 'In Testing', 'The asset is undergoing testing.'),
+	(16, 'Scheduled Maintenance', 'The asset is scheduled for maintenance.'),
+	(17, 'Out of Service', 'The asset is temporarily out of service.'),
+	(18, 'Pending Approval', 'The asset status change is pending approval.'),
+	(19, 'Under Investigation', 'The asset is under investigation due to discrepancies.'),
+	(20, 'Damaged', 'The asset has been damaged and needs repair or replacement.'),
+	(21, 'Expired', 'The asset has reached its expiration date and is no longer usable.'),
+	(22, 'On Hold', 'The asset usage is temporarily on hold.'),
+	(23, 'In Use by Another Department', 'The asset is currently in use by another department.'),
+	(24, 'In Stock', 'The asset is in stock and available for use.');
 
 -- Dumping structure for table 4thyeardb.fms_g9_asset_transactions
 CREATE TABLE IF NOT EXISTS `fms_g9_asset_transactions` (
@@ -1255,41 +1352,77 @@ INSERT INTO `fms_g9_depreciationmethods` (`MethodID`, `MethodName`) VALUES
 	(2, 'Double-declining'),
 	(3, 'Units of Production');
 
+-- Dumping structure for table 4thyeardb.fms_g9_financial_transaction
+CREATE TABLE IF NOT EXISTS `fms_g9_financial_transaction` (
+  `transaction_id` int NOT NULL,
+  `assetid` int DEFAULT NULL,
+  `employeeid` varchar(255) DEFAULT NULL,
+  `transaction_type` varchar(50) NOT NULL,
+  `transaction_date` date NOT NULL,
+  `Transaction_Description` text,
+  `amount` decimal(18,2) DEFAULT NULL,
+  PRIMARY KEY (`transaction_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table 4thyeardb.fms_g9_financial_transaction: ~20 rows (approximately)
+INSERT INTO `fms_g9_financial_transaction` (`transaction_id`, `assetid`, `employeeid`, `transaction_type`, `transaction_date`, `Transaction_Description`, `amount`) VALUES
+	(21, 101, '1001', 'Acquisition', '2023-01-15', 'Purchased new laptop for employee', 1500.00),
+	(22, 102, '1002', 'Transfer', '2023-02-20', 'Transferred printer from Office A to Office B', NULL),
+	(23, 103, '1003', 'Disposal', '2023-03-10', 'Disposed old vehicle due to irreparable damage', NULL),
+	(24, 104, '1004', 'Depreciation', '2023-04-01', 'Monthly depreciation expense for server', 250.00),
+	(25, 105, '1005', 'Acquisition', '2023-05-05', 'Purchased new furniture for office expansion', 800.00),
+	(26, 106, '1006', 'Transfer', '2023-06-15', 'Transferred desktop computer from Department X to Department Y', NULL),
+	(27, 107, '1007', 'Depreciation', '2023-07-01', 'Monthly depreciation expense for office equipment', 150.00),
+	(28, 108, '1008', 'Acquisition', '2023-08-10', 'Purchased new vehicle for company fleet', 20000.00),
+	(29, 109, '1009', 'Disposal', '2023-09-20', 'Disposed outdated machinery due to obsolescence', NULL),
+	(30, 110, '1010', 'Transfer', '2023-10-05', 'Transferred projector from Conference Room A to Conference Room B', NULL),
+	(31, 111, '1011', 'Acquisition', '2023-11-15', 'Purchased additional software licenses', 5000.00),
+	(32, 112, '1012', 'Depreciation', '2023-12-01', 'Monthly depreciation expense for company vehicles', 1000.00),
+	(33, 113, '1013', 'Transfer', '2024-01-10', 'Transferred scanner from Warehouse to Office', NULL),
+	(34, 114, '1014', 'Disposal', '2024-02-20', 'Disposed damaged office chairs', NULL),
+	(35, 115, '1015', 'Acquisition', '2024-03-05', 'Purchased new networking equipment', 3000.00),
+	(36, 116, '1016', 'Transfer', '2024-04-10', 'Transferred monitor from Department A to Department B', NULL),
+	(37, 117, '1017', 'Depreciation', '2024-05-01', 'Monthly depreciation expense for printers', 200.00),
+	(38, 118, '1018', 'Acquisition', '2024-06-15', 'Purchased new software for accounting department', 1500.00),
+	(39, 119, '1019', 'Transfer', '2024-07-20', 'Transferred office desk from Office A to Office B', NULL),
+	(40, 120, '1020', 'Depreciation', '2024-08-10', 'Monthly depreciation expense for office chairs', 300.00);
+
 -- Dumping structure for table 4thyeardb.fms_g9_financial_transactions
 CREATE TABLE IF NOT EXISTS `fms_g9_financial_transactions` (
   `transaction_id` int NOT NULL,
   `transaction_date` date DEFAULT NULL,
   `amount` decimal(10,2) DEFAULT NULL,
-  `transaction_type` varchar(50) DEFAULT NULL,
+  `transaction_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `assetid` int DEFAULT NULL,
-  `employeeid` varchar(50) DEFAULT NULL,
+  `employeeid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Transaction_Description` longtext,
   PRIMARY KEY (`transaction_id`),
   KEY `assetid` (`assetid`),
   CONSTRAINT `fms_g9_financial_transactions_ibfk_1` FOREIGN KEY (`assetid`) REFERENCES `fms_g9_assets` (`AssetID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_financial_transactions: ~20 rows (approximately)
-INSERT INTO `fms_g9_financial_transactions` (`transaction_id`, `transaction_date`, `amount`, `transaction_type`, `assetid`, `employeeid`) VALUES
-	(1, '2024-03-15', 1000.00, 'Sale', 1, '2'),
-	(2, '2024-03-20', 500.00, 'Purchase', 2, '4'),
-	(3, '2024-03-25', 1500.00, 'Sale', 4, '1'),
-	(4, '2024-03-28', 800.00, 'Purchase', 3, '3'),
-	(5, '2024-03-30', 2000.00, 'Sale', 5, '5'),
-	(6, '2024-04-02', 1200.00, 'Purchase', 1, '2'),
-	(7, '2024-04-05', 3000.00, 'Sale', 2, '4'),
-	(8, '2024-04-10', 600.00, 'Purchase', 3, '3'),
-	(9, '2024-04-15', 1800.00, 'Sale', 5, '5'),
-	(10, '2024-04-18', 900.00, 'Purchase', 4, '1'),
-	(11, '2024-04-20', 2200.00, 'Sale', 1, '2'),
-	(12, '2024-04-25', 700.00, 'Purchase', 2, '4'),
-	(13, '2024-04-28', 2500.00, 'Sale', 4, '1'),
-	(14, '2024-05-01', 1000.00, 'Purchase', 3, '3'),
-	(15, '2024-05-05', 1900.00, 'Sale', 5, '5'),
-	(16, '2024-05-08', 800.00, 'Purchase', 1, '2'),
-	(17, '2024-05-10', 2800.00, 'Sale', 2, '4'),
-	(18, '2024-05-15', 500.00, 'Purchase', 3, '3'),
-	(19, '2024-05-20', 1600.00, 'Sale', 5, '5'),
-	(20, '2024-05-25', 1100.00, 'Purchase', 4, '1');
+INSERT INTO `fms_g9_financial_transactions` (`transaction_id`, `transaction_date`, `amount`, `transaction_type`, `assetid`, `employeeid`, `Transaction_Description`) VALUES
+	(1, '2024-03-15', 1000.00, 'Sale', 1, '2', NULL),
+	(2, '2024-03-20', 500.00, 'Purchase', 2, '4', NULL),
+	(3, '2024-03-25', 1500.00, 'Sale', 4, '1', NULL),
+	(4, '2024-03-28', 800.00, 'Purchase', 3, '3', NULL),
+	(5, '2024-03-30', 2000.00, 'Sale', 5, '5', NULL),
+	(6, '2024-04-02', 1200.00, 'Purchase', 1, '2', NULL),
+	(7, '2024-04-05', 3000.00, 'Sale', 2, '4', NULL),
+	(8, '2024-04-10', 600.00, 'Purchase', 3, '3', NULL),
+	(9, '2024-04-15', 1800.00, 'Sale', 5, '5', NULL),
+	(10, '2024-04-18', 900.00, 'Purchase', 4, '1', NULL),
+	(11, '2024-04-20', 2200.00, 'Sale', 1, '2', NULL),
+	(12, '2024-04-25', 700.00, 'Purchase', 2, '4', NULL),
+	(13, '2024-04-28', 2500.00, 'Sale', 4, '1', NULL),
+	(14, '2024-05-01', 1000.00, 'Purchase', 3, '3', NULL),
+	(15, '2024-05-05', 1900.00, 'Sale', 5, '5', NULL),
+	(16, '2024-05-08', 800.00, 'Purchase', 1, '2', NULL),
+	(17, '2024-05-10', 2800.00, 'Sale', 2, '4', NULL),
+	(18, '2024-05-15', 500.00, 'Purchase', 3, '3', NULL),
+	(19, '2024-05-20', 1600.00, 'Sale', 5, '5', NULL),
+	(20, '2024-05-25', 1100.00, 'Purchase', 4, '1', NULL);
 
 -- Dumping structure for table 4thyeardb.fms_g9_taxrates
 CREATE TABLE IF NOT EXISTS `fms_g9_taxrates` (
@@ -1305,7 +1438,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_taxrates` (
   PRIMARY KEY (`tax_rate_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table 4thyeardb.fms_g9_taxrates: ~4 rows (approximately)
+-- Dumping data for table 4thyeardb.fms_g9_taxrates: ~5 rows (approximately)
 INSERT INTO `fms_g9_taxrates` (`tax_rate_id`, `tax_rate_name`, `rate_percentage`, `effective_from`, `effective_to`, `description`, `tax_authority`, `region`, `tax_type`) VALUES
 	(1, 'State Sales Tax', 6.50, '2023-01-01', NULL, 'State sales tax rate for retail transactions within the state.', 'State Department of Revenue', 'California', 'Sales Tax'),
 	(2, 'Local Sales Tax', 2.00, '2023-01-01', NULL, 'Local sales tax rate imposed by city ordinance.', 'City Council', 'Los Angeles', 'Sales Tax'),
@@ -1322,7 +1455,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_taxtypes` (
   PRIMARY KEY (`tax_type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table 4thyeardb.fms_g9_taxtypes: ~10 rows (approximately)
+-- Dumping data for table 4thyeardb.fms_g9_taxtypes: ~11 rows (approximately)
 INSERT INTO `fms_g9_taxtypes` (`tax_type_id`, `tax_type_name`, `tax_type_code`, `description`) VALUES
 	(1, 'Sales Tax', 'ST', 'A tax imposed on the sale of goods and services.'),
 	(2, 'Income Tax', 'IT', 'A tax levied on the income earned by individuals or businesses.'),
@@ -1533,7 +1666,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_tbluserdescrip` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table 4thyeardb.fms_g9_tbluserdescrip: ~12 rows (approximately)
+-- Dumping data for table 4thyeardb.fms_g9_tbluserdescrip: ~13 rows (approximately)
 INSERT INTO `fms_g9_tbluserdescrip` (`id`, `usertype`, `userdesc`, `created_at`, `updated_at`) VALUES
 	(1, 0, 'Super Administrator', '2024-03-08 16:00:00', '2024-03-08 16:00:00'),
 	(2, 1, 'Administrator', '2024-03-09 02:46:29', '2024-03-09 02:46:31'),
@@ -1600,7 +1733,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_users` (
   UNIQUE KEY `users_userid_unique` (`userid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table 4thyeardb.fms_g9_users: ~12 rows (approximately)
+-- Dumping data for table 4thyeardb.fms_g9_users: ~13 rows (approximately)
 INSERT INTO `fms_g9_users` (`id`, `name`, `email`, `usertype`, `email_verified_at`, `password`, `userid`, `remember_token`, `created_at`, `updated_at`, `isNotice`, `isSuper`, `Column 13`) VALUES
 	(1, 'Kelley Nicolas DDS', 'superadmin@gmail.com', '0', NULL, '$2y$12$VgxkweGEk3kTH3pTNvBht.yN5B3FtDxAKrtr66UJIHg/KwuSiMNPK', NULL, NULL, '2024-02-24 19:13:16', '2024-02-24 19:13:16', 0, NULL, NULL),
 	(2, 'Eden Volkman', 'gudrun53@example.com', '1', NULL, '$2y$12$7ujDIG.WubVqZ7c/xtpPG.mpM8XSIHdN/7aRHZ/UCN/SC.PsBNoD6', NULL, NULL, '2024-02-24 19:13:16', '2024-02-24 19:13:16', 0, NULL, NULL),
@@ -1721,7 +1854,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g63_adds` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table 4thyeardb.lgu_g63_adds: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g63_adds: ~1 rows (approximately)
 INSERT INTO `lgu_g63_adds` (`id`, `market_name`, `location`, `created_at`, `updated_at`) VALUES
 	(6, 'Pamilihang Bayan', 'Caloocan City Brngy 178 Kiko St', NULL, NULL);
 
@@ -1734,7 +1867,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g63_communities` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table 4thyeardb.lgu_g63_communities: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g63_communities: ~1 rows (approximately)
 INSERT INTO `lgu_g63_communities` (`id`, `knowledge`, `created_at`, `updated_at`) VALUES
 	(26, 'Ideas', '2024-02-25 00:40:42', '2024-02-25 00:40:42');
 
@@ -1764,7 +1897,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g63_galleries` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table 4thyeardb.lgu_g63_galleries: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g63_galleries: ~1 rows (approximately)
 INSERT INTO `lgu_g63_galleries` (`id`, `market_name`, `photos`, `videos`, `created_at`, `updated_at`) VALUES
 	(1, 'Bicas Dry Market', 'Photos of the market', 'Video of the market', NULL, NULL);
 
@@ -1779,7 +1912,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g63_invitations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table 4thyeardb.lgu_g63_invitations: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g63_invitations: ~1 rows (approximately)
 INSERT INTO `lgu_g63_invitations` (`id`, `doc_photo`, `description`, `docs`, `created_at`, `updated_at`) VALUES
 	(1, 'Photo of doc', 'Description', 'Docs download', NULL, NULL);
 
@@ -1793,7 +1926,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g63_maps` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table 4thyeardb.lgu_g63_maps: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g63_maps: ~1 rows (approximately)
 INSERT INTO `lgu_g63_maps` (`id`, `market_name`, `location`, `created_at`, `updated_at`) VALUES
 	(51, 'Pamilihang Bayan', 'Caloocan City Brngy 178 Kiko St', '2024-02-25 02:05:58', '2024-02-25 02:05:58');
 
@@ -1839,7 +1972,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g63_password_reset_tokens` (
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table 4thyeardb.lgu_g63_password_reset_tokens: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g63_password_reset_tokens: ~1 rows (approximately)
 INSERT INTO `lgu_g63_password_reset_tokens` (`email`, `token`, `created_at`) VALUES
 	('admin@gmail.com', '$2y$12$Wl0N2hkkJb7d9I0raSsXW.IyYihz8kNaAljUwAzEv9ZZoCpUX4J.6', '2024-02-20 23:38:16');
 
@@ -1853,7 +1986,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g63_permits` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table 4thyeardb.lgu_g63_permits: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g63_permits: ~1 rows (approximately)
 INSERT INTO `lgu_g63_permits` (`id`, `process`, `docs`, `created_at`, `updated_at`) VALUES
 	(1, 'Step\r\n1.\r\n2.\r\n3.', 'Docs', NULL, NULL);
 
@@ -1887,7 +2020,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g63_scheds` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table 4thyeardb.lgu_g63_scheds: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g63_scheds: ~1 rows (approximately)
 INSERT INTO `lgu_g63_scheds` (`id`, `clean_type`, `several`, `guide`, `created_at`, `updated_at`) VALUES
 	(1, 'Cleaning Stall Operation', 'Weekly', 'DOC', NULL, NULL);
 
@@ -1923,7 +2056,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g64_admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table 4thyeardb.lgu_g64_admin: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g64_admin: ~1 rows (approximately)
 INSERT INTO `lgu_g64_admin` (`id`, `username`, `password`, `firstname`, `lastname`, `photo`, `created_on`) VALUES
 	(1, 'nurhodelta', '$2y$10$fLK8s7ZDnM.1lE7XMP.J6OuPbQ.DPUVKBo7rENnQY7gYq0xAzsKJy', 'Neovic', 'Devierte', 'facebook-profile-image.jpeg', '2018-04-02');
 
@@ -1989,7 +2122,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g65_tbladmin` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table 4thyeardb.lgu_g65_tbladmin: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g65_tbladmin: ~1 rows (approximately)
 INSERT INTO `lgu_g65_tbladmin` (`ID`, `AdminName`, `AdminuserName`, `MobileNumber`, `Email`, `Password`, `AdminRegdate`, `userRole`, `isActive`) VALUES
 	(1, 'Admin', 'admin@admin.com', 9560563149, 'towntechinnovations@gmail.com', 'ca8971255b57e6c1038e4a47cb9df178', '2022-10-20 18:30:00', NULL, 1);
 
@@ -2044,7 +2177,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g65_tblsite` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table 4thyeardb.lgu_g65_tblsite: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g65_tblsite: ~1 rows (approximately)
 INSERT INTO `lgu_g65_tblsite` (`id`, `siteTitle`, `siteLogo`) VALUES
 	(1, 'TowntechInnovations', '1bb87d41d15fe27b500a4bfcde01bb0e.png');
 
@@ -2163,7 +2296,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g68_drivers` (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table 4thyeardb.lgu_g68_drivers: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g68_drivers: ~1 rows (approximately)
 INSERT INTO `lgu_g68_drivers` (`driver_id`, `user_id`, `name`) VALUES
 	(6, 3, 'test_name');
 
@@ -2241,7 +2374,7 @@ CREATE TABLE IF NOT EXISTS `lgu_g68_routes` (
   `status` enum('Pending','Assigned','Completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table 4thyeardb.lgu_g68_routes: ~0 rows (approximately)
+-- Dumping data for table 4thyeardb.lgu_g68_routes: ~1 rows (approximately)
 INSERT INTO `lgu_g68_routes` (`route_id`, `driver_id`, `end_location`, `constraints`, `status`) VALUES
 	(1, 6, _binary 0x00000000010100000078895e37c0425e40c80dda24f8832d40, 'test_end_point', 'Pending');
 
