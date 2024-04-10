@@ -246,7 +246,19 @@
         <i class="bi bi-tag"></i><span style="font-size: 0.8rem;">Asset Tracking Management</span>
       </a>
     </li>
-  
+    
+    {{-- <li class="nav-item">
+      <a class="nav-link collapsed">
+        <i class="bi bi-files"></i><span style="font-size: 0.8rem;">Reports and Analytics</span>
+      </a>
+    </li> --}}
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="">
+        <i class="bi bi-files"></i>
+        <span style="font-size: 0.8rem;">Reports and Analytics</span>
+      </a>
+    </li>
 
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#components-tax" data-bs-toggle="collapse" href="#">

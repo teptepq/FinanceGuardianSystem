@@ -193,6 +193,8 @@
     <div class="row">
       <div class="col-lg-12">
 
+        @include('asset.control')
+
 
         <div class="card">
             <div class="card-body">

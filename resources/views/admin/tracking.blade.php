@@ -16,54 +16,7 @@
                 <div class="card-body">
                     <br/>
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <br/>
-                             
-                                    {{-- <h5 class="card-title"></h5> --}}
-                                    <!-- Tooltips Examples -->
-                                    <a type="button" class="btn btn-secondary" data-bs-target="#assetDetails" data-bs-toggle="modal">
-                                      Asset Details
-                                    </a>
-                                    
-                                    <a type="button" class="btn btn-secondary" data-bs-target="#assetLocations" data-bs-toggle="modal">
-                                        Asset Locations
-                                    </a>
-                                    <a type="button" class="btn btn-secondary" data-bs-target="#assetStatus" data-bs-toggle="modal">
-                                        Asset Status
-                                    </a>
-                                    <a type="button" class="btn btn-secondary" data-bs-target="#assetMaintenance" data-bs-toggle="modal">
-                                        Asset Maintenance
-                                    </a>
-
-                                    {{-- @if(!Auth::user()->usertype == '3' || !Auth::user()->isSuper == '1' )
-                                    <a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Asset Depreciation" href="{{ route('mdepreciation') }}">
-                                    @else
-                                    <a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Asset Depreciation"href="{{ route('user-depreciation') }}">
-                                    @endif --}}
-
-                                    <a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Reports And Analytics">
-                                      Asset Tagging
-                                  </a>
-                                    <a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Asset Depreciation" href="{{ route('assetdepreciation') }}">
-                                        Asset Depreciation
-                                    </a>
-                                    <a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Asset Transactions">
-                                        Asset Transactions
-                                    </a>
-                                    <a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Reports And Analytics">
-                                        Reports And Analytics
-                                    </a>
-                                   
-                                    {{-- <a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title=" Re-Calculate Depreciation Asset">
-                                       Re-Calculate
-                                    </a> --}}
-                                    <!-- End Tooltips Examples -->
-                      
-                                  </div>
-                            </div>
-                        </div> 
+                        @include('asset.control')
                         <br/>
                         <div class="col-lg-12">
                             <div class="card">
@@ -545,5 +498,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+<script>
+   $(document).ready(function(e){
+       
+       
+
+       // $(document).ready(function(){
+   
+//   });
+   
+
+    
+      
+   });
+</script>
 @include('admin.track-script')
+
 @endsection

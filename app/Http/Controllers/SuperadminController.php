@@ -26,9 +26,29 @@ class SuperadminController extends Controller
         // $this->middleware('manager');
         // $this->middleware('superadmin');
     }
+    
+    public function assettransactionIndex() {
+        return view('admin.assettransaction');
+    }
 
+    public function assetmaintenanceIndex() {
+        return view('admin.assetmaintenance');
+    }
+    
+    public function assetstatusIndex(){
+        return view('admin.assetstatus');
+    }
+
+    public function assetlocationIndex(){
+        return view('admin.assetlocation');
+    }
+    
     public function assetdepreciationIndex(){
         return view('admin.assetdepreciation');
+    }
+
+    public function assetdetailIndex(){
+        return view('admin.assetdetail');
     }
 
     public function taxcalculationIndex(){
@@ -172,13 +192,198 @@ class SuperadminController extends Controller
 
         
     }
+    
+    public function getassettransaction(Request $request) {
+
+        $requestData = (object) $request; 
+
+        try {
+
+            $asset = DB::table('fms_g9_asset_transaction')->get();
+            
+            $formattedPromotions = [];
+            foreach ($asset as $data) {
+
+                $assetname = DB::table('fms_g9_assets')->select('AssetName')->where('AssetID',$data->asset_id)->first();
+                
+                $formattedPromotions[] = [
+                    
+                    'maintenance_id'             => $data->maintenance_id,
+                    'asset_id'                   => $assetname->AssetName,
+                    'maintenance_date'           => $data->maintenance_date,
+                    'maintenance_type'           => $data->maintenance_type,
+                    'maintenance_description'    => $data->maintenance_description,
+                    'maintenance_cost'           => $data->maintenance_cost,
+                    'maintenance_notes'          => $data->maintenance_notes,
+                    
+                ];
+
+            }
+
+            return response()->json($formattedPromotions);
+        
+        } catch (\Exception $e) {
+
+            return response()->json(['error' => 'An error occurred while processing the request.'], 500);
+
+        }
+
+    }
+
+    public function getassetmaintenance(Request $request) {
+
+        $requestData = (object) $request; 
+
+        try {
+
+            $asset = DB::table('fms_g9_asset_maintenance')->get();
+            
+            $formattedPromotions = [];
+            foreach ($asset as $data) {
+
+                $assetname = DB::table('fms_g9_assets')->select('AssetName')->where('AssetID',$data->asset_id)->first();
+                
+                $formattedPromotions[] = [
+                    
+                    'maintenance_id'             => $data->maintenance_id,
+                    'asset_id'                   => $assetname->AssetName,
+                    'maintenance_date'           => $data->maintenance_date,
+                    'maintenance_type'           => $data->maintenance_type,
+                    'maintenance_description'    => $data->maintenance_description,
+                    'maintenance_cost'           => $data->maintenance_cost,
+                    'maintenance_notes'          => $data->maintenance_notes,
+                    
+                ];
+
+            }
+
+            return response()->json($formattedPromotions);
+        
+        } catch (\Exception $e) {
+
+            return response()->json(['error' => 'An error occurred while processing the request.'], 500);
+
+        }
+
+    }
+
+    public function getassetstatus(Request $request) {
+
+        $requestData = (object) $request; 
+
+        try {
+
+            $asset = DB::table('fms_g9_asset_status')->get();
+            
+            $formattedPromotions = [];
+            foreach ($asset as $data) {
+
+                $formattedPromotions[] = [
+
+                    
+                    'Status_ID'      => $data->status_id,
+                    'Status_Name'    => $data->status_name,
+                    'Description'      => $data->description,
+                    
+                ];
+
+            }
+
+            return response()->json($formattedPromotions);
+        
+        } catch (\Exception $e) {
+
+            return response()->json(['error' => 'An error occurred while processing the request.'], 500);
+
+        }
+
+    }
+
+    public function getassetlocation(Request $request) {
+
+        $requestData = (object) $request; 
+
+        try {
+
+            $asset = DB::table('fms_g9_asset_location')->get();
+            
+            $formattedPromotions = [];
+            foreach ($asset as $data) {
+
+                $formattedPromotions[] = [
+
+                    
+                    'Location_ID'      => $data->Location_ID,
+                    'Location_Name'    => $data->Location_Name,
+                    'Description'      => $data->Description,
+                    'Address'          => $data->Address,
+                    'City'             => $data->City,
+                    'State'            => $data->State,
+                    'Country'          => $data->Country,
+                    'Postal_Code'      => $data->Postal_Code,
+                    
+                ];
+
+            }
+
+            return response()->json($formattedPromotions);
+        
+        } catch (\Exception $e) {
+
+            return response()->json(['error' => 'An error occurred while processing the request.'], 500);
+
+        }
+
+    }
+
+    public function getassetdetail(Request $request) {
+
+        $requestData = (object) $request; 
+
+        try {
+
+            $asset = DB::table('fms_g9_asset_detail')->get();
+            
+            $formattedPromotions = [];
+            foreach ($asset as $data) {
+
+                $formattedPromotions[] = [
+
+                    
+                    'Asset_ID'        => $data->Asset_ID,
+                    'Asset_Name'      => $data->Asset_Name,
+                    'Description'     => $data->Description,
+                    'Purchase_Date'   => $data->Purchase_Date,
+                    'Purchase_Price'  => $data->Purchase_Price,
+                    'Current_Value'   => $data->Current_Value,
+                    'Asset_Category'  => $data->Asset_Category,
+                    'Asset_Type'      => $data->Asset_Type,
+                    
+                ];
+
+            }
+
+            return response()->json($formattedPromotions);
+        
+        } catch (\Exception $e) {
+
+            return response()->json(['error' => 'An error occurred while processing the request.'], 500);
+
+        }
+
+    }
 
     public function getassetdepreciation(Request $request){
        
         $requestData = (object) $request; 
 
 
-            
+       
+
+
+        try {
+
+                 
         $id ="";
   
         $usersQuery = DB::table('fms_g9_asset_empdepreciation')
@@ -212,11 +417,6 @@ class SuperadminController extends Controller
             
 
         }
-
-
-        try {
-
-            
 
             return response()->json($formattedPromotions);
 

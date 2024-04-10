@@ -57,8 +57,13 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::GET('/messaging',                       [App\Http\Controllers\SuperadminController::class, 'messaging'])          ->name('messaging');
     Route::GET('/company',                         [App\Http\Controllers\SuperadminController::class, 'company'])            ->name('company');
     Route::GET('/employee',                        [App\Http\Controllers\SuperadminController::class, 'employee'])           ->name('employee');           
-    Route::GET('/tax-calculation',                 [App\Http\Controllers\SuperadminController::class, 'taxcalculationIndex'])     ->name('taxcalculation');
+    Route::GET('/tax-calculation',                 [App\Http\Controllers\SuperadminController::class, 'taxcalculationIndex'])        ->name('taxcalculation');
     Route::GET('/asset/depreciation',              [App\Http\Controllers\SuperadminController::class, 'assetdepreciationIndex'])     ->name('assetdepreciation');
+    Route::GET('/asset/details',                   [App\Http\Controllers\SuperadminController::class, 'assetdetailIndex'])           ->name('assetdetail');
+    Route::GET('/asset/locations',                 [App\Http\Controllers\SuperadminController::class, 'assetlocationIndex'])         ->name('assetlocation');
+    Route::GET('/asset/status',                    [App\Http\Controllers\SuperadminController::class, 'assetstatusIndex'])           ->name('assetstatus');
+    Route::GET('/asset/maintenance',               [App\Http\Controllers\SuperadminController::class, 'assetmaintenanceIndex'])      ->name('assetmaintenance');
+    Route::GET('/asset/transaction',               [App\Http\Controllers\SuperadminController::class, 'assettransactionIndex'])      ->name('assettransaction');
 
 
 
@@ -72,11 +77,20 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::GET('/getusersdesc',                    [App\Http\Controllers\SuperadminController::class, 'getusersdesc'])                 ->name('getusersdesc');
     Route::GET('/getTaxes',                        [App\Http\Controllers\SuperadminController::class, 'getTaxes'])                     ->name('getTaxes');    
     Route::GET('/getAssetInventory',               [App\Http\Controllers\SuperadminController::class, 'getAssetInventory'])            ->name('getAssetInventory');      
+    Route::GET('/getassetdetail',                  [App\Http\Controllers\SuperadminController::class, 'getassetdetail'])               ->name('getassetdetail');
+    Route::GET('/getassetlocation',                [App\Http\Controllers\SuperadminController::class, 'getassetlocation'])             ->name('getassetlocation');
+    Route::GET('/getassetstatus',                  [App\Http\Controllers\SuperadminController::class, 'getassetstatus'])               ->name('getassetstatus');
+    Route::GET('/getassetmaintenance',             [App\Http\Controllers\SuperadminController::class, 'getassetmaintenance'])          ->name('getassetmaintenance');
+    Route::GET('/getassettransaction',             [App\Http\Controllers\SuperadminController::class, 'getassettransaction'])          ->name('getassettransaction');
+
+
+
 
     Route::GET('/getdepreciation',                 [App\Http\Controllers\SuperadminController::class, 'getdepreciation'])              ->name('getdepreciation'); 
     Route::GET('/getassetdepreciation',            [App\Http\Controllers\SuperadminController::class, 'getassetdepreciation'])         ->name('getassetdepreciation');             
     Route::POST('/recompute',                      [App\Http\Controllers\RecomputeAssetController::class, 'recdepreciation'])          ->name('recompute');
     Route::POST('/cmpassetdepreciation',           [App\Http\Controllers\SuperadminController::class, 'cmpassetdepreciation'])         ->name('cmpassetdepreciation');
+    
 
     Route::POST('/report',                         [App\Http\Controllers\SuperadminController::class, 'generateReport'])                       ->name('report');
                    
