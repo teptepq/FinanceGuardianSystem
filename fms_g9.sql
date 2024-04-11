@@ -971,7 +971,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_assetcategories` (
   `CategoryID` int NOT NULL,
   `CategoryName` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`CategoryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_assetcategories: ~20 rows (approximately)
 INSERT INTO `fms_g9_assetcategories` (`CategoryID`, `CategoryName`) VALUES
@@ -1013,7 +1013,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_assets` (
   KEY `CategoryID` (`CategoryID`),
   CONSTRAINT `fms_g9_assets_ibfk_1` FOREIGN KEY (`DepreciationMethodID`) REFERENCES `fms_g9_depreciationmethods` (`MethodID`),
   CONSTRAINT `fms_g9_assets_ibfk_2` FOREIGN KEY (`CategoryID`) REFERENCES `fms_g9_assetcategories` (`CategoryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_assets: ~20 rows (approximately)
 INSERT INTO `fms_g9_assets` (`AssetID`, `AssetName`, `AcquisitionDate`, `InitialCost`, `UsefulLifeInYears`, `SalvageValue`, `DepreciationMethod`, `DepreciationMethodID`, `DepreciationExpense`, `CategoryID`) VALUES
@@ -1023,7 +1023,7 @@ INSERT INTO `fms_g9_assets` (`AssetID`, `AssetName`, `AcquisitionDate`, `Initial
 	(4, 'Production Machine', '2021-12-20', 50000.00, 10, 5000.00, 'Straight-Line', 1, NULL, 4),
 	(5, 'Laptop', '2024-02-28', 1200.00, 3, 100.00, 'Straight-Line', 1, 366.67, 1),
 	(6, 'Desk', '2022-09-01', 300.00, 10, 50.00, 'Straight-Line', 1, 0.00, 7),
-	(7, 'Building A', '2020-01-01', 500000.00, 50, 50000.00, 'Straight-Line', 1, 0.00, 8),
+	(7, 'Building A', '2020-01-01', 500000.00, 50, 50000.00, 'Straight-Line', 1, 9000.00, 8),
 	(8, 'Land Plot', '2019-06-01', 1000000.00, -1, 0.00, 'N/A', NULL, NULL, 9),
 	(9, 'Forklift', '2023-07-15', 35000.00, 7, 3000.00, 'Straight-Line', 1, NULL, 13),
 	(10, 'Microscope', '2022-04-10', 8000.00, 10, 1000.00, 'Straight-Line', 1, NULL, 11),
@@ -1032,7 +1032,7 @@ INSERT INTO `fms_g9_assets` (`AssetID`, `AssetName`, `AcquisitionDate`, `Initial
 	(13, 'Grand Piano', '2022-12-01', 25000.00, 30, 5000.00, 'Straight-Line', 1, NULL, 15),
 	(14, 'Oil Painting', '2019-03-05', 5000.00, 50, 500.00, 'Straight-Line', 1, NULL, 16),
 	(15, 'Basketball Hoop', '2023-08-15', 1500.00, 8, 200.00, 'Straight-Line', 1, 162.50, 17),
-	(16, 'Bookshelf', '2022-02-20', 200.00, 15, 20.00, 'Straight-Line', 1, 0.00, 18),
+	(16, 'Bookshelf', '2022-02-20', 200.00, 15, 20.00, 'Straight-Line', 1, 12.00, 18),
 	(17, 'Industrial Oven', '2020-10-10', 10000.00, 12, 1000.00, 'Straight-Line', 1, NULL, 13),
 	(18, 'Chef Knife Set', '2023-05-01', 500.00, 5, 50.00, 'Straight-Line', 1, 0.00, 19),
 	(19, 'Surveillance Camera', '2022-11-10', 1000.00, 7, 100.00, 'Straight-Line', 1, NULL, 20),
@@ -1050,7 +1050,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_depreciation` (
   PRIMARY KEY (`depreciation_id`),
   KEY `asset_id` (`asset_id`),
   CONSTRAINT `fms_g9_asset_depreciation_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `asset_inventory` (`asset_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_depreciation: ~0 rows (approximately)
 
@@ -1076,7 +1076,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_detail` (
   `Last_Maintenance_Date` date DEFAULT NULL,
   `Next_Maintenance_Date` date DEFAULT NULL,
   PRIMARY KEY (`Asset_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_detail: ~14 rows (approximately)
 INSERT INTO `fms_g9_asset_detail` (`Asset_ID`, `Asset_Name`, `Description`, `Purchase_Date`, `Purchase_Price`, `Current_Value`, `Depreciation_Rate`, `Depreciation_Expense`, `Salvage_Value`, `Location`, `assetcondition`, `Maintenance_Schedule`, `Warranty_Expiry_Date`, `Depreciation_Method`, `Asset_Category`, `Asset_Type`, `Responsible_Person`, `Last_Maintenance_Date`, `Next_Maintenance_Date`) VALUES
@@ -1109,7 +1109,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_details` (
   `notes` text,
   PRIMARY KEY (`asset_id`),
   CONSTRAINT `fms_g9_asset_details_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `asset_inventory` (`asset_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_details: ~5 rows (approximately)
 INSERT INTO `fms_g9_asset_details` (`asset_id`, `warranty_start_date`, `warranty_end_date`, `serial_number`, `manufacturer`, `model`, `supplier`, `purchase_order_number`, `invoice_number`, `notes`) VALUES
@@ -1134,7 +1134,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_empdepreciation` (
   PRIMARY KEY (`id`),
   KEY `asset_id` (`asset_id`),
   CONSTRAINT `fms_g9_asset_empdepreciation_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `fms_g9_assets` (`AssetID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_empdepreciation: ~21 rows (approximately)
 INSERT INTO `fms_g9_asset_empdepreciation` (`id`, `asset_id`, `employeeid`, `depreciation_method`, `depreciation_result`, `depreciation_rate`, `depreciation_start_date`, `created_at`, `updated_at`, `original_cost`) VALUES
@@ -1177,7 +1177,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_inventory` (
   `next_maintenance_date` date DEFAULT NULL,
   `assigned_to` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`asset_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_inventory: ~5 rows (approximately)
 INSERT INTO `fms_g9_asset_inventory` (`asset_id`, `asset_name`, `description`, `category`, `acquisition_date`, `purchase_cost`, `current_value`, `location`, `status`, `depreciation_method`, `depreciation_rate`, `last_maintenance_date`, `next_maintenance_date`, `assigned_to`) VALUES
@@ -1198,7 +1198,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_location` (
   `Country` varchar(100) DEFAULT NULL,
   `Postal_Code` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`Location_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_location: ~20 rows (approximately)
 INSERT INTO `fms_g9_asset_location` (`Location_ID`, `Location_Name`, `Description`, `Address`, `City`, `State`, `Country`, `Postal_Code`) VALUES
@@ -1233,7 +1233,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_locations` (
   `state` varchar(100) DEFAULT NULL,
   `country` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`location_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_locations: ~5 rows (approximately)
 INSERT INTO `fms_g9_asset_locations` (`location_id`, `location_name`, `description`, `address`, `city`, `state`, `country`) VALUES
@@ -1255,7 +1255,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_maintenance` (
   PRIMARY KEY (`maintenance_id`),
   KEY `asset_id` (`asset_id`),
   CONSTRAINT `fms_g9_asset_maintenance_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `asset_inventory` (`asset_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_maintenance: ~3 rows (approximately)
 INSERT INTO `fms_g9_asset_maintenance` (`maintenance_id`, `asset_id`, `maintenance_date`, `maintenance_type`, `maintenance_description`, `maintenance_cost`, `maintenance_notes`) VALUES
@@ -1272,7 +1272,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_performance` (
   `performance_metric3` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`asset_id`),
   CONSTRAINT `fms_g9_asset_performance_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `asset_inventory` (`asset_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_performance: ~0 rows (approximately)
 
@@ -1282,7 +1282,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_status` (
   `status_name` varchar(50) NOT NULL,
   `description` text,
   PRIMARY KEY (`status_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_status: ~24 rows (approximately)
 INSERT INTO `fms_g9_asset_status` (`status_id`, `status_name`, `description`) VALUES
@@ -1323,7 +1323,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_transactions` (
   PRIMARY KEY (`transaction_id`),
   KEY `asset_id` (`asset_id`),
   CONSTRAINT `fms_g9_asset_transactions_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `asset_inventory` (`asset_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_transactions: ~0 rows (approximately)
 
@@ -1335,7 +1335,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_asset_utilization` (
   `last_utilization_date` date DEFAULT NULL,
   PRIMARY KEY (`asset_id`),
   CONSTRAINT `fms_g9_asset_utilization_ibfk_1` FOREIGN KEY (`asset_id`) REFERENCES `asset_inventory` (`asset_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_asset_utilization: ~0 rows (approximately)
 
@@ -1344,7 +1344,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_depreciationmethods` (
   `MethodID` int NOT NULL,
   `MethodName` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`MethodID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_depreciationmethods: ~3 rows (approximately)
 INSERT INTO `fms_g9_depreciationmethods` (`MethodID`, `MethodName`) VALUES
@@ -1362,7 +1362,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_financial_transaction` (
   `Transaction_Description` text,
   `amount` decimal(18,2) DEFAULT NULL,
   PRIMARY KEY (`transaction_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_financial_transaction: ~20 rows (approximately)
 INSERT INTO `fms_g9_financial_transaction` (`transaction_id`, `assetid`, `employeeid`, `transaction_type`, `transaction_date`, `Transaction_Description`, `amount`) VALUES
@@ -1399,7 +1399,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_financial_transactions` (
   PRIMARY KEY (`transaction_id`),
   KEY `assetid` (`assetid`),
   CONSTRAINT `fms_g9_financial_transactions_ibfk_1` FOREIGN KEY (`assetid`) REFERENCES `fms_g9_assets` (`AssetID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_financial_transactions: ~20 rows (approximately)
 INSERT INTO `fms_g9_financial_transactions` (`transaction_id`, `transaction_date`, `amount`, `transaction_type`, `assetid`, `employeeid`, `Transaction_Description`) VALUES
@@ -1436,7 +1436,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_taxrates` (
   `region` varchar(100) DEFAULT NULL,
   `tax_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`tax_rate_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_taxrates: ~5 rows (approximately)
 INSERT INTO `fms_g9_taxrates` (`tax_rate_id`, `tax_rate_name`, `rate_percentage`, `effective_from`, `effective_to`, `description`, `tax_authority`, `region`, `tax_type`) VALUES
@@ -1481,7 +1481,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_tblempsalary` (
   `SssDeduction` decimal(10,2) DEFAULT NULL,
   `PhilHealthDeduction` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`SalaryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_tblempsalary: ~20 rows (approximately)
 INSERT INTO `fms_g9_tblempsalary` (`SalaryID`, `employeeid`, `CutoffStartDate`, `CutoffEndDate`, `Salary`, `FixedSalary`, `PagIbigDeduction`, `SssDeduction`, `PhilHealthDeduction`) VALUES
@@ -1664,7 +1664,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_tbluserdescrip` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_tbluserdescrip: ~13 rows (approximately)
 INSERT INTO `fms_g9_tbluserdescrip` (`id`, `usertype`, `userdesc`, `created_at`, `updated_at`) VALUES
@@ -1688,7 +1688,7 @@ CREATE TABLE IF NOT EXISTS `fms_g9_transaction_tax_rates` (
   `tax_type` varchar(50) DEFAULT NULL,
   KEY `transaction_id` (`transaction_id`),
   CONSTRAINT `fms_g9_transaction_tax_rates_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `fms_g9_financial_transactions` (`transaction_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table 4thyeardb.fms_g9_transaction_tax_rates: ~20 rows (approximately)
 INSERT INTO `fms_g9_transaction_tax_rates` (`transaction_id`, `tax_type`) VALUES
