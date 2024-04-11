@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asset Location</title>
+    <title>Asset Depreciation</title>
 
     <style>
         @page {
@@ -25,16 +25,12 @@
         table {
             width: 100%;
             border-collapse: collapse;
-      
-        
-            
         }
 
         table, th, td {
             border: 1px solid black;
             padding: 8px;
             font-size: 12px;
-        
         }
 
         tr {
@@ -61,7 +57,7 @@
     {{-- @dd(url('assets/img/subhead.png')); --}}
     <div style="display: flex; align-items: center;">
         {{-- <h2>Crystal Report</h2> --}}
-        <h2>Asset Location Report</h2>
+        <h2>Asset Depreciation Report</h2>
         {{-- <img src="{{ url('assets/img/subhead.png') }}" alt="Crystal Report" style="width: 100px; height: auto; margin-right: 80px;" > --}}
     </div>  
     <table>
@@ -75,27 +71,44 @@
             </tr> --}}
             {{-- SIDE MANAGE TAX AND CALCULATE  --}}
             <tr>
-                <th class="header">Location Name</th>
-                <th class="header">Description</th>
-                <th class="header">Address</th>
-                <th class="header">City</th>
-                <th class="header">State</th>
-                <th class="header">Country</th>
-                <th class="header">Postal Code</th>
+                {{-- <th class="header">Maintenance ID</th> --}}
+                <th class="header">Asset ID</th>
+                <th class="header">Employee ID</th>
+                <th class="header">Depreciation Method</th>
+                <th class="header">Depreciation Result</th>
+                <th class="header">Depreciation Rate</th>
+                <th class="header">Depreciation Start Date</th>
+                <th class="header">Original Cost</th>
             </tr>
          
         </thead>
         <tbody>
             @foreach($users as $key =>$data)
             <tr>
+                {{-- 'Asset_ID'        => $data->Asset_ID,
+                    'Asset_Name'      => $data->Asset_Name,
+                    'Description'     => $data->Description,
+                    'Purchase_Date'   => $data->Purchase_Date,
+                    'Purchase_Price'  => $data->Purchase_Price,
+                    'Current_Value'   => $data->Current_Value,
+                    'Asset_Category'  => $data->Asset_Category,
+                    'Asset_Type'      => $data->Asset_Type, --}}
+                    
                 {{-- {{ dd($data) }} --}}
-                <td style="text-align: left">{{ $data->Location_Name }}</td>
-                <td style="text-align: left">{{ $data->Description }}</td>
-                <td style="text-align: left">{{ $data->Address }}</td>
-                <td style="text-align: left">{{ $data->City }}</td>
-                <td style="text-align: center">{{ $data->State }}</td>
-                <td style="text-align: center">{{ $data->Country }}</td>
-                <td style="text-align: center"> {{ $data->Postal_Code }}</td>
+
+                @php
+                $timestamp = strtotime($data->depreciation_start_date);
+                $formattedDate = date("F j, Y", $timestamp);
+
+                @endphp
+
+                <td style="text-align: center">{{ $data->asset_id }}</td>
+                <td style="text-align: center">{{ $data->employeeid }}</td>
+                <td style="text-align: left">{{ $data->depreciation_method }}</td>
+                <td style="text-align: center">{{ $data->depreciation_result }}</td>
+                <td style="text-align: center">{{ $data->depreciation_rate }}</td>
+                <td style="text-align: left">{{ $formattedDate }}</td>
+                <td style="text-align: left"> {{ $data->original_cost }}</td>
             </tr>
             @endforeach
         </tbody>

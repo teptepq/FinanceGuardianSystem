@@ -45,10 +45,10 @@
                                         <button class="btn btn-primary" type="button" style="font-size: 0.90rem" value="assetmaintenance" id="maintenance">Asset Maintenance</button>
                                     </div>
                                     <div class="d-grid gap-2 mt-3">
-                                        <button class="btn btn-primary" type="button" style="font-size: 0.90rem" value="assettagging" id="tagging">Asset Tagging</button>
+                                        <button class="btn btn-primary" type="button" style="font-size: 0.90rem" value="assettagging" id="tagging">Asset Employee Tagging</button>
                                     </div>
                                     <div class="d-grid gap-2 mt-3">
-                                        <button class="btn btn-primary" type="button" style="font-size: 0.90rem" value="assetdepreciation" id="dep">Asset Depreciation</button>
+                                        <button class="btn btn-primary" type="button" style="font-size: 0.90rem" value="assetdepreciation" id="dep">Asset Employee Depreciation</button>
                                     </div>
                                     <div class="d-grid gap-2 mt-3">
                                         <button class="btn btn-primary" type="button" style="font-size: 0.90rem" value="assettransaction" id="transac">Asset Transactions</button>

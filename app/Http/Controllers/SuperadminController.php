@@ -396,10 +396,6 @@ class SuperadminController extends Controller
        
         $requestData = (object) $request; 
 
-
-       
-
-
         try {
 
                  
@@ -751,6 +747,14 @@ class SuperadminController extends Controller
             case 'assetmaintenance':
                 return $this->assetMaintenance();
                 break; 
+            case 'assetdepreciation':
+                return $this->assetDepreciation();
+                break; 
+            case 'Depreciation':
+                return $this->depreciationCalcu();
+                break; 
+            
+
                 
 
         }
@@ -886,4 +890,61 @@ class SuperadminController extends Controller
         return $response;
 
     }
+
+    private function assetDepreciation(){
+
+        $users = DB::table('fms_g9_asset_empdepreciation')->get(); 
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+
+        $html = view('reports.depreciationreport',compact('users'))->render();
+        $dompdf->loadHtml($html);
+
+        $dompdf->render();
+
+        // Generate the PDF content as a string
+        $pdfContent = $dompdf->output();
+
+        // Set the appropriate headers for PDF download
+        $response = Response::make($pdfContent, 200);
+        $response->header('Content-Type', 'application/pdf');
+        $response->header('Content-Disposition', 'inline; filename="document.pdf"');
+
+        return $response;
+
+    }
+
+    private function depreciationCalcu(){
+
+        $users = DB::table('fms_g9_assets')->get(); 
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+
+        $html = view('reports.depreciationcalcureport',compact('users'))->render();
+        $dompdf->loadHtml($html);
+
+        $dompdf->render();
+
+        // Generate the PDF content as a string
+        $pdfContent = $dompdf->output();
+
+        // Set the appropriate headers for PDF download
+        $response = Response::make($pdfContent, 200);
+        $response->header('Content-Type', 'application/pdf');
+        $response->header('Content-Disposition', 'inline; filename="document.pdf"');
+
+        return $response;
+
+    }
+
+
+    
+
+    
 }
