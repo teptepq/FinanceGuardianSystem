@@ -196,29 +196,40 @@ class SuperadminController extends Controller
     public function getassettransaction(Request $request) {
 
         $requestData = (object) $request; 
-
+        
+ 
         try {
 
-            $asset = DB::table('fms_g9_asset_transaction')->get();
-            
-            $formattedPromotions = [];
-            foreach ($asset as $data) {
-
-                $assetname = DB::table('fms_g9_assets')->select('AssetName')->where('AssetID',$data->asset_id)->first();
+            $asset = DB::table('fms_g9_financial_transaction')->get();
+                    
+                $formattedPromotions = [];
+                foreach ($asset as $data) {
                 
-                $formattedPromotions[] = [
-                    
-                    'maintenance_id'             => $data->maintenance_id,
-                    'asset_id'                   => $assetname->AssetName,
-                    'maintenance_date'           => $data->maintenance_date,
-                    'maintenance_type'           => $data->maintenance_type,
-                    'maintenance_description'    => $data->maintenance_description,
-                    'maintenance_cost'           => $data->maintenance_cost,
-                    'maintenance_notes'          => $data->maintenance_notes,
-                    
-                ];
+                    $assetname = DB::table('fms_g9_assets')->select('AssetName')->where('AssetID',$data->assetid)->first();
+                    // dd($assetname);
+                    // $date = new DateTime($data->transaction_date);
+                    // $formatted_date = $date->format("F j, Y");
 
-            }
+                    
+                $timestamp = strtotime($data->transaction_date);
+                $formattedDate = date("F j, Y", $timestamp);
+           
+
+      
+                    $formattedPromotions[] = [
+                        
+                        'transaction_id'                   => $data->transaction_id,
+                        'assetid'                          => $assetname->AssetName ?? '',
+                        'employeeid'                       => $data->employeeid,
+                        'transaction_type'                 => $data->transaction_type,
+                        'transaction_date'                 => $formattedDate,
+                        'Transaction_Description'           => $data->Transaction_Description,
+                        'amount'                           => $data->amount,
+                        
+                    ];
+
+                }
+           
 
             return response()->json($formattedPromotions);
         

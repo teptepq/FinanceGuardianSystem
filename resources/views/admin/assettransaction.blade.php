@@ -104,7 +104,7 @@
     <div class="modal-dialog modal-xl">
     <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Extra Large Modal</h5>
+          {{-- <h5 class="modal-title">Extra Large Modal</h5> --}}
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -143,8 +143,8 @@
    
    <!-- Brief Description of the Module -->
    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-    <h4 class="alert-heading" style="font-size: 1rem;">Asset Status Overview</h4>
-    <p style="font-size: 0.8rem; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Provides a comprehensive overview of the lifecycle of assets, encompassing statuses such as Active, Inactive, Under Maintenance, Disposed, and Lost or Stolen, among others. Each status entry is accompanied by a descriptive explanation, detailing the specific condition or situation associated with the asset at that point in time.  </p>
+    <h4 class="alert-heading" style="font-size: 1rem;">Asset Transaction Overview</h4>
+    <p style="font-size: 0.8rem; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"> Provides a comprehensive view of all transactions related to assets within an organization. It encompasses the acquisition, disposal, transfer, and depreciation of assets, facilitating transparent and efficient asset management. This overview captures key details such as asset identification, transaction dates, transaction types, and associated financial values. By centralizing asset transaction data, organizations gain insights into asset lifecycles, usage patterns, and financial implications.</p>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 </br>
@@ -180,7 +180,7 @@
                  
                         <div class="form-floating mb-3">
                             <select class="form-select" id="acat" name="acat" aria-label="Floating label select example">
-                                <option value="" selected>- All Locations -</option>
+                                <option value="" selected>- All Employee -</option>
                                 @foreach($options as $CategoryID => $CategoryName)
                                 <option value='{{ $CategoryID }}'>{{ $CategoryName }}</option>
                                 @endforeach
@@ -198,12 +198,12 @@
                         
                         <div class="form-floating mb-3">
                             <select class="form-select" id="amethod" name="amethod" aria-label="Floating label select example">
-                                <option value="" selected>- All Postal -</option>
+                                <option value="" selected>- All Assets -</option>
                                 @foreach($optmethod as $MethodID => $MethodName)
                                 <option value='{{ $MethodID }}'>{{ $MethodName }}</option>
                                 @endforeach
                             </select>
-                            <label for="floatingSelect">Postal</label>
+                            <label for="floatingSelect">Assets</label>
                         </div>
                     </div>
 
@@ -247,8 +247,12 @@
                 <thead>
                   <tr>
                     <th class="custom-tr-size ">#</th>
-                    <th class="custom-tr-size ">Asset Status</th>
-                    <th class="custom-tr-size ">Description</th>
+                    <th class="custom-tr-size ">Assets</th>
+                    <th class="custom-tr-size ">Employee</th>
+                    <th class="custom-tr-size ">Transaction Type</th>
+                    <th class="custom-tr-size ">Transaction Date</th>
+                    <th class="custom-tr-size ">Transaction Description</th>
+                    <th class="custom-tr-size ">Amount</th>
                     {{-- <th>Action</th> --}}
                   </tr>
                 </thead>
@@ -283,13 +287,14 @@
 
 
 $(document).ready(function(e){
-     
+
+                    
         
      const assetdetailtable = $('#dynamic_detail').DataTable({
          
                scrollX: true,
                ajax: {
-                   url: "{{ route('getassetstatus') }}",
+                   url: "{{ route('getassettransaction') }}",
                    dataSrc: "",
                  //   data: function(d) {
                  //       d.amethod = $('#amethod').val();
@@ -300,9 +305,13 @@ $(document).ready(function(e){
                    }
                },
                columns: [
-                   { data: "Status_ID", className: "text-left custom-font-size" },
-                   { data: "Status_Name", className: "text-left custom-font-size" },
-                   { data: "Description",className: "text-left custom-font-size" },
+                   { data: "transaction_id", className: "text-left custom-font-size" },
+                   { data: "assetid", className: "text-left custom-font-size" },
+                   { data: "employeeid",className: "text-left custom-font-size" },
+                   { data: "transaction_type",className: "text-left custom-font-size" },
+                   { data: "transaction_date",className: "text-left custom-font-size" },
+                   { data: "Transaction_Description",className: "text-left custom-font-size" },
+                   { data: "amount",className: "text-left custom-font-size" },
                
                  //   {
                  //       data: null,
