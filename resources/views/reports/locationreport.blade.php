@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asset Status</title>
+    <title>Asset Location</title>
 
     <style>
         @page {
@@ -56,7 +56,7 @@
     {{-- @dd(url('assets/img/subhead.png')); --}}
     <div style="display: flex; align-items: center;">
         {{-- <h2>Crystal Report</h2> --}}
-        <h2>Asset Status Report</h2>
+        <h2>Asset Location Report</h2>
         {{-- <img src="{{ url('assets/img/subhead.png') }}" alt="Crystal Report" style="width: 100px; height: auto; margin-right: 80px;" > --}}
     </div>  
     <table>
@@ -70,18 +70,27 @@
             </tr> --}}
             {{-- SIDE MANAGE TAX AND CALCULATE  --}}
             <tr>
-                <th class="header">Asset No.</th>
-                <th class="header">Asset Name</th>
+                <th class="header">Location Name</th>
                 <th class="header">Description</th>
+                <th class="header">Address</th>
+                <th class="header">City</th>
+                <th class="header">State</th>
+                <th class="header">Country</th>
+                <th class="header">Postal Code</th>
             </tr>
          
         </thead>
         <tbody>
             @foreach($users as $key =>$data)
             <tr>
-                <td style="text-align: center">{{ $data->status_id }}</td>
-                <td style="text-align: left">{{ $data->status_name }}</td>
-                <td style="text-align: left"> {{ $data->description }}</td>
+                {{-- {{ dd($data) }} --}}
+                <td style="text-align: left">{{ $data->Location_Name }}</td>
+                <td style="text-align: left">{{ $data->Description }}</td>
+                <td style="text-align: left">{{ $data->Address }}</td>
+                <td style="text-align: left">{{ $data->City }}</td>
+                <td style="text-align: center">{{ $data->State }}</td>
+                <td style="text-align: center">{{ $data->Country }}</td>
+                <td style="text-align: center"> {{ $data->Postal_Code }}</td>
             </tr>
             @endforeach
         </tbody>

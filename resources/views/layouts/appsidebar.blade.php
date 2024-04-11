@@ -5,6 +5,15 @@
 
   // dd(Auth::user());
 ?>
+
+<!-- Extra Large Modal -->
+{{-- <button type="button" class="btn btn-primary" >
+  Extra Large Modal
+</button> --}}
+
+@include('asset.report')
+
+
 <div class="modal fade" id="ExtralargeModalInventory" tabindex="-1">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
@@ -254,7 +263,7 @@
     </li> --}}
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="">
+      <a class="nav-link collapsed" href="" data-bs-toggle="modal" data-bs-target="#ExtralargeModalReport">
         <i class="bi bi-files"></i>
         <span style="font-size: 0.8rem;">Reports and Analytics</span>
       </a>
@@ -287,12 +296,12 @@
       @if(!Auth::user()->usertype == '3' || !Auth::user()->isSuper == '1' )
       <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="components-alerts.html">
+          <a href="">
             <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Messaging</span>
           </a>
         </li>
         <li>
-          <a href="components-badges.html">
+          <a href="">
             <i class="bi bi-circle"></i><span style="font-size: 0.8rem;">Company File</span>
           </a>
         </li> 

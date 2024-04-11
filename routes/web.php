@@ -56,7 +56,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::GET('/announcement',                    [App\Http\Controllers\SuperadminController::class, 'announcement'])       ->name('announcement');
     Route::GET('/messaging',                       [App\Http\Controllers\SuperadminController::class, 'messaging'])          ->name('messaging');
     Route::GET('/company',                         [App\Http\Controllers\SuperadminController::class, 'company'])            ->name('company');
-    Route::GET('/employee',                        [App\Http\Controllers\SuperadminController::class, 'employee'])           ->name('employee');           
+    Route::GET('/employee',                        [App\Http\Controllers\SuperadminController::class, 'employee'])           ->name('employee');       
+    Route::GET('/reports',                         [App\Http\Controllers\SuperadminController::class, 'reportIndex'])       ->name('reports');    
     Route::GET('/tax-calculation',                 [App\Http\Controllers\SuperadminController::class, 'taxcalculationIndex'])        ->name('taxcalculation');
     Route::GET('/asset/depreciation',              [App\Http\Controllers\SuperadminController::class, 'assetdepreciationIndex'])     ->name('assetdepreciation');
     Route::GET('/asset/details',                   [App\Http\Controllers\SuperadminController::class, 'assetdetailIndex'])           ->name('assetdetail');
@@ -82,6 +83,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::GET('/getassetstatus',                  [App\Http\Controllers\SuperadminController::class, 'getassetstatus'])               ->name('getassetstatus');
     Route::GET('/getassetmaintenance',             [App\Http\Controllers\SuperadminController::class, 'getassetmaintenance'])          ->name('getassetmaintenance');
     Route::GET('/getassettransaction',             [App\Http\Controllers\SuperadminController::class, 'getassettransaction'])          ->name('getassettransaction');
+
+    ROUTE::POST('/reportidx',                      [App\Http\Controllers\SuperadminController::class, 'reportidx'])                    ->name('reportidx');
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,9 @@ use Faker\Factory as Faker;
 use App\Models\User;
 use Laravel\Ui\Presets\React;
 use Termwind\Components\Raw;
+use PDF;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class SuperadminController extends Controller
 {
@@ -25,6 +29,10 @@ class SuperadminController extends Controller
         // $this->middleware('admin');
         // $this->middleware('manager');
         // $this->middleware('superadmin');
+    }
+    
+    public function reportIndex() {
+        return view('admin.assetreport');
     }
     
     public function assettransactionIndex() {
@@ -719,6 +727,163 @@ class SuperadminController extends Controller
 
         return $sql->userdesc;
 
+
+    }
+
+    public function reportidx(Request $request){
+        // dd($request->all());
+        $requestData = (object) $request;
+
+        // dd($requestData);
+        switch ($requestData['sjob']){
+            case 'assetstatus':
+                return $this->assetstatus();
+                break;
+            case 'assetlocations':
+                return $this->assetlocations();
+                break;
+            case 'assetdetails':
+                return $this->assetDetails();
+                break;    
+            case 'assettransaction':
+                return $this->assetTransaction();
+                break; 
+            case 'assetmaintenance':
+                return $this->assetMaintenance();
+                break; 
+                
+
+        }
+    }
+
+    private function assetstatus(){
+
+        $users = DB::table('fms_g9_asset_status')->get(); 
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+
+        $html = view('reports.user_report',compact('users'))->render();
+        $dompdf->loadHtml($html);
+
+        $dompdf->render();
+
+        // Generate the PDF content as a string
+        $pdfContent = $dompdf->output();
+
+        // Set the appropriate headers for PDF download
+        $response = Response::make($pdfContent, 200);
+        $response->header('Content-Type', 'application/pdf');
+        $response->header('Content-Disposition', 'inline; filename="document.pdf"');
+
+        return $response;
+
+    }
+
+    private function assetlocations(){
+
+        $users = DB::table('fms_g9_asset_location')->get(); 
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+
+        $html = view('reports.locationreport',compact('users'))->render();
+        $dompdf->loadHtml($html);
+
+        $dompdf->render();
+
+        // Generate the PDF content as a string
+        $pdfContent = $dompdf->output();
+
+        // Set the appropriate headers for PDF download
+        $response = Response::make($pdfContent, 200);
+        $response->header('Content-Type', 'application/pdf');
+        $response->header('Content-Disposition', 'inline; filename="document.pdf"');
+
+        return $response;
+
+    }
+    
+    private function assetDetails(){
+
+        $users = DB::table('fms_g9_asset_detail')->get(); 
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+
+        $html = view('reports.detailsreport',compact('users'))->render();
+        $dompdf->loadHtml($html);
+
+        $dompdf->render();
+
+        // Generate the PDF content as a string
+        $pdfContent = $dompdf->output();
+
+        // Set the appropriate headers for PDF download
+        $response = Response::make($pdfContent, 200);
+        $response->header('Content-Type', 'application/pdf');
+        $response->header('Content-Disposition', 'inline; filename="document.pdf"');
+
+        return $response;
+
+    }
+
+    private function assetTransaction(){
+
+        $users = DB::table('fms_g9_financial_transaction')->get(); 
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+
+        $html = view('reports.transactionreport',compact('users'))->render();
+        $dompdf->loadHtml($html);
+
+        $dompdf->render();
+
+        // Generate the PDF content as a string
+        $pdfContent = $dompdf->output();
+
+        // Set the appropriate headers for PDF download
+        $response = Response::make($pdfContent, 200);
+        $response->header('Content-Type', 'application/pdf');
+        $response->header('Content-Disposition', 'inline; filename="document.pdf"');
+
+        return $response;
+
+    }
+
+
+    private function assetMaintenance(){
+
+        $users = DB::table('fms_g9_asset_maintenance')->get(); 
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+
+        $html = view('reports.maintenancereport',compact('users'))->render();
+        $dompdf->loadHtml($html);
+
+        $dompdf->render();
+
+        // Generate the PDF content as a string
+        $pdfContent = $dompdf->output();
+
+        // Set the appropriate headers for PDF download
+        $response = Response::make($pdfContent, 200);
+        $response->header('Content-Type', 'application/pdf');
+        $response->header('Content-Disposition', 'inline; filename="document.pdf"');
+
+        return $response;
 
     }
 }

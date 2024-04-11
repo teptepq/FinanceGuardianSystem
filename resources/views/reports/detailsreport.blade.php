@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asset Status</title>
+    <title>Asset Details</title>
 
     <style>
         @page {
@@ -30,6 +30,7 @@
         table, th, td {
             border: 1px solid black;
             padding: 8px;
+            font-size: 12px;
         }
 
         tr {
@@ -56,7 +57,7 @@
     {{-- @dd(url('assets/img/subhead.png')); --}}
     <div style="display: flex; align-items: center;">
         {{-- <h2>Crystal Report</h2> --}}
-        <h2>Asset Status Report</h2>
+        <h2>Asset Details Report</h2>
         {{-- <img src="{{ url('assets/img/subhead.png') }}" alt="Crystal Report" style="width: 100px; height: auto; margin-right: 80px;" > --}}
     </div>  
     <table>
@@ -70,18 +71,43 @@
             </tr> --}}
             {{-- SIDE MANAGE TAX AND CALCULATE  --}}
             <tr>
-                <th class="header">Asset No.</th>
                 <th class="header">Asset Name</th>
                 <th class="header">Description</th>
+                <th class="header">Asset Category</th>
+                <th class="header">Asset Type</th>
+                <th class="header">Purchase Date</th>
+                <th class="header">Purchase Price</th>
+                <th class="header">Current Value</th>
             </tr>
          
         </thead>
         <tbody>
             @foreach($users as $key =>$data)
             <tr>
-                <td style="text-align: center">{{ $data->status_id }}</td>
-                <td style="text-align: left">{{ $data->status_name }}</td>
-                <td style="text-align: left"> {{ $data->description }}</td>
+                {{-- 'Asset_ID'        => $data->Asset_ID,
+                    'Asset_Name'      => $data->Asset_Name,
+                    'Description'     => $data->Description,
+                    'Purchase_Date'   => $data->Purchase_Date,
+                    'Purchase_Price'  => $data->Purchase_Price,
+                    'Current_Value'   => $data->Current_Value,
+                    'Asset_Category'  => $data->Asset_Category,
+                    'Asset_Type'      => $data->Asset_Type, --}}
+                    
+                {{-- {{ dd($data) }} --}}
+
+                @php
+                $timestamp = strtotime($data->Purchase_Date);
+                $formattedDate = date("F j, Y", $timestamp);
+
+                @endphp
+
+                <td style="text-align: left">{{ $data->Asset_Name }}</td>
+                <td style="text-align: left">{{ $data->Description }}</td>
+                <td style="text-align: left">{{ $data->Asset_Category }}</td>
+                <td style="text-align: left">{{ $data->Asset_Type }}</td>
+                <td style="text-align: center">{{ $formattedDate }}</td>
+                <td style="text-align: center">{{ $data->Purchase_Price }}</td>
+                <td style="text-align: center"> {{ $data->Current_Value }}</td>
             </tr>
             @endforeach
         </tbody>
