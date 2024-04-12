@@ -175,7 +175,7 @@
               </div>
             </div> --}}
             <div class="row">
-                    <div class="col-lg-6">
+                    {{-- <div class="col-lg-6">
                     
                  
                         <div class="form-floating mb-3">
@@ -205,7 +205,7 @@
                             </select>
                             <label for="floatingSelect">Assets</label>
                         </div>
-                    </div>
+                    </div> --}}
 
                   
                 
@@ -236,8 +236,8 @@
             <div class="row">
               <div class="col-lg-12" style="text-align: right">
                 {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModalForceRecompute">Recompute Asset Depreciation</button> --}}
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Extralargedep"><i class="bi bi-plus-circle"></i></button>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalGenerate"><i class="bi bi-filetype-pdf"></i></button>
+                {{-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Extralargedep"><i class="bi bi-plus-circle"></i></button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalGenerate"><i class="bi bi-filetype-pdf"></i></button> --}}
               </div>
             </div>
          

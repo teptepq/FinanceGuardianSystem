@@ -77,52 +77,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <br/>
-                <div class="card">
-                    <br/>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="form-floating mb-3">
-                                  <p class="card-title" style="font-size: 1rem">Filters</p>
-                                    {{-- <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                      <option selected>Open this select menu</option>
-                                      <option value="1">One</option>
-                                      <option value="2">Two</option>
-                                      <option value="3">Three</option>
-                                    </select>
-                                    <label for="floatingSelect">Works with selects</label> --}}
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="form-floating mb-3">
-                                    <select class="form-select" id="selRoler" aria-label="Floating label select example">
-                                        <option value="" selected>- All Tax -</option>
-                                        @foreach($options as $code => $desc)
-                                        <option value='{{ $code }}'>{{ $desc }}</option>
-                                        @endforeach
-                                    </select>
-                                    <label for="floatingSelect">Tax Type</label>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="row">
-                                    <div class="col-lg-6" data-bs-toggle="modal" data-bs-target="#AddRoleModal">
-                                        <div class="d-grid gap-2 mt-2">
-                                            <button type="button" class="btn btn-danger rounded-pill" id="areload">Add Tax</button>
-                                        </div>
-                                    </div>
-                                    <br/>
-                                    <br/>
-                                    <div class="col-lg-6" data-bs-toggle="modal" data-bs-target="#AddTaxModal">
-                                        <div class="d-grid gap-2 mt-2">
-                                            <button type="button" class="btn btn-primary rounded-pill">Add Tax Rate</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="card">
                 <div class="card-body">
                     <br/>
@@ -137,7 +92,7 @@
                         <th>Tax Rate Name</th>
                         <th>Tax Description</th>
                         <th>Rate Percentage</th>
-                        <th>Actions</th>
+                        {{-- <th>Actions</th> --}}
                         </tr>
                     </thead>
                     </table>
@@ -178,12 +133,12 @@
                 { data: "taxname", className: "text-left custom-font-size" },
                 { data: "description", className: "text-left custom-font-size" },
                 { data: "percent",className: "text-center custom-font-size" },
-                {
-                    data: null,
-                    className: "text-center custom-font-size"
+                // {
+                //     data: null,
+                //     className: "text-center custom-font-size"
                     
                     
-                }
+                // }
             ],
             // Other DataTables configurations...
         });

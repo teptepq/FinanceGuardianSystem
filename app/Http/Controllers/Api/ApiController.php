@@ -37,7 +37,7 @@ class ApiController extends Controller
     {
         try{
 
-            $details = DB::table('fms_g9_assets_details')->get();
+            $details = DB::table('fms_g9_asset_details')->get();
             return response()->json(['details' => $details], Response::HTTP_OK);
 
         } catch (QueryException $e) {

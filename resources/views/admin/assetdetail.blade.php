@@ -1,8 +1,8 @@
 <?php
 
     $accessibleFilter = new App\Classes\AccessibleFilterClass ;
-    $options   = DB::table('fms_g9_assetcategories')->pluck('CategoryName','CategoryID');
-    $optmethod = DB::table('fms_g9_depreciationmethods')->pluck('MethodName','MethodID');
+    $options   = DB::table('fms_g9_assetcategories')->pluck('CategoryName','CategoryName');
+    $optmethod = DB::table('fms_g9_depreciationmethods')->pluck('MethodName','MethodName');
     $collect   = $accessibleFilter->employeedata();
     $position  = $accessibleFilter->positionDesc(Auth::user()->usertype);
 
@@ -134,7 +134,7 @@
 
                     <div class="col-lg-2">
                         <div class="form-floating mb-3">
-                            <input type="date" class="form-control" aria-label="Floating label select example">
+                            <input type="date" class="form-control" id=datefrom name="datefrom" aria-label="Floating label select example">
                             <label for="floatingSelect">Date From</label>
                         </div>   
                     </div>
@@ -146,7 +146,7 @@
                                 <option value='{{ $CategoryID }}'>{{ $CategoryName }}</option>
                                 @endforeach
                             </select> --}} 
-                            <input type="date" class="form-control" aria-label="Floating label select example">
+                            <input type="date" name="dateto" id="dateto" class="form-control" aria-label="Floating label select example">
                             <label for="floatingSelect">Date to</label>
                         </div>   
                     </div>
@@ -221,7 +221,13 @@
 
 
 $(document).ready(function(e){
-     
+      
+
+      $('#acat,#amethod').on('change',function(e){
+        e.preventDefault();
+        assetdetailtable.ajax.reload();
+      });
+
         
      const assetdetailtable = $('#dynamic_detail').DataTable({
          
@@ -229,10 +235,10 @@ $(document).ready(function(e){
                ajax: {
                    url: "{{ route('getassetdetail') }}",
                    dataSrc: "",
-                 //   data: function(d) {
-                 //       d.amethod = $('#amethod').val();
-                 //       d.acat = $('#acat').val(); 
-                 //   },
+                  data: function(d) {
+                        d.amethod = $('#amethod').val();
+                        d.acat = $('#acat').val(); 
+                    },
                    error: function(xhr, errorType, exception) {
                        alert('An error occurred while fetching data from the server. Please reload the page and try again.');
                    }

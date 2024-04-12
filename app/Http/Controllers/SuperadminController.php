@@ -360,9 +360,15 @@ class SuperadminController extends Controller
         $requestData = (object) $request; 
 
         try {
-
-            $asset = DB::table('fms_g9_asset_detail')->get();
+            // dd($requestData);
+            $asset = DB::table('fms_g9_asset_detail');
+            if($requestData->acat)    $asset = $asset->where('Asset_Category',$requestData->acat);
+            if($requestData->amethod) $asset = $asset->where('Depreciation_Method',$requestData->amethod);
             
+            // if($requestData->acat)    $usersQuery = $usersQuery->where('CategoryID',$requestData->acat);
+            // if($requestData->amethod) $usersQuery = $usersQuery->where('DepreciationMethodID',$requestData->amethod);
+
+            $asset = $asset->get();
             $formattedPromotions = [];
             foreach ($asset as $data) {
 
